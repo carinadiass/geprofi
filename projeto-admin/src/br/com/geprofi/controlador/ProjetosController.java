@@ -28,7 +28,9 @@ private ProjetoDao dao;
 		try {
 			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
 			result.include(projetoEncontrado);
+		    result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.of(this).formulario();
+		
 			return projetoEncontrado;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,7 +66,8 @@ private ProjetoDao dao;
 		
 	}
 	
-	public List<Aluno> pegaAluno(int codProjeto,Result result){
+
+	/*public List<Aluno> pegaAluno(int codProjeto,Result result){
 		try {
 			return dao.buscaAlunosCodProjeto(codProjeto);
 			
@@ -72,6 +75,14 @@ private ProjetoDao dao;
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
+	public void pegaAluno(int codProjeto,Result result){
+		try {
+			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

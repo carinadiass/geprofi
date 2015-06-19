@@ -3,10 +3,13 @@ package br.com.geprofi.modelo.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Projeto;
 
 
+@RequestScoped
 public interface ProjetoDao {
 	void adiciona(Projeto projeto) throws SQLException;
 

@@ -129,7 +129,65 @@
 					</div>
 				</div>
 			</form>
+			</div>
+			<div class="panel panel-primary">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h2 class="panel-title">
+				<i class="glyphicon glyphicon-user"></i> Aluno Cadastrados
+			</h2>
 		</div>
+		<div class="panel-body">
+			<p>Abaixo a relação de todos os alunos cadastrados:</p>
+				<a class="btn btn-primary "
+				href="${linkTo[AlunosController].formulario}" > <i
+				class="glyphicon glyphicon-plus"> </i>Novo Aluno</a>
+						<hr class="colorgraph">
+		</div>
+		<c:if test="${not empty mensagem}">
+			<div class="alert alert-success">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				${mensagem}
+			</div>
+		</c:if>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Dre</th>
+					<th>Curso</th>
+					<th>Data de Cadastro</th>
+					<th colspan=2>Ação</th>
+				</tr>
+			</thead>
+			<c:forEach var="aluno" items="${alunoList}" varStatus="id">
+				<tbody>
+					<tr>
+						<td>${aluno.codUsuario}</td>
+						<td>${aluno.nome}</td>
+						<td>${aluno.email}</td>
+						<td>${aluno.dre}</td>
+						<td>${aluno.curso}</td>
+						<td><fmt:formatDate value="${aluno.dataDeCadastro}"
+								pattern="dd/MM/yyyy" /></td>
+						<td><a class="btn  btn-info btn-sm"
+							href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
+							title="Editar Aluno"> <i class="glyphicon glyphicon-edit">
+							</i>
+						</a></td>
+						<td><a class="btn btn-danger btn-sm"
+							href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}" 
+							title="Excluir Aluno"> <i
+								class="glyphicon glyphicon-remove"> </i>
+						</a></td>
+					</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		<hr class="colorgraph">
 	</div>
+
 </body>
 </html>

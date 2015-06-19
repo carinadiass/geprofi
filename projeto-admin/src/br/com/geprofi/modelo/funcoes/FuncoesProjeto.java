@@ -28,7 +28,7 @@ public class FuncoesProjeto {
 			preparedStatement.setLong(8,projeto.getCodProjeto());
 	
 			preparedStatement.executeUpdate();
-
+		//	connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,11 +52,12 @@ public class FuncoesProjeto {
 				projetos.add(projeto);
 			}
 			stmt.close();
+		//	connection.close();
 			return projetos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
+			//connection.close();
 		}
 	}
 	public static Projeto seleciona(Connection connection, int codProjeto) throws SQLException{
@@ -78,12 +79,13 @@ public class FuncoesProjeto {
 				projeto.setNota(rs.getString("nota"));
 			}
 			preparedStatement.close();
+		//	connection.close();
 			return projeto;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
+		//	connection.close();
 		}
 	}
 	public static void insere(Projeto projeto, Connection connection) throws SQLException{
@@ -104,11 +106,11 @@ public class FuncoesProjeto {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Projeto Gravado!");
-			connection.close();
+		//	connection.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
-			connection.close();
+	//		connection.close();
 		}
 	}
 	public static void deleta(int codProjeto, Connection connection) throws SQLException{
@@ -116,6 +118,7 @@ public class FuncoesProjeto {
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setInt(1, codProjeto);
 		stmt.executeUpdate();
+	//	connection.close();
 
 	}
 	public static List<Aluno> listaAlunos(int codProjeto,Connection connection) throws SQLException{
@@ -137,6 +140,7 @@ public class FuncoesProjeto {
 				alunos.add(aluno);
 			}
 			stmt.close();
+			connection.close();
 			return alunos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

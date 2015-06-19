@@ -35,8 +35,7 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item">
-				<img alt=""
-					src="http://lorempixel.com/output/abstract-q-c-1600-500-7.jpg" />
+				<img alt="" src="../../CarouselBack.jpg" height="1600" width="500" />
 				<div class="carousel-caption">
 					<h4> <font  size="9">Projetos Finais Finalizados</font></h4>
 					<p>
@@ -48,8 +47,7 @@
 				</div>
 			</div>
 			<div class="item active">
-				<img alt=""
-					src="http://lorempixel.com/output/abstract-q-c-1600-500-7.jpg" />
+				<img alt="" src="../../CarouselBack.jpg"  height="1600" width="500" />
 				<div class="carousel-caption">
 					<h4> <font  size="9">Buscar Área de Interesse</font></h4>
 					<p>
