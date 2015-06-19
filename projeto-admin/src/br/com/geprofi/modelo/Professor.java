@@ -8,6 +8,7 @@ public class Professor extends Usuario {
 	private String sala;
 	private String curriculo;
 	private String paginaPessoal;
+	private Projeto_has_professor projetos;
 	public String getTitulo() {
 		return titulo;
 	}

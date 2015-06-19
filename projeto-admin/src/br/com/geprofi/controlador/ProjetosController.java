@@ -63,9 +63,11 @@ private ProjetoDao dao;
 		}
 		
 	}
+	
 	public List<Aluno> pegaAluno(int codProjeto,Result result){
 		try {
 			return dao.buscaAlunosCodProjeto(codProjeto);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

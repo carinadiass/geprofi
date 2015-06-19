@@ -61,7 +61,6 @@ public class AlunosController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }	

@@ -24,7 +24,6 @@
 	<script src="../../js/bootstrap.min.js"></script>
 	<ul class="errors">
 			<c:forEach items="${errors}" var="error">
-
 				<!-- o campo em que ocorreu o erro, ou o tipo do erro -->
 				<!-- a mensagem de erro de validação -->
 				<div class="alert alert-danger" role="alert">

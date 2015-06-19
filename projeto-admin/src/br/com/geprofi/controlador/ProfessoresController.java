@@ -21,7 +21,6 @@ public class ProfessoresController {
 	public ProfessoresController(ProfessorDao dao){
 		this.dao=dao;
 	}
-    
 	protected  ProfessoresController(){this(null);}
 	public void formulario() {}
 	public Professor edita(int codUsuario, Result result) {

@@ -52,7 +52,7 @@
 						value="${banca.codBanca}" />
 					<div class="form-group">
 						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
-							for="nome">Área:</label>
+							for="nome">Quantidade de Participantes:</label>
 						<div class="col-md-4  col-xs-6 .col-sm-4">
 							<input type="text" class="form-control input-sm" id="banca"
 								value="${banca.quantidadeDeParticipantes}" name="banca.quantidadeDeParticipantes" />

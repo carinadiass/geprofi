@@ -32,21 +32,17 @@ public class JDBCProjetoDao implements ProjetoDao{
 	public List<Projeto> todos() throws SQLException {
 		return FuncoesProjeto.lista(connection);
 	}
-
 	@Override
 	public Projeto buscaPorCodProjeto(int codProjeto) throws SQLException {
 		return FuncoesProjeto.seleciona(connection, codProjeto);
 	}
-
 	@Override
 	public void deleta(int codProjeto) throws SQLException {
 		FuncoesProjeto.deleta(codProjeto, connection);
-
 	}
 	@Override
 	public List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return FuncoesProjeto.listaAlunos(codProjeto, connection);
 	}
 
 }
