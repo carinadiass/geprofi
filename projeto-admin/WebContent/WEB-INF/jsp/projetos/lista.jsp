@@ -73,10 +73,6 @@
 							href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}" title="Excluir Projeto">
 								<i class="glyphicon glyphicon-remove"> </i> 
 								</a></td>
-								<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[ProjetosController].pegaAluno}?codProjeto=${projeto.codProjeto}" title="Lista Alunos">
-								<i class="glyphicon glyphicon-remove"> </i> 
-								</a></td>
 					</tr>
 			</c:forEach>
 			</tbody>

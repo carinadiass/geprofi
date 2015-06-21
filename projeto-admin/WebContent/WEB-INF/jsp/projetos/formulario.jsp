@@ -130,6 +130,8 @@
 				</div>
 			</form>
 			</div>
+				</div>
+						<c:if test="${not empty alunoList}">
 			<div class="panel panel-primary">
 		<!-- Default panel contents -->
 		<div class="panel-heading">
@@ -137,6 +139,7 @@
 				<i class="glyphicon glyphicon-user"></i> Aluno Cadastrados
 			</h2>
 		</div>
+	
 		<div class="panel-body">
 			<p>Abaixo a relação de todos os alunos cadastrados:</p>
 				<a class="btn btn-primary "
@@ -150,6 +153,8 @@
 				${mensagem}
 			</div>
 		</c:if>
+			
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -188,6 +193,6 @@
 		</table>
 		<hr class="colorgraph">
 	</div>
-
+</c:if>
 </body>
 </html>
