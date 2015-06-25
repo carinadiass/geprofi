@@ -49,7 +49,6 @@
 				data-fv-icon-invalid="glyphicon glyphicon-remove"
 				data-fv-icon-validating="glyphicon glyphicon-refresh">
 				<!-- Form Name -->
-
 				<!-- Text input-->
 				<div class="form-group">
 					<input type="hidden" name="projeto.codProjeto"
@@ -59,7 +58,6 @@
 
 						<input id="projeto.nome" name="projeto.nome" placeholder=""
 							value="${projeto.nome}" class="form-control input-sm" type="text">
-
 					</div>
 				</div>
 				<!-- Text input-->
@@ -78,7 +76,6 @@
 						<input id="projeto.titulo" name="projeto.titulo"
 							value="${projeto.titulo}" class="form-control input-sm"
 							type="text">
-
 					</div>
 				</div>
 				<!-- Textarea -->
@@ -89,7 +86,6 @@
 							name="projeto.descricao">${projeto.descricao}</textarea>
 					</div>
 				</div>
-
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="aluno.sexo">Quantidade
 						De Alunos</label>
@@ -109,10 +105,8 @@
 					<div class="col-md-2">
 						<input id="projeto.nota" name="projeto.nota" placeholder=""
 							value="${projeto.nota}" class="form-control input-sm" type="text">
-
 					</div>
 				</div>
-
 				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="projeto.palavraChave">Palavras
@@ -139,7 +133,6 @@
 				<i class="glyphicon glyphicon-user"></i> Aluno Cadastrados
 			</h2>
 		</div>
-	
 		<div class="panel-body">
 			<p>Abaixo a relação de todos os alunos cadastrados:</p>
 				<a class="btn btn-primary "
