@@ -27,10 +27,10 @@ public class JDBCProfessorExternoDao implements ProfessorExternoDao {
 	}
 	@Override
 	public void adiciona(ProfessorExterno professorExterno) throws SQLException {
-		if(professorExterno.getCodProfessoExterno()<1){
+		if(professorExterno.getCodProfessorExterno()<1){
 			FuncoesProfessorExterno.insere(professorExterno,connection);
 		}else{
-			FuncoesProfessorExterno.atualiza(professorExterno, professorExterno.getCodProfessoExterno(), connection);
+			FuncoesProfessorExterno.atualiza(professorExterno, professorExterno.getCodProfessorExterno(), connection);
 		}
 	}
 	@Override

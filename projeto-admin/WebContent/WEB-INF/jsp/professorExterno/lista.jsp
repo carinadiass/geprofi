@@ -65,8 +65,8 @@
 						<td>${professorExterno.codBanca}</td>
 						<td>${professorExterno.nome}</td>
 						<td>${professorExterno.email}</td>
-						<td>${professoprofessorExterno.universidadeOrigem}</td>
-						<td>${professoprofessorExterno.areaDeAtuacao}</td>
+						<td>${professorExterno.universidadeOrigem}</td>
+						<td>${professorExterno.areaDeAtuacao}</td>
 
 						<td><a class="btn  btn-info btn-sm"
 							href="${linkTo[ProfessorExternoController].edita}?codProfessorExterno=${professorExterno.codProfessorExterno}"

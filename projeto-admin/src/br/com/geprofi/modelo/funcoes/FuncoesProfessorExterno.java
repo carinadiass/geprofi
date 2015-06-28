@@ -38,7 +38,7 @@ public class FuncoesProfessorExterno {
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				ProfessorExterno professorExterno= new ProfessorExterno();
-				professorExterno.setCodProfessoExterno(rs.getInt("codProfessorExterno"));
+				professorExterno.setCodProfessorExterno(rs.getInt("codProfessorExterno"));
 				professorExterno.setCodBanca(rs.getInt("codBanca"));
 				professorExterno.setNome(rs.getString("nome"));
 				professorExterno.setEmail(rs.getString("email"));
@@ -62,7 +62,7 @@ public class FuncoesProfessorExterno {
 			preparedStatement.setLong(1, codProfessorExterno);
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
-				professorExterno.setCodProfessoExterno(rs.getInt("codProfessorExterno"));
+				professorExterno.setCodProfessorExterno(rs.getInt("codProfessorExterno"));
 				professorExterno.setCodBanca(rs.getInt("codBanca"));
 				professorExterno.setNome(rs.getString("nome"));
 				professorExterno.setEmail(rs.getString("email"));
