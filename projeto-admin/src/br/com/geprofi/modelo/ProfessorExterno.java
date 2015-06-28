@@ -17,10 +17,10 @@ public class ProfessorExterno {
 	private String universidadeOrigem;
 	private String areaDeAtuacao;
 	
-	public int getCodProfessoExterno() {
+	public int getCodProfessorExterno() {
 		return codProfessorExterno;
 	}
-	public void setCodProfessoExterno(int codProfessorExterno) {
+	public void setCodProfessorExterno(int codProfessorExterno) {
 		this.codProfessorExterno = codProfessorExterno;
 	}
 	public int getCodBanca() {
