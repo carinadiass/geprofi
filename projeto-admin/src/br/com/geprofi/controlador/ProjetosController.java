@@ -23,6 +23,7 @@ private ProjetoDao dao;
 	}
 	protected  ProjetosController(){this(null);}
 	public void formulario() {}
+	public void fluxoprojeto() {}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {

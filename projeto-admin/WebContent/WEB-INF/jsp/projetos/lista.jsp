@@ -48,7 +48,7 @@
 					<th>Título</th>
 					<th>Alunos</th>
 					<th>Date de Cadastro</th>
-					<th colspan=3>Ações</th>
+					<th colspan=4>Ações</th>
 				</tr>
 			</thead>
 			<c:forEach var="projeto" items="${projetoList}" varStatus="id">
@@ -68,6 +68,10 @@
 						<td><a class="btn btn-warning btn-sm"
 							href="${linkTo[AlunosController].formulario}?codProjeto=${projeto.codProjeto}" title="Adicionar Usuário">
 							<i class="glyphicon glyphicon-user"> </i>
+								</a></td>
+								<td><a class="btn btn-default btn-sm"
+							href="${linkTo[BancaController].formulario}?codProjeto=${projeto.codProjeto}" title="Adicionar Banca">
+							<i class="glyphicon glyphicon-education"> </i>
 								</a></td>
 						<td><a class="btn btn-danger btn-sm"
 							href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}" title="Excluir Projeto">

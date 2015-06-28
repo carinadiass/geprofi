@@ -17,6 +17,9 @@
 <title>Cadastro de Banca</title>
 </head>
 <body>
+	<%
+		String codProjeto = request.getParameter("codProjeto");
+	%>
 	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- Incluindo o JavaScript do Bootstrap -->
@@ -47,37 +50,24 @@
 				data-fv-icon-valid="glyphicon glyphicon-ok"
 				data-fv-icon-invalid="glyphicon glyphicon-remove"
 				data-fv-icon-validating="glyphicon glyphicon-refresh">
+				
 				<div class="form-group">
 					<input type="hidden" name="banca.codBanca"
 						value="${banca.codBanca}" />
+				   <input type="hidden"
+						name="banca.codProjeto" value="${param.codProjeto}" />
 					<div class="form-group">
 						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
 							for="nome">Quantidade de Participantes:</label>
 						<div class="col-md-4  col-xs-6 .col-sm-4">
 							<input type="text" class="form-control input-sm" id="banca"
-								value="${banca.quantidadeDeParticipantes}" name="banca.quantidadeDeParticipantes" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
-							for="nome">Nome:</label>
-						<div class="col-md-4  col-xs-6 .col-sm-4">
-							<input type="text" class="form-control input-sm" id="nome"
-								value="${areaDeInteresse.nome}" name="areaDeInteresse.nome" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
-							for="descricao">Descrição:</label>
-						<div class="col-md-4  col-xs-6 .col-sm-4">
-							<textarea class="form-control input-sm" rows="5" id="descricao"
-								name="areaDeInteresse.descricao">${areaDeInteresse.descricao}</textarea>
+								value="${banca.quantidadeDeParticipantes}"
+								name="banca.quantidadeDeParticipantes" />
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-4  col-xs-6 .col-sm-4 control-label">
 							<input type="submit" class="btn btn-primary input-sm">
-
 						</div>
 					</div>
 			</form>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
+import br.com.geprofi.modelo.AreaDeInteresse;
 import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.dao.BancaDao;
 
@@ -21,11 +22,28 @@ public class BancaController {
 	public BancaController(){this(null);} 
 	public void formulario(){}
 	public Banca edita(int codBanca, Result result){
-		return null;
+		Banca banca=null;
+		System.out.println(codBanca);
+		try{
+			banca = dao.buscaPorCodBanca(codBanca);
+			System.out.println(banca);
+			result.include(banca);
+			result.of(this).formulario();
+			return banca;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return banca;
 	}
 	
 	public void salva(Banca banca, Result result){
-		
+		try {
+			dao.adiciona(banca);
+			result.include("mensagem", "Banca criada com sucesso!");
+			result.redirectTo(this).lista();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 	public List<Banca> lista() {
 		try {

@@ -28,6 +28,7 @@ public class Projeto {
 	private Date dataCadastro;
 	private String palavraChave;
     private Projeto_has_professor proj_prof;
+    private int codtipoetapa;
 	
 	public int getCodProjeto() {
 		return codProjeto;
@@ -95,5 +96,12 @@ public class Projeto {
 	public void setProj_prof(Projeto_has_professor proj_prof) {
 		this.proj_prof = proj_prof;
 	}
+	public int getCodtipoetapa() {
+		return codtipoetapa;
+	}
+	public void setCodtipoetapa(int codtipoetapa) {
+		this.codtipoetapa = codtipoetapa;
+	}
+	
 	
 }

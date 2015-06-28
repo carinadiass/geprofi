@@ -14,5 +14,5 @@ public interface AlunoDao {
 	Aluno buscaPorCodUsuario(int codUsuario) throws SQLException;
 	
 	void deleta(int codUsuario) throws SQLException;
-
+	
 }

@@ -12,11 +12,11 @@ import br.com.geprofi.modelo.Banca;
 public class FuncoesBanca {
 public static void atualiza(Banca banca, Connection connection) throws SQLException{
 		
-		String sql="UPDATE BANCA SET quantidadeDeParticipantes=?,  WHERE codBanca=?";
+		String sql="UPDATE BANCA SET quantidadeDeParticipantes=?  WHERE codBanca=?";
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, banca.getQuantidadeDeParticipantes());
-			stmt.setInt(3, banca.getCodBanca());
+			stmt.setInt(2, banca.getCodBanca());
 			stmt.executeUpdate();
 		}catch(SQLException e){
 			throw new RuntimeException(e);
@@ -85,7 +85,7 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 		}
 	}
 	public static void deleta(int codBanca,Connection connection) throws SQLException{
-		System.out.println(codBanca);
+		System.out.println("Código da Banca= "+codBanca);
 		String sql="DELETE FROM Banca WHERE codBanca=?";
 			PreparedStatement stmt =connection.prepareStatement(sql);
 			stmt.setInt(1, codBanca);
