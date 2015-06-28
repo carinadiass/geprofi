@@ -6,6 +6,7 @@ import java.util.List;
 import br.com.geprofi.modelo.AreaDeInteresse;
 
 public interface AreaDeInteresseDao {
+	
 	void adiciona(AreaDeInteresse areaDeInteresse) throws SQLException;
 
 	List<AreaDeInteresse> todos() throws SQLException;

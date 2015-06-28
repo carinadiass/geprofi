@@ -31,16 +31,13 @@ public class JDBCProfessorDao implements ProfessorDao {
 	public List<Professor> todos() throws SQLException {
 		return FuncoesProfessor.lista(connection);
 	}
-
 	@Override
 	public Professor buscaPorCodUsuario(int codUsuario) throws SQLException {
 		return FuncoesProfessor.seleciona(connection, codUsuario);
 	}
-
 	@Override
 	public void deleta(int codUsuario) throws SQLException {
 		FuncoesProfessor.deleta(codUsuario, connection);
 
 	}
-
 }

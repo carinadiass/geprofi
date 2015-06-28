@@ -61,11 +61,17 @@
 							title="Editar Área"> <i class="glyphicon glyphicon-edit">
 							</i>
 						</a></td>
+							<td><a class="btn btn-default btn-sm"
+							href="${linkTo[ProfessorExternoController].formulario}?codBanca=${banca.codBanca}"
+							title="Adicionar Professor Externo"> <i class="glyphicon glyphicon-user">
+							  </i>
+						</a></td>
 						<td><a class="btn btn-danger btn-sm"
 							href="${linkTo[BancaController].delete}?codBanca=${banca.codBanca}"
 							onclick="return confirmExclusao()" title="Excluir Área"> <i class="glyphicon glyphicon-remove">
 							  </i>
 						</a></td>
+					
 
 					</tr>
 			</c:forEach>

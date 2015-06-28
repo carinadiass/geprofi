@@ -9,7 +9,8 @@ import javax.persistence.Id;
 public class ProfessorExterno {
 	
 	@Id @GeneratedValue
-	private int codProfessoExterno;
+	private int codProfessorExterno;
+	
 	private int codBanca;
 	private String nome;
 	private String email;
@@ -17,10 +18,10 @@ public class ProfessorExterno {
 	private String areaDeAtuacao;
 	
 	public int getCodProfessoExterno() {
-		return codProfessoExterno;
+		return codProfessorExterno;
 	}
-	public void setCodProfessoExterno(int codProfessoExterno) {
-		this.codProfessoExterno = codProfessoExterno;
+	public void setCodProfessoExterno(int codProfessorExterno) {
+		this.codProfessorExterno = codProfessorExterno;
 	}
 	public int getCodBanca() {
 		return codBanca;
