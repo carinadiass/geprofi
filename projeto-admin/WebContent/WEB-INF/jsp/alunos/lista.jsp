@@ -81,6 +81,11 @@
 							title="Excluir Aluno"> <i
 								class="glyphicon glyphicon-remove"> </i>
 						</a></td>
+							<td><a class="btn btn-danger btn-sm"
+							href="${linkTo[AlunosController].sendNewPassword}" 
+							title="Excluir Aluno"> <i
+								class="glyphicon glyphicon-envelope"> </i>
+						</a></td>
 					</tr>
 			</c:forEach>
 			</tbody>
