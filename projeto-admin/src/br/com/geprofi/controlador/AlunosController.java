@@ -6,8 +6,15 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
+
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.simplemail.Mailer;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.dao.AlunoDao;
@@ -15,13 +22,14 @@ import br.com.geprofi.modelo.dao.AlunoDao;
 @Controller
 public class AlunosController {
 
-	private AlunoDao dao;  
+	private AlunoDao dao;
+	private Mailer mailer;  
 	@Inject
-	public AlunosController(AlunoDao dao){
+	public AlunosController(AlunoDao dao, Mailer mailer){
 		this.dao=dao;
+		this.mailer = mailer;
 	}
-
-	protected AlunosController(){this(null);}
+    protected AlunosController(){}
 	public void formulario() {}
 	public Aluno edita(int codUsuario, Result result) {
 		Aluno alunoEncontrado = null;
@@ -63,4 +71,18 @@ public class AlunosController {
 		}
 	}
 
+	@Path("/password/send")
+	public void sendNewPassword() {
+		try {
+			Email email = new SimpleEmail();
+			email.setSubject("Your new password");
+			email.addTo("carinadiass@gmail.com");
+			email.setMsg("Testndo");
+			mailer.send(email); // Hostname, port and security settings are made by the Mailer
+		} catch (EmailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
 }	
