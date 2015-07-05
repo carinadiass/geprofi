@@ -21,6 +21,7 @@ private ProfessorExternoDao dao;
 	}
 	protected  ProfessorExternoController(){this(null);}
 	public void formulario() {}
+	public void pfhome(int cod_professor) {}
 	public ProfessorExterno edita(int codProfessorExterno, Result result) {
 		ProfessorExterno professorExternoEncontrado = null;
 		try {

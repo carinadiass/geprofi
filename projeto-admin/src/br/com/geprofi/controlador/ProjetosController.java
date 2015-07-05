@@ -31,17 +31,16 @@ private ProjetoDao dao;
 			result.include(projetoEncontrado);
 		    result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.of(this).formulario();
-		
 			return projetoEncontrado;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return projetoEncontrado;
 	}
-	public void salva(@Valid Projeto projeto,Result result,Validator validator) {
+	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator) {
 		try {
 			validator.onErrorRedirectTo(this).formulario();
-			dao.adiciona(projeto);
+			dao.adiciona(projeto, codUsuario);
 			result.include("mensagem", "Projeto salvo com sucesso!");
 			result.redirectTo(this).lista();
 		} catch (SQLException e) {
@@ -66,8 +65,6 @@ private ProjetoDao dao;
 		}
 		
 	}
-	
-
 	/*public List<Aluno> pegaAluno(int codProjeto,Result result){
 		try {
 			return dao.buscaAlunosCodProjeto(codProjeto);
@@ -77,7 +74,6 @@ private ProjetoDao dao;
 		}
 		return null;
 	}*/
-
 	public void pegaAluno(int codProjeto,Result result){
 		try {
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));

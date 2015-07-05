@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<div class="item active">
-				<img alt="" src="../../CarouselBack.jpg"  height="1600" width="500" />
+			
 				<div class="carousel-caption">
 					<h4> <font  size="9">Buscar Área de Interesse</font></h4>
 					<p>
@@ -66,7 +66,10 @@
 	</div>
 	</div>
 	</div>
+
 	<%@include file="login.jsp"%>
+		<img src=<c:url value="../../../imagens/CarouselBack.jpg"/> >
+	
 	</div>
 </body>
 </html>

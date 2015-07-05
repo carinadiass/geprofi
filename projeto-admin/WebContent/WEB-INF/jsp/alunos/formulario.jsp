@@ -53,7 +53,7 @@
 				</ul>
 				  <input type="hidden" name="aluno.codProjeto"
 					value="${param.codProjeto}" />
-				<input type="hidden" name="aluno.codUsuario"
+				<input type="hidden" name="param.codUsuario"
 					value="${aluno.codUsuario}" />
 				<div class="form-group">
 					<label class="col-md-4 col-xs-6  .col-sm-4 control-label"

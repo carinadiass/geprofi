@@ -75,6 +75,11 @@
 							title="Excluir Professor"> <i
 								class="glyphicon glyphicon-remove"> </i>
 						</a></td>
+							<td><a class="btn btn-danger btn-sm"
+							href="${linkTo[ProjetosController].formulario}?codUsuario=${professor.codUsuario}"
+							title="Criar Projeto"> <i
+								class="glyphicon glyphicon-remove"> </i>
+						</a></td>
 					</tr>
 			</c:forEach>
 			</tbody>

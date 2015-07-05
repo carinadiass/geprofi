@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.geprofi.modelo.Professor;
+import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProfessorDao;
 import br.com.geprofi.modelo.funcoes.ConnectionFactory;
 import br.com.geprofi.modelo.funcoes.FuncoesProfessor;
@@ -39,5 +40,9 @@ public class JDBCProfessorDao implements ProfessorDao {
 	public void deleta(int codUsuario) throws SQLException {
 		FuncoesProfessor.deleta(codUsuario, connection);
 
+	}
+	public List<Projeto> projetosProfessor(int codUsuario) throws SQLException{
+		return FuncoesProfessor.listaProjetos(connection,codUsuario);
+		
 	}
 }

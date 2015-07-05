@@ -20,10 +20,9 @@ public class JDBCProjetoDao implements ProjetoDao{
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public void adiciona(Projeto projeto) throws SQLException {
+	public void adiciona(Projeto projeto, int codUsuario) throws SQLException {
 		if(projeto.getCodProjeto()<1){
-			FuncoesProjeto.insere(projeto,connection);
+			FuncoesProjeto.insere(projeto,codUsuario,connection);
 		}else{
 			FuncoesProjeto.atualiza(projeto, projeto.getCodProjeto(), connection);
 		}
@@ -44,5 +43,6 @@ public class JDBCProjetoDao implements ProjetoDao{
 	public List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException {
 		return FuncoesProjeto.listaAlunos(codProjeto, connection);
 	}
+
 
 }

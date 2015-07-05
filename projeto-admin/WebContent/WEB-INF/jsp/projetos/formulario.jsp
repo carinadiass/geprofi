@@ -18,6 +18,9 @@
 <title>Cadastro de Projeto</title>
 </head>
 <body>
+<%
+    String codUsuario = request.getParameter("codUsuario");
+%>
 	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- Incluindo o JavaScript do Bootstrap -->
@@ -43,7 +46,7 @@
 				</c:if>
 			</ul>
 			<form id="formAluno" class="form-horizontal" role="form"
-				action="${linkTo[ProjetosController].salva}" method="POST"
+				action="${linkTo[ProjetosController].salva}?codUsuario=${param.codUsuario}" method="POST"
 				data-fv-framework="bootstrap"
 				data-fv-icon-valid="glyphicon glyphicon-ok"
 				data-fv-icon-invalid="glyphicon glyphicon-remove"
@@ -52,7 +55,10 @@
 				<!-- Text input-->
 				<div class="form-group">
 					<input type="hidden" name="projeto.codProjeto"
-						value="${projeto.codProjeto}" /> <label
+						value="${projeto.codProjeto}" /> 
+					<input type="hidden" name="param.codUsuario"
+					value="${param.codUsuario}" />
+					<label
 						class="col-md-4 control-label" for="projeto.nome">Nome</label>
 					<div class="col-md-4">
 
@@ -66,7 +72,6 @@
 					<div class="col-md-4">
 						<input id="projeto.tema" name="projeto.tema"
 							value="${projeto.tema}" class="form-control input-sm" type="text">
-
 					</div>
 				</div>
 				<!-- Text input-->

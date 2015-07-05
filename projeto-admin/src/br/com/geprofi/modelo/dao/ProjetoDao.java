@@ -11,7 +11,6 @@ import br.com.geprofi.modelo.Projeto;
 
 @RequestScoped
 public interface ProjetoDao {
-	void adiciona(Projeto projeto) throws SQLException;
 
 	List<Projeto> todos() throws SQLException;
 
@@ -20,5 +19,7 @@ public interface ProjetoDao {
 	void deleta(int codProjeto) throws SQLException;
 	
 	List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException;
+
+	void adiciona(Projeto projeto, int codUsuario) throws SQLException;
 
 }

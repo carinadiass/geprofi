@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import br.com.geprofi.modelo.Professor;
+import br.com.geprofi.modelo.Projeto;
 
 public class FuncoesProfessor {
 
@@ -58,12 +59,12 @@ public class FuncoesProfessor {
 				professor.setTipoUsuario(rs.getString("tipoUsuario"));
 				professor.setSexo(rs.getString("sexo"));
 				professor.setTitulo(rs.getString("titulo"));
-    			professor.setCargo(rs.getString("cargo"));
-    			professor.setDetalheTitulo(rs.getString("detalheTitulo"));
-    			professor.setSala(rs.getString("sala"));
-    			professor.setPaginaPessoal(rs.getString("paginaPessoal"));
-    			professor.setCurriculo(rs.getString("curriculo"));
-    		
+				professor.setCargo(rs.getString("cargo"));
+				professor.setDetalheTitulo(rs.getString("detalheTitulo"));
+				professor.setSala(rs.getString("sala"));
+				professor.setPaginaPessoal(rs.getString("paginaPessoal"));
+				professor.setCurriculo(rs.getString("curriculo"));
+
 				professores.add(professor);
 			}
 			stmt.close();
@@ -89,11 +90,11 @@ public class FuncoesProfessor {
 				professor.setTipoUsuario(rs.getString("tipoUsuario"));
 				professor.setSexo(rs.getString("sexo"));
 				professor.setTitulo(rs.getString("titulo"));
-    			professor.setCargo(rs.getString("cargo"));
-    			professor.setDetalheTitulo(rs.getString("detalheTitulo"));
-    			professor.setSala(rs.getString("sala"));
-    			professor.setPaginaPessoal(rs.getString("paginaPessoal"));
-    			professor.setCurriculo(rs.getString("curriculo"));
+				professor.setCargo(rs.getString("cargo"));
+				professor.setDetalheTitulo(rs.getString("detalheTitulo"));
+				professor.setSala(rs.getString("sala"));
+				professor.setPaginaPessoal(rs.getString("paginaPessoal"));
+				professor.setCurriculo(rs.getString("curriculo"));
 			}
 			preparedStatement.close();
 			return professor;
@@ -139,6 +140,29 @@ public class FuncoesProfessor {
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setInt(1, codUsuario);
 		stmt.executeUpdate();
+
+	}
+	public static List<Projeto> listaProjetos(Connection connection, int codUsuario) throws SQLException{
+		List<Projeto> projetos = new ArrayList<Projeto>();
+		String sql = " select p.* from projeto p join projeto_has_professor pp on p.codprojeto=pp.codprojeto "
+				+ " join usuario pro on pro.codusuario=pp.codusuario"
+				+ " where pro.codusurio=? ";
+		try{
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, codUsuario);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next()) {
+				
+				preparedStatement.close();
+				return projetos;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			connection.close();
+		}
+		return null;
+		// TODO Auto-generated method stub
 
 	}
 

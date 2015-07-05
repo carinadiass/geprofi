@@ -12,7 +12,7 @@ import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Projeto;
 
 public class FuncoesProjeto {
-	
+
 	public static void atualiza(Projeto projeto,int id,Connection connection) {
 		try {
 			PreparedStatement preparedStatement = connection
@@ -26,9 +26,8 @@ public class FuncoesProjeto {
 			preparedStatement.setString(6,projeto.getPalavraChave());
 			preparedStatement.setString(7, projeto.getNota());
 			preparedStatement.setLong(8,projeto.getCodProjeto());
-	
 			preparedStatement.executeUpdate();
-		//	connection.close();
+			//	connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +51,7 @@ public class FuncoesProjeto {
 				projetos.add(projeto);
 			}
 			stmt.close();
-		//	connection.close();
+			//	connection.close();
 			return projetos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -62,7 +61,7 @@ public class FuncoesProjeto {
 	}
 	public static Projeto seleciona(Connection connection, int codProjeto) throws SQLException{
 		Projeto projeto= new Projeto();
-		String sql ="SELECT * FROM PROJETO WHERE  codProjeto=?";
+		String sql ="SELECT * FROM PROJETO WHERE codProjeto=?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, codProjeto);
@@ -79,16 +78,16 @@ public class FuncoesProjeto {
 				projeto.setNota(rs.getString("nota"));
 			}
 			preparedStatement.close();
-		//	connection.close();
+			//	connection.close();
 			return projeto;
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-		//	connection.close();
+			//	connection.close();
 		}
 	}
-	public static void insere(Projeto projeto, Connection connection) throws SQLException{
+	public static void insere(Projeto projeto, int codUsuario,Connection connection) throws SQLException{
 		String sql = "insert into projeto" +
 				"(nome, titulo, tema, quantidadeDeAlunos, "
 				+ "descricao, dataCadastro, palavraChave, nota )"
@@ -106,11 +105,49 @@ public class FuncoesProjeto {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Projeto Gravado!");
-		//	connection.close();
+			 insereProjeto_Professor(pegaUlitmoProjeto(connection),codUsuario, connection);
+			//	connection.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
-	//		connection.close();
+			//		connection.close();
+		}
+	}
+	public static int pegaUlitmoProjeto(Connection connection)  throws SQLException{
+		int codProjeto=0;
+		String sql ="select max(codprojeto) as codigo from projeto";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				System.out.println(rs.getInt("codigo"));
+				codProjeto=rs.getInt("codigo");
+			}
+			stmt.close();
+			return codProjeto;
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			//		connection.close();
+		}
+		
+	}
+	public static void insereProjeto_Professor(int codProjeto, int codUsuario, Connection connection) throws SQLException{
+		String sql = "insert into projeto_has_professor" +
+				"(codProjeto, codUsuario )"
+				+ " VALUES (?,?)";
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, codProjeto);
+			stmt.setInt(2, codUsuario);
+			stmt.execute();
+			stmt.close();
+			System.out.println("Projeto_has_professor Gravado!");
+			//	connection.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			//		connection.close();
 		}
 	}
 	public static void deleta(int codProjeto, Connection connection) throws SQLException{
@@ -118,7 +155,7 @@ public class FuncoesProjeto {
 		PreparedStatement stmt = connection.prepareStatement(sql);
 		stmt.setInt(1, codProjeto);
 		stmt.executeUpdate();
-	//	connection.close();
+		//	connection.close();
 
 	}
 	public static List<Aluno> listaAlunos(int codProjeto,Connection connection) throws SQLException{

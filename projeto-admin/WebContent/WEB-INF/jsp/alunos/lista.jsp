@@ -12,21 +12,20 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
+="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <%@include file="../primeira/header.jsp"%>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Lista de Alunos</title>
 </head>
 <body>
-
-	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<!-- Incluindo o JavaScript do Bootstrap -->
-	<script src="../../js/bootstrap.min.js"></script>
-
-
 	<!-- cria o DAO -->
-
 	<div class="panel panel-primary">
 		<!-- Default panel contents -->
 		<div class="panel-heading">

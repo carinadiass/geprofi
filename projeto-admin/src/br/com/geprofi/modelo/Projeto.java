@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 /***
  * 
@@ -28,6 +30,9 @@ public class Projeto {
 	private Date dataCadastro;
 	private String palavraChave;
     private int codtipoetapa;
+	@ManyToMany
+	@JoinColumn(name="codProfessor")
+	private Professor professor;
 	
 	public int getCodProjeto() {
 		return codProjeto;
@@ -95,6 +100,13 @@ public class Projeto {
 	public void setCodtipoetapa(int codtipoetapa) {
 		this.codtipoetapa = codtipoetapa;
 	}
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	
 	
 	
 }
