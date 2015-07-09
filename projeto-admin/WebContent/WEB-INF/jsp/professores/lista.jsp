@@ -4,19 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="../primeira/header.jsp"%>
-<title>Lista de Professores</title>
-</head>
+
 <body>
 	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -70,16 +58,17 @@
 							title="Editar Professor"> <i class="glyphicon glyphicon-edit">
 							</i>
 						</a></td>
+						<td><a class="btn btn-warning btn-sm"
+							href="${linkTo[ProjetosController].formulario}?codUsuario=${professor.codUsuario}"
+							title="Criar Projeto"> <i
+								class="glyphicon glyphicon-folder-open"> </i>
+						</a></td>
 						<td><a class="btn btn-danger btn-sm"
 							href="${linkTo[ProfessoresController].delete}?codUsuario=${professor.codUsuario}"
 							title="Excluir Professor"> <i
-								class="glyphicon glyphicon-remove"> </i>
+								class="glyphicon glyphicon-trash"> </i>
 						</a></td>
-							<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[ProjetosController].formulario}?codUsuario=${professor.codUsuario}"
-							title="Criar Projeto"> <i
-								class="glyphicon glyphicon-remove"> </i>
-						</a></td>
+							
 					</tr>
 			</c:forEach>
 			</tbody>

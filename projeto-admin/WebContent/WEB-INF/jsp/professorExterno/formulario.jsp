@@ -8,7 +8,6 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="../primeira/header.jsp"%>
 <title>Cadastro de Professor Externo</title>
 </head>
 <body>

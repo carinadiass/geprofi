@@ -13,7 +13,6 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<%@include file="../primeira/header.jsp"%>
 <title>Cadastro de Área de Interesse</title>
 </head>
 <body>

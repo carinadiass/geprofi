@@ -17,9 +17,6 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<%@include file="../primeira/header.jsp"%>
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Lista de Alunos</title>
