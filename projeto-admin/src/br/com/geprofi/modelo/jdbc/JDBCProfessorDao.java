@@ -45,4 +45,9 @@ public class JDBCProfessorDao implements ProfessorDao {
 		return FuncoesProfessor.listaProjetos(connection,codUsuario);
 		
 	}
+	@Override
+	public List<Projeto> buscaProjeto_professor(int codProfessor)
+			throws SQLException {
+		 return FuncoesProfessor.listaProjetos(connection, codProfessor);
+	}
 }

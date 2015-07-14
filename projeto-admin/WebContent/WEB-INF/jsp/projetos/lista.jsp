@@ -70,11 +70,11 @@
 								</a></td>
 								<td><a class="btn btn-default btn-sm"
 							href="${linkTo[BancaController].formulario}?codProjeto=${projeto.codProjeto}" title="Adicionar Banca">
-							<i class="glyphicon glyphicon-education"> </i>
+							<i class="glyphicon glyphicon-eye-open"> </i>
 								</a></td>
 						<td><a class="btn btn-danger btn-sm"
 							href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}" title="Excluir Projeto">
-								<i class="glyphicon glyphicon-remove"> </i> 
+								<i class="glyphicon glyphicon-trash"> </i> 
 								</a></td>
 					</tr>
 			</c:forEach>

@@ -28,6 +28,7 @@ public class ProfessoresController {
 		try {
 			professorEncontrado = dao.buscaPorCodUsuario(codUsuario);
 			result.include(professorEncontrado);
+			result.include("projetoList", dao.buscaProjeto_professor(codUsuario));
 			result.of(this).formulario();
 			return professorEncontrado;
 		} catch (SQLException e) {
@@ -59,6 +60,13 @@ public class ProfessoresController {
 			result.include("mensagem", "Professor deletado com sucesso!");
 			result.redirectTo(this).lista();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void pegaProjetos(int codProfessor, Result result){
+		try{
+			result.include("projetoList", dao.buscaProjeto_professor(codProfessor));
+		}catch (SQLException e){
 			e.printStackTrace();
 		}
 		

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.geprofi.modelo.Professor;
+import br.com.geprofi.modelo.Projeto;
 
 public interface ProfessorDao {
 	
@@ -14,6 +15,8 @@ public interface ProfessorDao {
 	Professor buscaPorCodUsuario(int codUsuario) throws SQLException;
 	
 	void deleta(int codUsuario) throws SQLException;
+
+	List<Projeto> buscaProjeto_professor(int codProfessor) throws SQLException;
 
 
 }

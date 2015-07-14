@@ -72,7 +72,6 @@ public class FuncoesProfessor {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
 		}
 	}
 	public static Professor seleciona(Connection connection, int codUsuario) throws SQLException{
@@ -102,7 +101,6 @@ public class FuncoesProfessor {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
 		}
 	}
 	public static void insere(Professor professor, Connection connection) throws SQLException{
@@ -132,7 +130,6 @@ public class FuncoesProfessor {
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
-			connection.close();
 		}
 	}
 	public static void deleta(int codUsuario, Connection connection) throws SQLException{
@@ -146,24 +143,30 @@ public class FuncoesProfessor {
 		List<Projeto> projetos = new ArrayList<Projeto>();
 		String sql = " select p.* from projeto p join projeto_has_professor pp on p.codprojeto=pp.codprojeto "
 				+ " join usuario pro on pro.codusuario=pp.codusuario"
-				+ " where pro.codusurio=? ";
+				+ " where pro.codusuario=? ";
 		try{
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, codUsuario);
 			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()) {
-				
-				preparedStatement.close();
-				return projetos;
+				Projeto projeto = new Projeto();
+				projeto.setCodProjeto(rs.getInt("codProjeto"));
+				projeto.setNome(rs.getString("nome"));
+				projeto.setTema(rs.getString("tema"));
+				projeto.setTitulo(rs.getString("titulo"));
+				projeto.setDataCadastro(rs.getDate("dataCadastro"));
+				projeto.setDescricao(rs.getString("descricao"));
+				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
+				projeto.setPalavraChave(rs.getString("palavraChave"));
+				projetos.add(projeto);
 			}
+			preparedStatement.close();
+			return projetos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
 		}
-		return null;
 		// TODO Auto-generated method stub
-
 	}
 
 

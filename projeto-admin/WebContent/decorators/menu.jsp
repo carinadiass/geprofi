@@ -17,13 +17,13 @@
         <li class="active"><a href="${linkTo[ProjetosController].lista}">Projetos <span class="sr-only">(current)</span></a></li>
         <li><a href="${linkTo[ProfessoresController].lista}">Professores</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Funcionalidades <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="${linkTo[AreaDeInteresseController].lista}">Áreas De Interesse</a></li>
             <li><a href="${linkTo[AlunosController].lista}">Alunos</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="${linkTo[BancaController].lista}">Banca</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="${linkTo[ProfessorExternoController].lista}">Professores Externos</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
