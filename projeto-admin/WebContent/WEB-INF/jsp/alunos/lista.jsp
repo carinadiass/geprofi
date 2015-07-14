@@ -12,13 +12,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Testando hook -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Lista de Alunos</title>
 </head>
 <body>
@@ -33,10 +33,10 @@
 		<div class="panel-body">
 
 			<p>Abaixo a relação de todos os alunos cadastrados:</p>
-				<a class="btn btn-primary "
-				href="${linkTo[AlunosController].formulario}" > <i
+			<a class="btn btn-primary "
+				href="${linkTo[AlunosController].formulario}"> <i
 				class="glyphicon glyphicon-plus"> </i>Novo Aluno</a>
-						<hr class="colorgraph">
+				<hr class="colorgraph">
 		</div>
 		<c:if test="${not empty mensagem}">
 			<div class="alert alert-success">
@@ -73,12 +73,12 @@
 							</i>
 						</a></td>
 						<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}" 
-							title="Excluir Aluno"> <i
-								class="glyphicon glyphicon-remove"> </i>
+							href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}"
+							title="Excluir Aluno"> <i class="glyphicon glyphicon-remove">
+							</i>
 						</a></td>
-							<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[AlunosController].sendNewPassword}" 
+						<td><a class="btn btn-danger btn-sm"
+							href="${linkTo[AlunosController].sendNewPassword}"
 							title="Excluir Aluno"> <i
 								class="glyphicon glyphicon-envelope"> </i>
 						</a></td>
