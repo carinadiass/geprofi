@@ -130,82 +130,91 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-4  col-xs-6 .col-sm-4 control-label">
-							<input type="submit" class="btn btn-primary input-sm">
+							<input type="submit" class="btn btn-primary">
+							<c:if test="${not empty professor.codUsuario}">
+							<a class="btn btn-primary "
+								href="${linkTo[AreaDeInteresseController].formulario}?codUsuario=${professor.codUsuario}">
+								<i class="glyphicon glyphicon-plus"> </i>Nova Área de Interesse
+							</a>
+						</c:if>
 						</div>
+						
 					</div>
 				</form>
 			</div>
 		</div>
-		</div>
-		<c:if test="${not empty projetoList}">
-			<div class="panel panel-primary">
-				<!-- Default panel contents -->
-				<div class="panel-heading">
-					<h2 class="panel-title">
-						<i class="glyphicon glyphicon-file"></i> Projetos Finais Cadastrados</h2>
-				</div>
-				<div class="panel-body">
-					<p>Abaixo a relação de todos os projetos cadastrados:</p>
-					<a class="btn btn-primary "
-						href="${linkTo[ProjetosController].formulario}?codUsuario=${professor.codUsuario}"> <i
-						class="glyphicon glyphicon-plus"> </i>Novo Projeto
-					</a>
-					<hr class="colorgraph">
-				</div>
-				<c:if test="${not empty mensagem}">
-					<div class="alert alert-success">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						${mensagem}
-					</div>
-				</c:if>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nome</th>
-							<th>Tema</th>
-							<th>Título</th>
-							<th>Alunos</th>
-							<th>Date de Cadastro</th>
-							<th colspan=4>Ações</th>
-						</tr>
-					</thead>
-					<c:forEach var="projeto" items="${projetoList}" varStatus="id">
-						<tbody>
-							<tr>
-								<td>${projeto.codProjeto}</td>
-								<td>${projeto.nome}</td>
-								<td>${projeto.tema}</td>
-								<td>${projeto.titulo}</td>
-								<td>${projeto.quantidadeDeAlunos}</td>
-								<td><fmt:formatDate value="${projeto.dataCadastro}"
-										pattern="dd/MM/yyyy" />
-								<td><a class="btn  btn-info btn-sm"
-									href="${linkTo[ProjetosController].edita}?codProjeto=${projeto.codProjeto}"
-									title="Editar Projeto"> <i class="glyphicon glyphicon-edit">
-									</i>
-								</a></td>
-								<td><a class="btn btn-warning btn-sm"
-									href="${linkTo[AlunosController].formulario}?codProjeto=${projeto.codProjeto}"
-									title="Adicionar Usuário"> <i
-										class="glyphicon glyphicon-user"> </i>
-								</a></td>
-								<td><a class="btn btn-default btn-sm"
-									href="${linkTo[BancaController].formulario}?codProjeto=${projeto.codProjeto}"
-									title="Adicionar Banca"> <i
-										class="glyphicon glyphicon-eye-open"> </i>
-								</a></td>
-								<td><a class="btn btn-danger btn-sm"
-									href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}"
-									title="Excluir Projeto"> <i
-										class="glyphicon glyphicon-trash"> </i>
-								</a></td>
-							</tr>
-					</c:forEach>
-					</tbody>
-				</table>
+	</div>
+	<c:if test="${not empty projetoList}">
+		<div class="panel panel-primary">
+			<!-- Default panel contents -->
+			<div class="panel-heading">
+				<h2 class="panel-title">
+					<i class="glyphicon glyphicon-file"></i> Projetos Finais
+					Cadastrados
+				</h2>
+			</div>
+			<div class="panel-body">
+				<p>Abaixo a relação de todos os projetos cadastrados:</p>
+				<a class="btn btn-primary "
+					href="${linkTo[ProjetosController].formulario}?codUsuario=${professor.codUsuario}">
+					<i class="glyphicon glyphicon-plus"> </i>Novo Projeto
+				</a>
 				<hr class="colorgraph">
 			</div>
-		</c:if>
+			<c:if test="${not empty mensagem}">
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${mensagem}
+				</div>
+			</c:if>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Tema</th>
+						<th>Título</th>
+						<th>Alunos</th>
+						<th>Date de Cadastro</th>
+						<th colspan=4>Ações</th>
+					</tr>
+				</thead>
+				<c:forEach var="projeto" items="${projetoList}" varStatus="id">
+					<tbody>
+						<tr>
+							<td>${projeto.codProjeto}</td>
+							<td>${projeto.nome}</td>
+							<td>${projeto.tema}</td>
+							<td>${projeto.titulo}</td>
+							<td>${projeto.quantidadeDeAlunos}</td>
+							<td><fmt:formatDate value="${projeto.dataCadastro}"
+									pattern="dd/MM/yyyy" />
+							<td><a class="btn  btn-info btn-sm"
+								href="${linkTo[ProjetosController].edita}?codProjeto=${projeto.codProjeto}"
+								title="Editar Projeto"> <i class="glyphicon glyphicon-edit">
+								</i>
+							</a></td>
+							<td><a class="btn btn-warning btn-sm"
+								href="${linkTo[AlunosController].formulario}?codProjeto=${projeto.codProjeto}"
+								title="Adicionar Usuário"> <i
+									class="glyphicon glyphicon-user"> </i>
+							</a></td>
+							<td><a class="btn btn-default btn-sm"
+								href="${linkTo[BancaController].formulario}?codProjeto=${projeto.codProjeto}"
+								title="Adicionar Banca"> <i
+									class="glyphicon glyphicon-eye-open"> </i>
+							</a></td>
+							<td><a class="btn btn-danger btn-sm"
+								href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}"
+								title="Excluir Projeto"> <i
+									class="glyphicon glyphicon-trash"> </i>
+							</a></td>
+						</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+			<hr class="colorgraph">
+		</div>
+	</c:if>
 </body>
 </html>

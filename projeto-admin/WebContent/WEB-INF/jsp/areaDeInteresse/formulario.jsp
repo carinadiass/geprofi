@@ -16,6 +16,9 @@
 <title>Cadastro de Área de Interesse</title>
 </head>
 <body>
+<%
+    String codUsuario = request.getParameter("codUsuario");
+%>
 	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<!-- Incluindo o JavaScript do Bootstrap -->
