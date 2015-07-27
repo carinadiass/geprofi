@@ -45,8 +45,14 @@
 				</c:if>
 			</ul>
 			<form id="formAluno" class="form-horizontal" role="form"
+			<c:if test="${not empty param.codUsuario}">
 				action="${linkTo[ProjetosController].salva}?codUsuario=${param.codUsuario}"
+			 </c:if>
+			 <c:if test="${empty param.codUsuario}">
+				action="${linkTo[ProjetosController].salva}"
+			 </c:if>
 				method="POST" data-fv-framework="bootstrap"
+			    enctype="multipart/form-data"
 				data-fv-icon-valid="glyphicon glyphicon-ok"
 				data-fv-icon-invalid="glyphicon glyphicon-remove"
 				data-fv-icon-validating="glyphicon glyphicon-refresh">
@@ -54,7 +60,8 @@
 				<!-- Text input-->
 				<div class="form-group">
 					<input type="hidden" name="projeto.codProjeto"
-						value="${projeto.codProjeto}" /> <input type="hidden"
+						value="${projeto.codProjeto}" /> 
+				   <input type="hidden"
 						name="param.codUsuario" value="${param.codUsuario}" /> <label
 						class="col-md-4 control-label" for="projeto.nome">Nome</label>
 					<div class="col-md-4">
@@ -119,6 +126,13 @@
 							class="form-control input-sm" type="text">
 					</div>
 				</div>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="arquivo">Arquivo</label>
+					<div class="col-md-4">
+						<input type="file" name="arquivo" />
+					</div>
+				</div>
+			
 				<div class="form-group">
 					<div class="col-md-4  col-xs-6 .col-sm-4 control-label">
 						<input type="submit" class="btn btn-primary input-sm">

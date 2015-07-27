@@ -41,10 +41,10 @@ public class AreaDeInteresseController {
 		}
 		return areaEncontrada;
 	}
-	public void salva(@Valid AreaDeInteresse areaDeInteresse, Result result,Validator validator){
+	public void salva(@Valid AreaDeInteresse areaDeInteresse, int codUsuario,Result result,Validator validator){
 		try {
 			validator.onErrorRedirectTo(this).formulario();
-			dao.adiciona(areaDeInteresse);
+			dao.adiciona(areaDeInteresse,codUsuario);
 			result.include("mensagem", "Area de interesse salva com sucesso!");
 			result.redirectTo(this).lista();
 		} catch (SQLException e) {

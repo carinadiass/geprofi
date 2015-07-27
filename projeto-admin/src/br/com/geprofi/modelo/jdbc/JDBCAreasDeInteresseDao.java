@@ -22,9 +22,9 @@ public class JDBCAreasDeInteresseDao implements AreaDeInteresseDao {
 	}
 	
 	@Override
-	public void adiciona(AreaDeInteresse areaDeInteresse) throws SQLException {
+	public void adiciona(AreaDeInteresse areaDeInteresse,int codUsuario) throws SQLException {
 		if(areaDeInteresse.getCodAreaDeInteresse()<1){
-			FuncoesAreaDeInteresse.insere(areaDeInteresse,connection);
+			FuncoesAreaDeInteresse.insere(areaDeInteresse,codUsuario,connection);
 		}else{
 			FuncoesAreaDeInteresse.atualiza(areaDeInteresse, areaDeInteresse.getCodAreaDeInteresse(), connection);
 		}

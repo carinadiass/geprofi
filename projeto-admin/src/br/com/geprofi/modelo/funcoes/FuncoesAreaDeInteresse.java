@@ -72,7 +72,7 @@ public class FuncoesAreaDeInteresse {
 			connection.close();
 		}
 	}
-	public static void insere(AreaDeInteresse areaDeInteresse,Connection connection) throws SQLException{
+	public static void insere(AreaDeInteresse areaDeInteresse, int codUsuario, Connection connection) throws SQLException{
 		String sql= "INSERT INTO AREADEINTERESSE (nome, descricao,area) "
 				+ " VALUES (?,?,?)";
 		try{
@@ -83,12 +83,32 @@ public class FuncoesAreaDeInteresse {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Area de Interesse Gavada!");
+			adicionaAreaInteresseProfessor(pegaUlitmaAreaDeInteresse(connection),codUsuario, connection);
 			connection.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
 			connection.close();
 		}
+	}
+	public static int pegaUlitmaAreaDeInteresse(Connection connection)  throws SQLException{
+		int codAreaDeInteresse=0;
+		String sql ="select max(codAreaDeInteresse) as codigo from AreaDeInteresse";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				System.out.println(rs.getInt("codigo"));
+				codAreaDeInteresse=rs.getInt("codigo");
+			}
+			stmt.close();
+			return codAreaDeInteresse;
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			//		connection.close();
+		}
+		
 	}
 	public static void deleta(int codArea,Connection connection) throws SQLException{
 		System.out.println(codArea);
@@ -97,5 +117,22 @@ public class FuncoesAreaDeInteresse {
 			stmt.setInt(1, codArea);
 			stmt.executeUpdate();
 	
+	}
+	
+	public static void adicionaAreaInteresseProfessor(int codArea, int codUsuario, Connection connection) throws SQLException{
+		String sql="INSERT INTO AREADEINTERESSE_HAS_PROFESSOR (CODAREADEINTERESSE, CODUSUARIO) VALUES (?,?)";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, codArea);
+			stmt.setInt(2, codUsuario);
+			stmt.execute();
+			stmt.close();
+			System.out.println("Relacionamento Area de Interesse / Professor Criado!");
+			connection.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			connection.close();
+		}
 	}
 }

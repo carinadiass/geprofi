@@ -1,5 +1,7 @@
 package br.com.geprofi.modelo;
 
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,12 +9,41 @@ import javax.persistence.Id;
 
 @Entity
 public class Arquivo {
-   
+
 	@Id @GeneratedValue
 	private int codArquivo;
 	private int codProjeto;
 	private String nome;
 	private String versao;
+	private byte[] conteudo;
+	private String contentType;
+	private Calendar dataCadastro;
+
+	public Arquivo(String nome, byte[] conteudo,
+			String contentType, Calendar dataCadastro) {
+		this.nome = nome;
+		this.conteudo = conteudo;
+		this.contentType = contentType;
+		this.dataCadastro = dataCadastro;
+	}
+	public byte[] getConteudo() {
+		return conteudo;
+	}
+	public void setConteudo(byte[] conteudo) {
+		this.conteudo = conteudo;
+	}
+	public String getContentType() {
+		return contentType;
+	}
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+	public Calendar getDataCadastro() {
+		return dataCadastro;
+	}
+	public void setDataCadastro(Calendar dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
 	public int getCodArquivo() {
 		return codArquivo;
 	}
@@ -37,6 +68,5 @@ public class Arquivo {
 	public void setVersao(String versao) {
 		this.versao = versao;
 	}
-	
-	
+
 }

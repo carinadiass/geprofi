@@ -43,14 +43,17 @@
 				</c:if>
 			</ul>
 			<form id="formArea" class="form-horizontal" role="form"
-				action="${linkTo[AreaDeInteresseController].salva}" method="POST"
+				action="${linkTo[AreaDeInteresseController].salva}?codUsuario=${param.codUsuario}" method="POST"
 				data-fv-framework="bootstrap"
 				data-fv-icon-valid="glyphicon glyphicon-ok"
 				data-fv-icon-invalid="glyphicon glyphicon-remove"
 				data-fv-icon-validating="glyphicon glyphicon-refresh">
 				<div class="form-group">
+				<input type="hidden" name="param.codUsuario"
+					value="${param.codUsuario}" />
 					<input type="hidden" name="areaDeInteresse.codAreaDeInteresse"
 						value="${areaDeInteresse.codAreaDeInteresse}" />
+					</div>	
 					<div class="form-group">
 						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
 							for="nome">Área:</label>

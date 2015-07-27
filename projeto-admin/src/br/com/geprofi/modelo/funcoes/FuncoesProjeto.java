@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.geprofi.modelo.Aluno;
+import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 
 public class FuncoesProjeto {
@@ -31,6 +32,29 @@ public class FuncoesProjeto {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void insereArquivo(Arquivo arquivo,Projeto projeto, Connection connection) throws SQLException{
+		String sql = "insert into arquivo" +
+				"(codProjeto, nome, versao, dataCadastro, contentType )"
+				+ " VALUES (?,?,?,?,?)";
+		try{
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1, projeto.getCodProjeto());
+			stmt.setString(2, arquivo.getNome());
+			stmt.setLong(3, 1);
+			stmt.setDate(4, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+			stmt.setString(5, arquivo.getContentType());
+		//	stmt.setByte(6, arquivo.getConteudo()); //Data de Cadastro
+			stmt.execute();
+			stmt.close();
+			System.out.println("Arquivo Gravado!");
+		    connection.close();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally{
+			connection.close();
+		}
+		
 	}
 	public static List<Projeto> lista(Connection connection) throws SQLException{
 		List<Projeto> projetos = new ArrayList<Projeto>();

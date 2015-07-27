@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.geprofi.modelo.Aluno;
+import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.ConnectionFactory;
@@ -43,6 +44,14 @@ public class JDBCProjetoDao implements ProjetoDao{
 	public List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException {
 		return FuncoesProjeto.listaAlunos(codProjeto, connection);
 	}
+	@Override
+	public void adicionaArquivo(Arquivo arquivo, Projeto projeto)
+			throws SQLException {
+		FuncoesProjeto.insereArquivo(arquivo, projeto, connection);
+		
+	}
+	
+	
 
 
 }

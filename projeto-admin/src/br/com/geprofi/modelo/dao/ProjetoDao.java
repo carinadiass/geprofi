@@ -6,6 +6,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 
 import br.com.geprofi.modelo.Aluno;
+import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 
 
@@ -21,5 +22,7 @@ public interface ProjetoDao {
 	List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException;
 
 	void adiciona(Projeto projeto, int codUsuario) throws SQLException;
+	
+	void adicionaArquivo(Arquivo arquivo, Projeto projeto) throws SQLException;
 
 }
