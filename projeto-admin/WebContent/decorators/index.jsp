@@ -35,7 +35,7 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item">
-				<img alt="" src="../../CarouselBack.jpg" height="1600" width="500" />
+				<img alt="" src=<c:url value="../imagens/carousel(1).jpg"/> height="1600" width="500" />
 				<div class="carousel-caption">
 					<h4> <font  size="9">Projetos Finais Finalizados</font></h4>
 					<p>

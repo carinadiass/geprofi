@@ -35,8 +35,9 @@
 			<p>Abaixo a relação de todos os alunos cadastrados:</p>
 			<a class="btn btn-primary "
 				href="${linkTo[AlunosController].formulario}"> <i
-				class="glyphicon glyphicon-plus"> </i>Novo Aluno</a>
-				<hr class="colorgraph">
+				class="glyphicon glyphicon-plus"> </i>Novo Aluno
+			</a>
+			<hr class="colorgraph">
 		</div>
 		<c:if test="${not empty mensagem}">
 			<div class="alert alert-success">
@@ -66,8 +67,12 @@
 						<td>${aluno.curso}</td>
 						<td><fmt:formatDate value="${aluno.dataDeCadastro}"
 								pattern="dd/MM/yyyy" /></td>
-
-						<td><a class="btn  btn-info btn-sm"
+						<td><a class="btn btn-primary btn-sm"
+							href="${linkTo[AlunosController].sendNewPassword}"
+							title="Enviar Nova Senha"> <i
+								class="glyphicon glyphicon-envelope"> </i>
+						</a></td>
+						<td><a class="btn  btn-warning btn-sm"
 							href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
 							title="Editar Aluno"> <i class="glyphicon glyphicon-edit">
 							</i>
@@ -77,11 +82,7 @@
 							title="Excluir Aluno"> <i class="glyphicon glyphicon-remove">
 							</i>
 						</a></td>
-						<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[AlunosController].sendNewPassword}"
-							title="Excluir Aluno"> <i
-								class="glyphicon glyphicon-envelope"> </i>
-						</a></td>
+
 					</tr>
 			</c:forEach>
 			</tbody>

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
@@ -46,10 +47,65 @@
 <!-- HTML code from Bootply.com editor -->
 <body>
 	<div class="container">
-	
+
 		<div class="row">
+			<div class="col-md-12">
+			<div class="carousel slide" id="carousel-496017">
+				<ol class="carousel-indicators">
+					<li class="active" data-slide-to="0" data-target="#carousel-496017">
+					</li>
+					<li data-slide-to="1" data-target="#carousel-496017">
+					</li>
+					<li data-slide-to="2" data-target="#carousel-496017">
+					</li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img alt="Carousel Bootstrap First" src=<c:url value="../imagens/carousel(1).jpg"/>  />
+						<div class="carousel-caption">
+							<h4>
+								GeProFi - Gerenciador Eletrônico de Projeto Final
+							</h4>
+							<p>
+								Seja bem vindo a ferramenta de gerenciamento dos projetos finais do curso de ciência da computação da UFRJ.
+							</p>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="Carousel Bootstrap Second" src=<c:url value="../imagens/carousel(2).jpg"/> />
+						<div class="carousel-caption">
+							<h4>
+								Projetos Finais Finalizados
+							</h4>
+							<p>
+								Se está a procura por um tema de projeto final e não sabe qual professor pode lhe ajudar nesse processo, acesse aqui.
+							</p>
+							<a class="btn btn-primary btn-lg"
+							href="${linkTo[ProjetosController].lista}" role="button">Visualizar</span></a>
+						</div>
+					</div>
+					<div class="item">
+						<img alt="Carousel Bootstrap Third" src=<c:url value="../imagens/carousel(3).jpg"/> />
+						<div class="carousel-caption">
+							<h4>
+								Buscar Área de Interesse
+							</h4>
+							<p>
+								Se está a procura por um tema de projeto final e não sabe qual 	professor pode lhe ajudar nesse processo, acesse aqui.
+							</p>
+							<a class="btn btn-primary btn-lg"
+						href="${linkTo[AreaDeInteresseController].lista}" role="button">Buscar</span></a>
+						</div>
+					</div>
+				</div> <a class="left carousel-control" href="#carousel-496017" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-496017" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+			</div>
+		</div>
+	</div>
+</div>
 			<div class="span12" style="text-align: center; margin: 0 auto;">
+		
 				<form class="form-signin" style="width: 400px; margin: 0 auto;">
+					<hr class="colorgraph">
 					<h2 class="form-signin-heading">Acesso o GeProFi</h2>
 					<label for="inputEmail" class="sr-only">Email</label> <input
 						type="email" id="inputEmail" class="form-control"
@@ -64,7 +120,9 @@
 					<label> <input type="checkbox" value="remember-me">
 							Esqueceu Senha?
 						</label>
+							<hr class="colorgraph">
 				</form>
+			
 			</div>
 		</div>
 	</div>
