@@ -1,5 +1,6 @@
 package br.com.geprofi.controlador;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.sql.SQLException;
@@ -8,9 +9,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import com.google.common.io.ByteStreams;
+
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.Arquivo;
@@ -42,13 +48,19 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
-	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator, UploadedFile arquivo) throws IOException {
+	@Post
+	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
+	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
 			validator.onErrorRedirectTo(this).formulario();
 			dao.adiciona(projeto, codUsuario);
 			if (arquivo != null) {
 				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
 						Calendar.getInstance());
+				
+				File arquivoSalvo = new File("../uploads/"+projeto.getCodProjeto(), arquivo.getFileName());
+				
+				arquivo.writeTo(arquivoSalvo);
 				System.out.println("Entrei aki no arquivo!@@@");
 				System.out.println(ByteStreams.toByteArray(arquivo.getFile()));
 				dao.adicionaArquivo(novoArquivo, projeto);
@@ -58,7 +70,10 @@ public class ProjetosController {
 
 			result.include("mensagem", "Projeto salvo com sucesso!");
 			result.redirectTo(this).lista();
+		}catch (IOException e) {
+			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
