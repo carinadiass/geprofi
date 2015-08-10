@@ -1,5 +1,7 @@
 package br.com.geprofi.modelo.funcoes;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +10,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.google.common.io.ByteStreams;
+
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
+import br.com.geprofi.modelo.dao.ProjetoDao;
 
 public class FuncoesProjeto {
-
+	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
 	public static void atualiza(Projeto projeto,int id,Connection connection) {
 		try {
 			PreparedStatement preparedStatement = connection
@@ -32,6 +38,35 @@ public class FuncoesProjeto {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public static void uploadArquivo(ProjetoDao dao, Projeto projeto, UploadedFile arquivo){
+		
+		if (arquivo != null) {
+			try {
+				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
+						Calendar.getInstance());
+				File arquivoSalvo = new File(CAMINHO_UPLOAD+projeto.getCodProjeto());
+				if(!arquivoSalvo.exists()){
+					if (arquivoSalvo.mkdirs()) {
+						System.out.println("Multiple directories are created!");
+						arquivoSalvo =new File(CAMINHO_UPLOAD+projeto.getCodProjeto(),arquivo.getFileName());  
+					}
+				}
+				arquivo.writeTo(arquivoSalvo);
+				System.out.println("Entrei aki no arquivo!@@@");
+				System.out.println(ByteStreams.toByteArray(arquivo.getFile()));
+				dao.adicionaArquivo(novoArquivo, projeto);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+		}
+			
 	}
 	public static void insereArquivo(Arquivo arquivo,Projeto projeto, Connection connection) throws SQLException{
 		String sql = "insert into arquivo" +

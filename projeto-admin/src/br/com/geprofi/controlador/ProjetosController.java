@@ -23,6 +23,7 @@ import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.Diretorio;
 import br.com.geprofi.modelo.dao.ProjetoDao;
+import br.com.geprofi.modelo.funcoes.FuncoesProjeto;
 
 @Controller
 public class ProjetosController {
@@ -55,25 +56,13 @@ public class ProjetosController {
 			validator.onErrorRedirectTo(this).formulario();
 			dao.adiciona(projeto, codUsuario);
 			if (arquivo != null) {
-				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
-						Calendar.getInstance());
-				
-				File arquivoSalvo = new File("../uploads/"+projeto.getCodProjeto(), arquivo.getFileName());
-				
-				arquivo.writeTo(arquivoSalvo);
-				System.out.println("Entrei aki no arquivo!@@@");
-				System.out.println(ByteStreams.toByteArray(arquivo.getFile()));
-				dao.adicionaArquivo(novoArquivo, projeto);
-				
-				//TO DO        arquivos.setCapa(imagemCapa);
+				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
 			}
-
-			result.include("mensagem", "Projeto salvo com sucesso!");
 			result.redirectTo(this).lista();
-		}catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			// TODO Auto-generated catch block
+			result.include("errors", "Projeto não salvo com sucesso!");
+			result.redirectTo(this).lista();
 			e.printStackTrace();
 		} 
 	}
