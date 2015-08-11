@@ -51,6 +51,8 @@ public class FuncoesProjeto {
 						System.out.println("Multiple directories are created!");
 						arquivoSalvo =new File(CAMINHO_UPLOAD+projeto.getCodProjeto(),arquivo.getFileName());  
 					}
+				}else{
+					arquivoSalvo =new File(CAMINHO_UPLOAD+projeto.getCodProjeto(),arquivo.getFileName()); 
 				}
 				arquivo.writeTo(arquivoSalvo);
 				System.out.println("Entrei aki no arquivo!@@@");
