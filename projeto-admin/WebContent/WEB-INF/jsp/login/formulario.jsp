@@ -79,20 +79,32 @@
 	</div>
 </div>
 			<div class="span12" style="text-align: center; margin: 0 auto;">
-		
-				<form class="form-signin" style="width: 400px; margin: 0 auto;">
+			<ul class="errors">
+					<c:if test="${not empty errors}">
+						<div class="alert alert-danger" role="alert">
+							<c:forEach items="${errors}" var="error">
+								<h6>
+									<i class="glyphicon glyphicon-exclamation-sign"> </i>
+									${error.message}
+								</h6>
+							</c:forEach>
+						</div>
+					</c:if>
+				</ul>
+				
 					<hr class="colorgraph">
+				<form class="form-horizontal" id="formUsuario" role="form" action="${linkTo[LoginController].autenticar}" method="POST"  style="width: 400px; margin: 0 auto;">
 					<h2 class="form-signin-heading">Acesso o GeProFi</h2>
-					<label for="inputEmail" class="sr-only">Email</label> <input
-						type="email" id="inputEmail" class="form-control"
+					<label for="inputEmail" class="sr-only">Email</label> <input name="usuario.email"
+						type="email" id="usuario.email" class="form-control" value="${usuario.email}"
 						placeholder="Email" required autofocus> <label
-						for="inputPassword" class="sr-only">Senha</label> <input
-						type="password" id="inputPassword" class="form-control"
+						for="inputPassword" class="sr-only">Senha</label> <input name="usuario.senha"
+						type="password" id="usuario.senha" class="form-control" value="${usuario.senha}"
 						placeholder="Senha" required>
 					<div class="checkbox">
 						
 					</div>
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+					<input type="submit" class="btn btn-primary input-sm">
 					<label> <input type="checkbox" value="remember-me">
 							Esqueceu Senha?
 						</label>

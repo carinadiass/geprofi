@@ -20,5 +20,9 @@ public class UsuarioLogado implements Serializable {
 	public void desloga() {
 		this.usuario = null;
 	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 }
 

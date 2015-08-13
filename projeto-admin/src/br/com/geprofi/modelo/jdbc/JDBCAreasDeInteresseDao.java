@@ -20,7 +20,6 @@ public class JDBCAreasDeInteresseDao implements AreaDeInteresseDao {
 			e.printStackTrace();
 		}
 	}
-	
 	@Override
 	public void adiciona(AreaDeInteresse areaDeInteresse,int codUsuario) throws SQLException {
 		if(areaDeInteresse.getCodAreaDeInteresse()<1){

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import net.diegomaia.vraptor.saci.annotation.LoggedIn;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Result;
@@ -25,8 +26,9 @@ public class AreaDeInteresseController {
 	public AreaDeInteresseController(AreaDeInteresseDao dao){
 		this.dao=dao;
 	}
+	@LoggedIn
 	public void formulario() {}
-
+	
 	public AreaDeInteresse edita(int codAreaDeInteresse, Result result){
 		AreaDeInteresse areaEncontrada=null;
 		System.out.println(codAreaDeInteresse);

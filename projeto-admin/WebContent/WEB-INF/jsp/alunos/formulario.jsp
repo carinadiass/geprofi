@@ -32,7 +32,7 @@
 			</h3>
 		</div>
 		<div class="panel-body">
-			<form class="form-horizontal" id="formAluno" class="form-horizontal"
+			<form class="form-horizontal" id="formAluno" 
 				role="form" action="${linkTo[AlunosController].salva}" method="POST"
 				data-fv-framework="bootstrap"
 				data-fv-icon-valid="glyphicon glyphicon-ok"

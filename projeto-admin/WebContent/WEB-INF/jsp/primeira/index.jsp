@@ -66,7 +66,7 @@
 	</div>
 	</div>
 
-	<%@include file="login.jsp"%>
+	<%@include file="../login/formulario.jsp" %>
 		<img src=<c:url value="../../../imagens/CarouselBack.jpg"/> >
 	
 	</div>
