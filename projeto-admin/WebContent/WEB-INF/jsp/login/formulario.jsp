@@ -12,14 +12,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <!-- CSS code from Bootply.com editor -->
-
 </head>
-
 <!-- HTML code from Bootply.com editor -->
 <body>
 	<div class=container-fluid>
@@ -92,8 +87,9 @@
 					</c:if>
 				</ul>
 				
-					<hr class="colorgraph">
+					
 				<form class="form-horizontal" id="formUsuario" role="form" action="${linkTo[LoginController].autenticar}" method="POST"  style="width: 400px; margin: 0 auto;">
+					<hr class="colorgraph">
 					<h2 class="form-signin-heading">Acesso o GeProFi</h2>
 					<label for="inputEmail" class="sr-only">Email</label> <input name="usuario.email"
 						type="email" id="usuario.email" class="form-control" value="${usuario.email}"
@@ -104,7 +100,7 @@
 					<div class="checkbox">
 						
 					</div>
-					<input type="submit" class="btn btn-primary input-sm">
+					<input type="submit" class="btn btn-lg btn-primary btn-block">
 					<label> <input type="checkbox" value="remember-me">
 							Esqueceu Senha?
 						</label>
@@ -112,7 +108,6 @@
 				</form>
 			
 			</div>
-		</div>
-	</div>
+	
 </body>
 </html>

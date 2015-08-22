@@ -83,7 +83,6 @@ public class ProjetosController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 	public void pegaAluno(int codProjeto,Result result){
 		try {

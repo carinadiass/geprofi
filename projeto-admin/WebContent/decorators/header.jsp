@@ -25,6 +25,7 @@
 
 </style>
 <title>GeProFi</title>
+<img alt="" src="../imagens/logoGeProFi2.png"  />
 <br>
 <br>
 
