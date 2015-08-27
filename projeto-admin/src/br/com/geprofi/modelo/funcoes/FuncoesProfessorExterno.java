@@ -5,11 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import br.com.geprofi.modelo.ProfessorExterno;;
 

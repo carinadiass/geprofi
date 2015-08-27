@@ -35,7 +35,6 @@ public class BancaController {
 		}
 		return banca;
 	}
-	
 	public void salva(Banca banca, Result result){
 		try {
 			dao.adiciona(banca);

@@ -18,7 +18,6 @@ public class AreaDeInteresse {
 	@NotNull(message = "O Campo Descrição é Obrigatório")
 	private String descricao;
 	
-	
 	public String getArea() {
 		return area;
 	}

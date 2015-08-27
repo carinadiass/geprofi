@@ -23,6 +23,7 @@ public class ProfessoresController {
 	}
 	protected  ProfessoresController(){this(null);}
 	public void formulario() {}
+	public void pfhome() {}
 	public Professor edita(int codUsuario, Result result) {
 		Professor professorEncontrado = null;
 		try {
