@@ -25,7 +25,7 @@
 
 </style>
 <title>GeProFi</title>
-<img alt="" src="../imagens/logoGeProFi2.png"  />
+<a href="${linkTo[PrimeiraController].index}"> <img alt="" src="../imagens/logoGeProFi2.png"  /></a>
 <br>
 <br>
 

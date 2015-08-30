@@ -12,7 +12,7 @@ public interface PalavrachaveDao {
 
 	void adiciona(Palavrachave palavrachave)  throws SQLException;
 
-	List<Banca> todos()  throws SQLException;
+	List<Palavrachave> todos()  throws SQLException;
 
 	void deleta(int codPalavraChave)  throws SQLException;
 

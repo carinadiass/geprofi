@@ -45,7 +45,7 @@ public class PalavraChaveController {
 			e.printStackTrace();
 		} 
 	}
-	public List<Banca> lista() {
+	public List<Palavrachave> lista() {
 		try {
 			return dao.todos();
 		} catch (SQLException e) {
