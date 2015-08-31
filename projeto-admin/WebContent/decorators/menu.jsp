@@ -25,7 +25,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="${linkTo[ProfessorExternoController].lista}">Professores Externos</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="${linkTo[PalavraChaveController].lista}">Palavras-Chave</a></li>
           </ul>
         </li>
       </ul>

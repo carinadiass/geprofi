@@ -12,6 +12,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src=<c:url value="../js/funcoes.js"/>  type='text/javascript'>
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lista de Áreas de Interesse</title>
@@ -78,13 +80,4 @@
 		<hr class="colorgraph">
 	</div>
 </body>
-<script>
-	function confirmExclusao() {
-		if (confirm("Tem certeza que deseja excluir?")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-</script>
 </html>

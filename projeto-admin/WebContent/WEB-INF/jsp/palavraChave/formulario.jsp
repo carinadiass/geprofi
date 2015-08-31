@@ -18,7 +18,7 @@
 <body>
 	<%
 		String codProjeto = request.getParameter("codProjeto");
-	    String codProfessor = request.getParameter("codProfessor");
+	    String codUsuario = request.getParameter("codUsuario");
 	%>
 	<!-- Incluindo o jQuery que é requisito do JavaScript do Bootstrap -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -53,11 +53,12 @@
 				
 				<div class="form-group">
 					<input type="hidden" name="palavrachave.codPalavraChave"
-						value="${palavraChave.codPalavraChave}" />
+						value="${palavrachave.codPalavraChave}" />
 				   <input type="hidden"
 						name="palavrachave.codProjeto" value="${param.codProjeto}" />
 						  <input type="hidden"
-						name="palavrachave.codProfessor" value="${param.codProfessor}" />
+						name="palavrachave.codProfessor" value="${param.codUsuario}" />
+				</div>
 					<div class="form-group">
 						<label class="col-md-4  col-xs-6 .col-sm-4 control-label"
 							for="nome">Palavra:</label>

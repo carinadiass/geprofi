@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
 import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.dao.PalavrachaveDao;
-
+@Controller
 public class PalavraChaveController {
 	
 	private PalavrachaveDao dao;
@@ -39,7 +40,7 @@ public class PalavraChaveController {
 	public void salva(Palavrachave palavrachave, Result result){
 		try {
 			dao.adiciona(palavrachave);
-			result.include("mensagem", "Palavrachave  criada com sucesso!");
+			result.include("mensagem", "Palavrachave criada com sucesso!");
 			result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();

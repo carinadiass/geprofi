@@ -6,13 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src=<c:url value="../js/funcoes.js"/> type='text/javascript'></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lista de  Banca</title>
+<title>Lista de Palavras-Chave</title>
 </head>
 <body>
 	<!-- cria o DAO -->
@@ -20,14 +22,14 @@
 		<!-- Default panel contents -->
 		<div class="panel-heading">
 			<h2 class="panel-title">
-				<i class="glyphicon glyphicon-file"></i> Bancas Cadastradas
+				<i class="glyphicon glyphicon-file"></i> Palavras-Chave Cadastradas
 			</h2>
 		</div>
 		<div class="panel-body">
-			<p>Abaixo a relação de todas as Bancas :</p>
+			<p>Abaixo a relação de todas as Palavras-Chave :</p>
 			<a class="btn btn-primary "
-				href="${linkTo[BancaController].formulario}"> <i
-				class="glyphicon glyphicon-plus"> </i>Nova Banca
+				href="${linkTo[PalavraChaveController].formulario}"> <i
+				class="glyphicon glyphicon-plus"> </i>Nova Palavra-Chave
 			</a>
 			<hr class="colorgraph">
 		</div>
@@ -42,34 +44,27 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Quantidade de Participantes</th>
-					<th>Codigo do Projeto</th>
+					<th>Palavra-Chave</th>
+					<th>Código do Professor</th>
 					<th colspan=2>Ação</th>
 				</tr>
 			</thead>
-			<c:forEach var="banca" items="${bancaList}" varStatus="id">
+			<c:forEach var="palavrachave" items="${palavrachaveList}" varStatus="id">
 				<tbody>
 					<tr>
-						<td>${banca.codBanca}</td>
-						<td>${banca.quantidadeDeParticipantes}</td>
-						<td>${banca.codProjeto}</td>
+						<td>${palavrachave.codPalavraChave}</td>
+						<td>${palavrachave.palavra}</td>
+						<td>${palavrachave.codProfessor}</td>
 						<td><a class="btn btn-info btn-sm"
-							href="${linkTo[BancaController].edita}?codBanca=${banca.codBanca}"
-							title="Editar Área"> <i class="glyphicon glyphicon-edit">
+							href="${linkTo[PalavraChaveController].edita}?codPalavraChave=${palavrachave.codPalavraChave}"
+							title="Editar Palavra"> <i class="glyphicon glyphicon-edit">
 							</i>
 						</a></td>
-							<td><a class="btn btn-default btn-sm"
-							href="${linkTo[ProfessorExternoController].formulario}?codBanca=${banca.codBanca}"
-							title="Adicionar Professor Externo"> <i class="glyphicon glyphicon-user">
-							  </i>
-						</a></td>
 						<td><a class="btn btn-danger btn-sm"
-							href="${linkTo[BancaController].delete}?codBanca=${banca.codBanca}"
-							onclick="return confirmExclusao()" title="Excluir Área"> <i class="glyphicon glyphicon-remove">
+							href="${linkTo[PalavraChaveController].delete}?codPalavraChave=${palavrachave.codPalavraChave}"
+							onclick="return confirmExclusao()" title="Excluir Palavra"> <i class="glyphicon glyphicon-remove">
 							  </i>
 						</a></td>
-					
-
 					</tr>
 			</c:forEach>
 			</tbody>
@@ -77,4 +72,13 @@
 		<hr class="colorgraph">
 	</div>
 </body>
+<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 </html>

@@ -132,10 +132,14 @@
 						<div class="col-md-4  col-xs-6 .col-sm-4 control-label">
 							<input type="submit" class="btn btn-primary">
 							<c:if test="${not empty professor.codUsuario}">
-							<a class="btn btn-primary "
+						<span>	<a class="btn btn-primary "
 								href="${linkTo[AreaDeInteresseController].formulario}?codUsuario=${professor.codUsuario}">
 								<i class="glyphicon glyphicon-plus"> </i>Nova Área de Interesse
-							</a>
+							</a></span><span>
+							<a class="btn btn-primary "
+								href="${linkTo[PalavraChaveController].formulario}?codUsuario=${professor.codUsuario}">
+								<i class="glyphicon glyphicon-plus"> </i>Palavra-Chave
+							</a></span>
 						</c:if>
 						</div>
 						
