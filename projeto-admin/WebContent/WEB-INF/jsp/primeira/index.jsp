@@ -23,6 +23,7 @@
 
 </head>
 <body>
+<div class="container">
 	<h2>GeProFi - Gerenciador Eletrônico de Projeto Final</h2>
 	<p>Seja bem vindo a ferramenta de gerenciamento dos projetos finais
 		do curso de ciência da computação da UFRJ.</p>
