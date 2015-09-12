@@ -1,6 +1,8 @@
 package br.com.geprofi.controlador;
 
 
+import javax.inject.Inject;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -14,14 +16,17 @@ public class LoginController {
 	private UsuarioDao dao;
 	private UsuarioLogado usuarioLogado;
 	private Result result;
-	
+	@Inject
+	public LoginController(){
+		
+	}
 	public LoginController(UsuarioDao dao, UsuarioLogado usuarioLogado, Result result){
 		this.dao=dao;
-		this.usuarioLogado=usuarioLogado;
+		//this.usuarioLogado=usuarioLogado;
 		this.result=result;
 	}
 	public void formulario() {}
-	
+	public void angularTest(){}
 	@Post
 	public void autenticar(Usuario usuario){
 		System.out.println("Entrei AKIII");

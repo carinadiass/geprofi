@@ -23,7 +23,16 @@ public class ProfessoresController {
 	}
 	protected  ProfessoresController(){this(null);}
 	public void formulario() {}
-	public void pfhome() {}
+	public void pfhome(int codProfessor, Result result) {
+		Professor professorEncontrado=null;
+		try{
+			result.include("projetoList", dao.buscaProjeto_professor(codProfessor));
+		  professorEncontrado = dao.buscaPorCodUsuario(codProfessor);
+			result.include(professorEncontrado);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 	public Professor edita(int codUsuario, Result result) {
 		Professor professorEncontrado = null;
 		try {
@@ -39,7 +48,7 @@ public class ProfessoresController {
 	}
 	public void salva(@Valid Professor professor,Result result, Validator validator) {
 		try {
-			validator.onErrorRedirectTo(this).formulario();
+			validator.onErrorRedirectTo(this).pfhome(professor.getCodUsuario(),result);
 			dao.adiciona(professor);
 			result.include("mensagem", "Professor salvo com sucesso!");
 			result.redirectTo(this).lista();

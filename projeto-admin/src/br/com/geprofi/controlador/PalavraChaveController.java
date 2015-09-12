@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.dao.PalavrachaveDao;
@@ -40,6 +41,7 @@ public class PalavraChaveController {
 	public void salva(Palavrachave palavrachave, Result result){
 		try {
 			dao.adiciona(palavrachave);
+			//result.use(Results.json()).from(palavrachave).serialize();
 			result.include("mensagem", "Palavrachave criada com sucesso!");
 			result.redirectTo(this).lista();
 		} catch (SQLException e) {

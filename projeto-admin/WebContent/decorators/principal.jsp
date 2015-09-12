@@ -1,25 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet"
-		href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<script
-			src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<meta http-equiv="Content-Type"
-			content="text/html; charset=UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+
 <title>GeProFi</title>
 <decorator:head />
 </head>
-<body id="corpo" class="container">
+<body id="corpo" class="nav-md">
  
 	<div id="geral">
 		<!-- 0 -->
@@ -27,7 +16,6 @@
 		<!-- 1 -->
 		<div id="menu"><%@ include file="menu.jsp"%></div>
 		<!-- 2 -->
-<br>
 		<div id="conteudo" >
 			<div id="esquerda">
 				<!-- 3 -->
@@ -39,12 +27,20 @@
 				<decorator:body />
 			</div>
 			<!-- 4 -->
-
-
-		</div>
+			</div>
 
 		<div id="rodape"><%@ include file="rodape.jsp"%></div>
 		<!-- 6 -->
 	</div>
+	 <script src=<c:url value='/js/bootstrap.min.js'/>></script>
+	
+	   <script src=<c:url value='/js_new/chartjs/chart.min.js'/>> </script>
+    <!-- bootstrap progress js -->
+    <script src=<c:url value='/js_new/progressbar/bootstrap-progressbar.min.js'/>></script>
+    <script src=<c:url value='/js_new/nicescroll/jquery.nicescroll.min.js'/>></script>
+    <!-- icheck -->
+    <script src=<c:url value='/js_new/icheck/icheck.min.js'/>></script>
+
+    <script src=<c:url value='/js_new/custom.js'/>></script>
 </body>
 </html>

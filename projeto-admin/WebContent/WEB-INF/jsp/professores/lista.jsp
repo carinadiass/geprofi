@@ -61,7 +61,6 @@
 						<td>${professor.email}</td>
 						<td><fmt:formatDate value="${professor.dataDeCadastro}"
 								pattern="dd/MM/yyyy" /></td>
-
 						<td><a class="btn  btn-info btn-sm"
 							href="${linkTo[ProfessoresController].edita}?codUsuario=${professor.codUsuario}"
 							title="Editar Professor"> <i class="glyphicon glyphicon-edit">
@@ -77,7 +76,6 @@
 							title="Excluir Professor"> <i
 								class="glyphicon glyphicon-trash"> </i>
 						</a></td>
-							
 					</tr>
 			</c:forEach>
 			</tbody>
