@@ -18,8 +18,6 @@ import br.com.geprofi.modelo.dao.AreaDeInteresseDao;
 public class AreaDeInteresseController {
 
 	private AreaDeInteresseDao dao;
-
-
 	protected AreaDeInteresseController(){this(null);}
 	
 	@Inject
@@ -48,7 +46,7 @@ public class AreaDeInteresseController {
 			validator.onErrorRedirectTo(this).formulario();
 			dao.adiciona(areaDeInteresse,codUsuario);
 			result.include("mensagem", "Area de interesse salva com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -62,13 +60,11 @@ public class AreaDeInteresseController {
 		return null;
 	}
 	
-	
-	
-	public void delete(int codAreaDeInteresse, Result result){
+	public void delete(int codAreaDeInteresse,int codUsuario, Result result){
 		try {
 			dao.deleta(codAreaDeInteresse);
 			result.include("mensagem", "Area de interesse deletada com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
 			//result.nothing();
 		} catch (SQLException e) {
 			e.printStackTrace();

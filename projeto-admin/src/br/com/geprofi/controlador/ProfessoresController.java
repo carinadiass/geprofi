@@ -26,8 +26,9 @@ public class ProfessoresController {
 	public void pfhome(int codProfessor, Result result) {
 		Professor professorEncontrado=null;
 		try{
-			result.include("projetoList", dao.buscaProjeto_professor(codProfessor));
-		  professorEncontrado = dao.buscaPorCodUsuario(codProfessor);
+			pegaProjetos(codProfessor, result);
+			pegaAreasDeInteresse(codProfessor, result);
+		    professorEncontrado = dao.buscaPorCodUsuario(codProfessor);
 			result.include(professorEncontrado);
 		}catch (SQLException e){
 			e.printStackTrace();
@@ -50,8 +51,9 @@ public class ProfessoresController {
 		try {
 			validator.onErrorRedirectTo(this).pfhome(professor.getCodUsuario(),result);
 			dao.adiciona(professor);
-			result.include("mensagem", "Professor salvo com sucesso!");
-			result.redirectTo(this).lista();
+			result.include("mensagem", "Seus dados foram salvo com sucesso!");
+			result.redirectTo(this).pfhome(professor.getCodUsuario(), result);
+			//result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -76,6 +78,14 @@ public class ProfessoresController {
 	public void pegaProjetos(int codProfessor, Result result){
 		try{
 			result.include("projetoList", dao.buscaProjeto_professor(codProfessor));
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+	}
+	public void pegaAreasDeInteresse(int codProfessor, Result result){
+		try{
+			result.include("areaDeInteresseList", dao.buscaAreaDeInteresse_professor(codProfessor));
 		}catch (SQLException e){
 			e.printStackTrace();
 		}

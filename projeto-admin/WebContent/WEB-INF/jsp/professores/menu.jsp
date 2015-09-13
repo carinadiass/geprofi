@@ -1,22 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<body id="corpo" class="nav-md">
+<body class="nav-md">
+
     <div class="container body">
         <div class="main_container">
+
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
 
                     <div class="navbar nav_title" style="border: 0;">
-                <a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>GeProFi!</span></a> 
-                       <!--    <a href="${linkTo[PrimeiraController].index}"  class="site_title"> <img alt=""	src="../imagens/logoGeProFi2_1.png" /></a>-->
+                        <a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>GeProFi!</span></a> 
                     </div>
                     <div class="clearfix"></div>
+
+
                     <!-- menu prile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="${pageContext.request.contextPath}/production/images/img.jpg" alt="..." class="img-circle profile_img">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -24,9 +23,12 @@
                         </div>
                     </div>
                     <!-- /menu prile quick info -->
+
                     <br />
+
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
@@ -141,8 +143,9 @@
 
                     </div>
                     <!-- /sidebar menu -->
-
-                    <!-- /menu footer buttons -->
+                    
+                    
+                      <!-- /menu footer buttons -->
                     <div class="sidebar-footer hidden-small">
                         <a data-toggle="tooltip" data-placement="top" title="Settings">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -160,8 +163,11 @@
                     <!-- /menu footer buttons -->
                 </div>
             </div>
-
-            <!-- top navigation -->
+            
+            
+            
+            
+              <!-- top navigation -->
             <div class="top_nav">
 
                 <div class="nav_menu">
@@ -265,7 +271,15 @@
                                     </li>
                                 </ul>
                             </li>
+
                         </ul>
                     </nav>
                 </div>
-			</div>
+
+            </div>
+            <!-- /top navigation -->
+            
+            
+            
+            
+            

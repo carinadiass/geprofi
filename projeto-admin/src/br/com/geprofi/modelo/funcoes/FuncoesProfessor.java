@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+import br.com.geprofi.modelo.AreaDeInteresse;
 import br.com.geprofi.modelo.Professor;
 import br.com.geprofi.modelo.Projeto;
 
@@ -162,6 +163,32 @@ public class FuncoesProfessor {
 			}
 			preparedStatement.close();
 			return projetos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+		}
+		// TODO Auto-generated method stub
+	}
+	
+	public static List<AreaDeInteresse> listaAreasDeInteresse(Connection connection, int codUsuario) throws SQLException{
+		List<AreaDeInteresse> areasDeInteresse = new ArrayList<AreaDeInteresse>();
+		String sql = " select a.* from areadeinteresse a join areadeinteresse_has_professor ap on a.codAreaDeInteresse = ap.codAreaDeInteresse "
+				+ " join usuario u on u.codusuario=ap.codusuario "
+				+ " where u.codusuario=?";
+		try{
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, codUsuario);
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next()) {
+				AreaDeInteresse  areaDeInteresse= new AreaDeInteresse();
+				areaDeInteresse.setCodAreaDeInteresse(rs.getInt("codAreaDeInteresse"));
+				areaDeInteresse.setNome(rs.getString("nome"));
+				areaDeInteresse.setDescricao(rs.getString("descricao"));
+				areaDeInteresse.setArea(rs.getString("area"));
+				areasDeInteresse.add(areaDeInteresse);
+			}
+			preparedStatement.close();
+			return areasDeInteresse;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {

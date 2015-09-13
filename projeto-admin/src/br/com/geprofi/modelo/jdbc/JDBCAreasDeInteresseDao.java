@@ -40,9 +40,5 @@ public class JDBCAreasDeInteresseDao implements AreaDeInteresseDao {
 	@Override
 	public void deleta(int codAreaDeInteresse) throws SQLException {
 		FuncoesAreaDeInteresse.deleta(codAreaDeInteresse, connection);
-		
 	}
-
-
-
 }

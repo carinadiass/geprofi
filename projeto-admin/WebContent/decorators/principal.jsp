@@ -8,9 +8,7 @@
 <title>GeProFi</title>
 <decorator:head />
 </head>
-<body id="corpo" class="nav-md">
- 
-	<div id="geral">
+<div id="geral">
 		<!-- 0 -->
 		<div id="topo"><%@ include file="header.jsp"%></div>
 		<!-- 1 -->
