@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.geprofi.modelo.AreaDeInteresse;
+import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Professor;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProfessorDao;
@@ -56,5 +57,11 @@ public class JDBCProfessorDao implements ProfessorDao {
 			throws SQLException {
 		// TODO Auto-generated method stub
 		 return FuncoesProfessor.listaAreasDeInteresse(connection, codProfessor);
+	}
+	@Override
+	public List<Palavrachave> buscapalavraChave_professor(int codProfessor)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		 return FuncoesProfessor.listaPalavrasChave(connection, codProfessor);
 	}
 }

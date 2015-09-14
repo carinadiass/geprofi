@@ -28,6 +28,7 @@ public class ProfessoresController {
 		try{
 			pegaProjetos(codProfessor, result);
 			pegaAreasDeInteresse(codProfessor, result);
+			pegaPalavrasChave(codProfessor, result);
 		    professorEncontrado = dao.buscaPorCodUsuario(codProfessor);
 			result.include(professorEncontrado);
 		}catch (SQLException e){
@@ -89,6 +90,13 @@ public class ProfessoresController {
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		
 	}
+	public void pegaPalavrasChave(int codProfessor, Result result){
+		try{
+			result.include("palavraChaveList", dao.buscapalavraChave_professor(codProfessor));
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
 }

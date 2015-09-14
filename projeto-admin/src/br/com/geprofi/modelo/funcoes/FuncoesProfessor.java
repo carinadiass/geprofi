@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import br.com.geprofi.modelo.AreaDeInteresse;
+import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Professor;
 import br.com.geprofi.modelo.Projeto;
 
@@ -196,8 +197,28 @@ public class FuncoesProfessor {
 		// TODO Auto-generated method stub
 	}
 
-
-
+	public static List<Palavrachave> listaPalavrasChave(Connection connection, int codUsuario) throws SQLException{
+		List<Palavrachave> palavraschave = new ArrayList<Palavrachave>();
+		String sql = "select * from palavrachave where codProfessor=?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1, codUsuario);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Palavrachave palavrachave= new Palavrachave();
+				palavrachave.setCodPalavraChave(rs.getInt("codpalavrachave"));
+				palavrachave.setCodProfessor(rs.getInt("codProfessor"));
+				palavrachave.setPalavra(rs.getString("palavra"));
+				palavraschave.add(palavrachave);
+			}
+			stmt.close();
+			return palavraschave;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			
+		}
+	}
 
 }
 

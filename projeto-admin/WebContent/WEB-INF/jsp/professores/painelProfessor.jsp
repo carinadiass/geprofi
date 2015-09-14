@@ -56,88 +56,17 @@
 											
 										</div> 		<!-- FINAL Projetos Orientados -->
 									
+									
+									<!-- INICIO Palavras Chave -->
 										<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab1">
-										  Em contrução  Palavras Chave
-											<!-- start recent activity -->
-											<ul class="messages"> 
-												<li><img src="images/img.jpg" class="avatar"
-													alt="Avatar">
-													<div class="message_date">
-														<h3 class="date text-info">24</h3>
-														<p class="month">May</p>
-													</div>
-													<div class="message_wrapper">
-														<h4 class="heading">Desmond Davison</h4>
-														<blockquote class="message">Raw denim you
-															probably haven't heard of them jean shorts Austin.
-															Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-															dreamcatcher synth.</blockquote>
-														<br />
-														<p class="url">
-															<span class="fs1 text-info" aria-hidden="true"
-																data-icon=""></span> <a href="#"><i
-																class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-														</p>
-													</div></li>
-												<li><img src="images/img.jpg" class="avatar"
-													alt="Avatar">
-													<div class="message_date">
-														<h3 class="date text-error">21</h3>
-														<p class="month">May</p>
-													</div>
-													<div class="message_wrapper">
-														<h4 class="heading">Brian Michaels</h4>
-														<blockquote class="message">Raw denim you
-															probably haven't heard of them jean shorts Austin.
-															Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-															dreamcatcher synth.</blockquote>
-														<br />
-														<p class="url">
-															<span class="fs1" aria-hidden="true" data-icon=""></span>
-															<a href="#" data-original-title="">Download</a>
-														</p>
-													</div></li>
-												<li><img src="images/img.jpg" class="avatar"
-													alt="Avatar">
-													<div class="message_date">
-														<h3 class="date text-info">24</h3>
-														<p class="month">May</p>
-													</div>
-													<div class="message_wrapper">
-														<h4 class="heading">Desmond Davison</h4>
-														<blockquote class="message">Raw denim you
-															probably haven't heard of them jean shorts Austin.
-															Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-															dreamcatcher synth.</blockquote>
-														<br />
-														<p class="url">
-															<span class="fs1 text-info" aria-hidden="true"
-																data-icon=""></span> <a href="#"><i
-																class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-														</p>
-													</div></li>
-												<li><img src="images/img.jpg" class="avatar"
-													alt="Avatar">
-													<div class="message_date">
-														<h3 class="date text-error">21</h3>
-														<p class="month">May</p>
-													</div>
-													<div class="message_wrapper">
-														<h4 class="heading">Brian Michaels</h4>
-														<blockquote class="message">Raw denim you
-															probably haven't heard of them jean shorts Austin.
-															Nesciunt tofu stumptown aliqua butcher retro keffiyeh
-															dreamcatcher synth.</blockquote>
-														<br />
-														<p class="url">
-															<span class="fs1" aria-hidden="true" data-icon=""></span>
-															<a href="#" data-original-title="">Download</a>
-														</p>
-													</div></li>
-
-											</ul>
-											<!-- end recent activity -->
+										<jsp:include page="listaPalavrasChave.jsp">
+											<jsp:param name="palavraChaveList" value="${palavraChaveList}" />
+											<jsp:param name="professor" value="${professor}" />
+										</jsp:include>
 										</div>
+										<!-- INICIO Palavras Chave -->
+										
+										
 										
 										<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab2">
 										 Em contrução    Participação de Bancas

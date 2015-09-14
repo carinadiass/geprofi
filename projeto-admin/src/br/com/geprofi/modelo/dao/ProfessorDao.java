@@ -3,6 +3,7 @@ package br.com.geprofi.modelo.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Professor;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.AreaDeInteresse;
@@ -20,6 +21,8 @@ public interface ProfessorDao {
 	List<Projeto> buscaProjeto_professor(int codProfessor) throws SQLException;
 
 	List<AreaDeInteresse> buscaAreaDeInteresse_professor(int codProfessor) throws SQLException;
+
+	List<Palavrachave>  buscapalavraChave_professor(int codProfessor)  throws SQLException;
 
 
 }

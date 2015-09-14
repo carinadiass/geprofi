@@ -1,7 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<% 
+String codAreaDeInteresse = request.getParameter("codAreaDeInteresse");
+String area = request.getParameter("area");
+String nome = request.getParameter("nome");
+String descricao = request.getParameter("descricao");
+%>
 			<ul class="errors">
 				<c:if test="${not empty errors}">
 					<div class="alert alert-danger" role="alert">
@@ -14,7 +19,7 @@
 					</div>
 				</c:if>
 			</ul>
-			<form id="formArea" class="form-horizontal" role="form"
+			<form id="formArea" class="form-horizontal" role="form" accept-charset="UTF-8"
 				action="${linkTo[AreaDeInteresseController].salva}?codUsuario=${professor.codUsuario}" method="POST"
 				data-fv-framework="bootstrap"
 				data-fv-icon-valid="glyphicon glyphicon-ok"
