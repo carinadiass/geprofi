@@ -21,10 +21,10 @@
 				<td>${areaDeInteresse.nome}</td>
 				<td>${areaDeInteresse.descricao}</td>
 				<td>
-				<c:if test="${not empty professor.codUsuario}">
-		<button type="button" class="btn btn-success" data-toggle="modal"
+	<c:if test="${not empty professor.codUsuario}">
+		<button type="button" class="btn btn-info btn-xs" data-toggle="modal"
 			data-target=".bs-area${areaDeInteresse.codAreaDeInteresse}-modal">
-			<i class="glyphicon glyphicon-plus"> </i>Área de Interesse
+			<i class="fa fa-pencil"></i> Editar
 		</button>
 		<div class="modal fade bs-area${areaDeInteresse.codAreaDeInteresse}-modal" tabindex="-1" role="dialog"
 			aria-hidden="true">
@@ -43,6 +43,9 @@
 						<jsp:include page="formularioAreaDeInteresse.jsp">
 							<jsp:param name="professor" value="${professor}" />
 							<jsp:param name="codAreaDeInteresse" value="${areaDeInteresse.codAreaDeInteresse}" />
+							<jsp:param name="area" value="${areaDeInteresse.area}" />
+							<jsp:param name="nome" value="${areaDeInteresse.nome}" />
+							<jsp:param name="descricao" value="${areaDeInteresse.descricao}" />
 						</jsp:include>
 					</div>
 				</div>
@@ -50,9 +53,9 @@
 		</div>
 		<!--DIV class="modal fade bs-example-modal-lg"  -->
 	</c:if>
-				<a href="${linkTo[AreaDeInteresseController].edita}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}"
+		<!--  	<a href="${linkTo[AreaDeInteresseController].edita}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}"
 					class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar
-				</a> <a
+				</a> -->	<a
 					href="${linkTo[AreaDeInteresseController].delete}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}&codUsuario=${professor.codUsuario}"
 					class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 						Excluir </a></td>
@@ -82,7 +85,8 @@
 					<div class="modal-body">
 						<jsp:include page="formularioAreaDeInteresse.jsp">
 							<jsp:param name="professor" value="${professor}" />
-							<jsp:param name="areaDeInteresse.codAreaDeInteresse" value="${areaDeInteresse.codAreaDeInteresse}" />
+							<jsp:param name="areaDeInteresse" value="${areaDeInteresse}" />
+							<jsp:param name="areaDeInteresseList" value="${areaDeInteresseList}" />
 						</jsp:include>
 					</div>
 				</div>

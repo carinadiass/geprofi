@@ -15,6 +15,4 @@ public interface AreaDeInteresseDao {
 	
 	void deleta(int codAreaDeInteresse) throws SQLException;
 
-
-
 }

@@ -12,7 +12,7 @@ import br.com.geprofi.modelo.AreaDeInteresse;
 public class FuncoesAreaDeInteresse {
 	
 	
-	public static void atualiza(AreaDeInteresse areaDeInteresse, int codArea, Connection connection) throws SQLException{
+	public static void atualiza(AreaDeInteresse areaDeInteresse, int codAreaDeInteresse, Connection connection) throws SQLException{
 		
 		String sql="UPDATE AREADEINTERESSE SET DESCRICAO=?, NOME=?, AREA=? WHERE codAreaDeInteresse=?";
 		try{
@@ -20,7 +20,7 @@ public class FuncoesAreaDeInteresse {
 			stmt.setString(1, areaDeInteresse.getDescricao());
 			stmt.setString(2, areaDeInteresse.getNome());
 			stmt.setString(3, areaDeInteresse.getArea());
-			stmt.setInt(4, codArea);
+			stmt.setInt(4, codAreaDeInteresse);
 			stmt.executeUpdate();
 		}catch(SQLException e){
 			throw new RuntimeException(e);
@@ -51,12 +51,12 @@ public class FuncoesAreaDeInteresse {
 			connection.close();
 		}
 	}
-	public static AreaDeInteresse seleciona(Connection connection, int codArea) throws SQLException{
+	public static AreaDeInteresse seleciona(Connection connection, int codAreaDeInteresse) throws SQLException{
 		AreaDeInteresse areaDeInteresse = new AreaDeInteresse();
 		String sql ="SELECT * FROM AREADEINTERESSE WHERE codAreaDeInteresse=?";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, codArea);
+			stmt.setInt(1, codAreaDeInteresse);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				areaDeInteresse.setCodAreaDeInteresse(rs.getInt("codAreaDeInteresse"));
@@ -110,20 +110,20 @@ public class FuncoesAreaDeInteresse {
 		}
 		
 	}
-	public static void deleta(int codArea,Connection connection) throws SQLException{
-		System.out.println(codArea);
+	public static void deleta(int codAreaDeInteresse,Connection connection) throws SQLException{
+		System.out.println(codAreaDeInteresse);
 		String sql="DELETE FROM AREADEINTERESSE WHERE codAreaDeInteresse=?";
 			PreparedStatement stmt =connection.prepareStatement(sql);
-			stmt.setInt(1, codArea);
+			stmt.setInt(1, codAreaDeInteresse);
 			stmt.executeUpdate();
 	
 	}
 	
-	public static void adicionaAreaInteresseProfessor(int codArea, int codUsuario, Connection connection) throws SQLException{
+	public static void adicionaAreaInteresseProfessor(int codAreaDeInteresse, int codUsuario, Connection connection) throws SQLException{
 		String sql="INSERT INTO AREADEINTERESSE_HAS_PROFESSOR (CODAREADEINTERESSE, CODUSUARIO) VALUES (?,?)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, codArea);
+			stmt.setInt(1, codAreaDeInteresse);
 			stmt.setInt(2, codUsuario);
 			stmt.execute();
 			stmt.close();
