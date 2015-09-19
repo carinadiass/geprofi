@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 					<th>Palavra-Chave</th>
-					<th colspan=2>Ação</th>
+					<th>Ação</th>
 				</tr>
 			</thead>
 			<c:forEach var="palavraChave" items="${palavraChaveList}" varStatus="id">
@@ -44,16 +44,11 @@
 							</div>
 						</div>
 						<!--DIV class="modal fade bs-example-modal-lg"  -->
-					</c:if> <a class="btn btn-info btn-sm"
-							href="${linkTo[PalavraChaveController].edita}?codPalavraChave=${palavraChave.codPalavraChave}"
-							title="Editar Palavra"> <i class="glyphicon glyphicon-edit">
-							</i>
-						</a></td>
+					</c:if>
 						<td><a class="btn btn-danger btn-xs"
-							href="${linkTo[PalavraChaveController].delete}?codPalavraChave=${palavraChave.codPalavraChave}"
-							onclick="return confirmExclusao()" title="Excluir Palavra"> <i class="glyphicon glyphicon-remove">
-							  </i>
-						</a></td>
+							href="${linkTo[PalavraChaveController].delete}?codPalavraChave=${palavraChave.codPalavraChave}&codUsuario=${professor.codUsuario}"
+							onclick="return confirmExclusao()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+							Excluir </a></td>
 					</tr>
 			</c:forEach>
 			</tbody>
@@ -89,3 +84,13 @@
 		<!--DIV class="modal fade bs-example-modal-lg"  -->
 	</c:if>
 </div>
+
+<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

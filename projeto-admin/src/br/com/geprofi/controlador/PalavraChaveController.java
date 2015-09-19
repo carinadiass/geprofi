@@ -38,12 +38,13 @@ public class PalavraChaveController {
 		}
 		return palavrachave;
 	}
-	public void salva(Palavrachave palavrachave, Result result){
+	public void salva(Palavrachave palavrachave,int codUsuario, Result result){
 		try {
 			dao.adiciona(palavrachave);
 			//result.use(Results.json()).from(palavrachave).serialize();
 			result.include("mensagem", "Palavrachave criada com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
+			//result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -56,11 +57,12 @@ public class PalavraChaveController {
 		}
 		return null;
 	}
-	public void delete(int codPalavraChave, Result result){
+	public void delete(int codPalavraChave,int codUsuario, Result result){
 		try {
 			dao.deleta(codPalavraChave);
 			result.include("mensagem", "Palavrachave deletada com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
+		//	result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
