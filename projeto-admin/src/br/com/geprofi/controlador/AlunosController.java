@@ -31,6 +31,7 @@ public class AlunosController {
 	}
     protected AlunosController(){}
 	public void formulario() {}
+	public void cadaluno() {}
 	public Aluno edita(int codUsuario, Result result) {
 		Aluno alunoEncontrado = null;
 		try {

@@ -42,4 +42,7 @@
 	</c:forEach>
 	</tbody>
 </table>
+<a class="btn btn-success"
+				href="${linkTo[ProjetosController].fluxogeprofi}?codUsuario=${professor.codUsuario}" > <i
+				class="glyphicon glyphicon-plus"> </i>Novo Projeto</a>
 <!-- end user projects -->

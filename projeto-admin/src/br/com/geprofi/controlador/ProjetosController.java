@@ -1,27 +1,18 @@
 package br.com.geprofi.controlador;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import com.google.common.io.ByteStreams;
-
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.validator.Validator;
-import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
-import br.com.geprofi.modelo.dao.Diretorio;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.FuncoesProjeto;
 
@@ -56,12 +47,14 @@ public class ProjetosController {
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
-			validator.onErrorRedirectTo(this).formulario();
+			validator.onErrorRedirectTo(this).fluxogeprofi();
 			dao.adiciona(projeto, codUsuario);
 			if (arquivo != null) {
 				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
 			}
-			result.redirectTo(this).lista();
+		 result.include("codUsuario",codUsuario);
+		 result.include("codProjeto",projeto.getCodProjeto());
+	     result.redirectTo(AlunosController.class).cadaluno();
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			result.include("errors", "Projeto não salvo com sucesso!");

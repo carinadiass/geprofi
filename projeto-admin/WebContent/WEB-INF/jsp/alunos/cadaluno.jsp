@@ -41,6 +41,19 @@
 									</div>
 								</div>
 							</li>
+							<li>
+								<div class="block">
+									<div class="block_content">
+										<h2 class="title">
+											<span><i class="fa fa-folder"></i></span><a> Cadastro de Alunos</a>
+										</h2>
+										<div class="byline">
+											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
+										</div>
+										<p class="excerpt"></p>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -73,7 +86,7 @@
 					data-fv-icon-invalid="glyphicon glyphicon-remove"
 					data-fv-icon-validating="glyphicon glyphicon-refresh">
 
-					<span class="section">Cadastrar Projeto</span>
+					<span class="section">Cadastrar Alunos</span>
 
 					<div class="form-group">
 						<input type="hidden" name="projeto.codProjeto"
