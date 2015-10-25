@@ -46,7 +46,7 @@ public class AlunosController {
 	}
 	public void salva(@Valid Aluno aluno,Result result,Validator validator) {
 		try {
-			validator.onErrorRedirectTo(this).formulario();
+			validator.onErrorRedirectTo(this).cadaluno();
 			dao.adiciona(aluno);
 			result.include("mensagem", "Aluno salvo com sucesso!");
 			result.redirectTo(this).lista();

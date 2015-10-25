@@ -1,8 +1,10 @@
 <jsp:include page="../professores/heard.jsp">
 	<jsp:param value="teste" name="1" />
 </jsp:include>
+
 <%
-	String codUsuario = request.getParameter("codUsuario");
+/*String codProjeto = request.getParameter("codProjeto");
+System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -14,8 +16,7 @@
 
 <div class="right_col" role="main">
 	<div class="">
-		<div class="page-title">
-		</div>
+		<div class="page-title"></div>
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
@@ -24,6 +25,10 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>Etapas do Projeto Final</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
 						<div class="clearfix"></div>
 					</div>
 					<div class="x_content">
@@ -32,7 +37,8 @@
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-folder"></i></span><a> Cadastro Projeto Final</a>
+											<span><i class="fa fa-folder"></i></span><a> Cadastro
+												Projeto Final</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -45,7 +51,8 @@
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-folder"></i></span><a> Cadastro de Alunos</a>
+											<span><i class="fa fa-user"></i></span><a> Cadastro de
+												Alunos</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -54,125 +61,129 @@
 									</div>
 								</div>
 							</li>
+
 						</ul>
 					</div>
 				</div>
 			</div>
 			<!-- Lado direito do Projeto -->
 			<div class="col-md-9 col-sm-9 col-xs-12">
-					<ul class="errors">
-				<c:if test="${not empty errors}">
-						<c:forEach items="${errors}" var="error">
-					<div class="alert alert-danger" role="alert">
-					 <button type="button" class="close" data-dismiss="alert">&times;</button>
-							<h6>
-								<i class="glyphicon glyphicon-exclamation-sign"> </i>
-								${error.message}
-							</h6>
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Cadastro de Alunos</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+
+						<ul class="errors">
+							<c:if test="${not empty errors}">
+								<c:forEach items="${errors}" var="error">
+									<div class="alert alert-danger" role="alert">
+										<button type="button" class="close" data-dismiss="alert">&times;</button>
+										<h6>
+											<i class="glyphicon glyphicon-exclamation-sign"> </i>
+											${error.message}
+										</h6>
+									</div>
+								</c:forEach>
+							</c:if>
+						</ul>
+						<form class="form-horizontal" id="formAluno" role="form"
+							action="${linkTo[AlunosController].salva}" method="POST"
+							data-fv-framework="bootstrap"
+							data-fv-icon-valid="glyphicon glyphicon-ok"
+							data-fv-icon-invalid="glyphicon glyphicon-remove"
+							data-fv-icon-validating="glyphicon glyphicon-refresh">
+							<input type="hidden" name="aluno.codProjeto"
+								value="${codProjeto}" /> <input type="hidden"
+								name="param.codUsuario" value="${aluno.codUsuario}" />
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3" for="aluno.nome">Nome:</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="aluno.nome" name="aluno.nome" value="${aluno.nome}"
+										class="form-control input-sm" type="text">
 								</div>
-						</c:forEach>
-				</c:if>
-			</ul>
-				<form id="formAluno" class="form-horizontal"
-					<c:if test="${not empty param.codUsuario}">
-				action="${linkTo[ProjetosController].salva}?codUsuario=${param.codUsuario}"
-			 </c:if>
-					<c:if test="${empty param.codUsuario}">
-				action="${linkTo[ProjetosController].salva}?codUsuario=0"
-			 </c:if>
-					role="form" method="POST" data-fv-framework="bootstrap"
-					enctype="multipart/form-data"
-					data-fv-icon-valid="glyphicon glyphicon-ok"
-					data-fv-icon-invalid="glyphicon glyphicon-remove"
-					data-fv-icon-validating="glyphicon glyphicon-refresh">
+							</div>
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3" for="aluno.email">E-mail:</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="aluno.email" name="aluno.email" placeholder="E-mail"
+										value="${aluno.email}" class="form-control input-sm"
+										type="text">
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3" for="aluno.dre">Dre:</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="aluno.dre" name="aluno.dre" value="${aluno.dre}"
+										class="form-control input-sm" type="text">
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3" for="aluno.dre">Curso:</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="aluno.curso" name="aluno.curso"
+										value="${aluno.curso}" class="form-control input-sm"
+										type="text">
+								</div>
+							</div>
+							<!-- Select Basic -->
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3" for="aluno.sexo">Sexo:</label>
+								<div class="col-md-6 col-sm-6">
+									<select id="aluno.sexo" name="aluno.sexo"
+										class="form-control input-sm" placeholder="Sexo"
+										value="${aluno.sexo}">
+										<option value="Masculino">Masculino</option>
+										<option value="Feminino">Feminino</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="control-label col-md-3 col-sm-3">
+									<input type="submit" class="btn btn-success" value="Salvar">
+									<a class="btn btn-success"
+										href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
+										title="Editar Aluno"> <i class="glyphicon glyphicon-edit">
+									</i>
+									</a>
+								</div>
+							</div>
+						</form>
+					</div> <!-- Content Fim  -->
+					
+				</div> <!-- Painel FIM -->
+				
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Alunos Cadastrados</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        </li>
+                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                </div>
+                            </div>
+				<!-- 			
+			Inserir Lista de Alunos Cadastrados no Projeto
 
-					<span class="section">Cadastrar Alunos</span>
-
-					<div class="form-group">
-						<input type="hidden" name="projeto.codProjeto"
-							value="${projeto.codProjeto}" /> <input type="hidden"
-							name="param.codUsuario" value="${param.codUsuario}" /> <label
-							class="control-label col-md-3 col-sm-3" for="projeto.nome">Nome</label>
-						<div class="col-md-6 col-sm-6">
-							<input id="projeto.nome" name="projeto.nome" placeholder=""
-								value="${projeto.nome}" class="form-control input-sm"
-								type="text">
-						</div>
-					</div>
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3" for="projeto.tema">Tema</label>
-						<div class="col-md-6 col-sm-6">
-							<input id="projeto.tema" name="projeto.tema"
-								value="${projeto.tema}" class="form-control input-sm"
-								type="text">
-						</div>
-					</div>
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3"
-							for="projeto.titulo">Título</label>
-						<div class="col-md-6 col-sm-6">
-							<input id="projeto.titulo" name="projeto.titulo"
-								value="${projeto.titulo}" class="form-control input-sm"
-								type="text">
-						</div>
-					</div>
-					<!-- Textarea -->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3"
-							for="projeto.descricao">Descrição</label>
-						<div class="col-md-6 col-sm-6">
-							<textarea class="form-control" id="projeto.descricao"
-								name="projeto.descricao">${projeto.descricao}</textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3" for="aluno.sexo">Quantidade
-							De Alunos</label>
-						<div class="col-md-6 col-sm-6">
-							<select id="aluno.sexo" name="projeto.quantidadeDeAlunos"
-								value="${projeto.quantidadeDeAlunos}"
-								class="form-control input-sm">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select>
-						</div>
-					</div>
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3" for="projeto.nota">Nota</label>
-						<div class="col-md-6 col-sm-6">
-							<input id="projeto.nota" name="projeto.nota" placeholder=""
-								value="${projeto.nota}" class="form-control input-sm"
-								type="text">
-						</div>
-					</div>
-					<!-- Text input-->
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3"
-							for="projeto.palavraChave">Palavras Chave</label>
-						<div class="col-md-6 col-sm-6">
-							<input id="projeto.palavraChave" name="projeto.palavraChave"
-								placeholder="" value="${projeto.palavraChave}"
-								class="form-control input-sm" type="text">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3" for="arquivo">Arquivo</label>
-						<div class="col-md-6 col-sm-6">
-							<input type="file" name="arquivo" />
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="control-label col-md-3 col-sm-3">
-							<input type="submit" class="btn btn-success" value="Salvar">
-						</div>
-					</div>
-				</form>
+ -->
 			</div>
+
 		</div>
 	</div>
 </div>

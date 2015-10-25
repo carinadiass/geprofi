@@ -21,18 +21,22 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<!-- Lado Esquerdo do Projeto -->
 			<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
-				<div class="x_panel">
-					<div class="x_title">
-						<h2>Etapas do Projeto Final</h2>
-						<div class="clearfix"></div>
-					</div>
-					<div class="x_content">
+			  <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Etapas do Projeto Final</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
 						<ul class="list-unstyled timeline">
 							<li>
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-folder"></i></span><a> Cadastro Projeto Final</a>
+											<span><i class="fa fa-folder"></i></span><a> Cadastro de Projeto Final</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -47,6 +51,16 @@
 			</div>
 			<!-- Lado direito do Projeto -->
 			<div class="col-md-9 col-sm-9 col-xs-12">
+			  <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Cadastro de Projeto Final</h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
 					<ul class="errors">
 				<c:if test="${not empty errors}">
 						<c:forEach items="${errors}" var="error">
@@ -72,8 +86,6 @@
 					data-fv-icon-valid="glyphicon glyphicon-ok"
 					data-fv-icon-invalid="glyphicon glyphicon-remove"
 					data-fv-icon-validating="glyphicon glyphicon-refresh">
-
-					<span class="section">Cadastrar Projeto</span>
 
 					<div class="form-group">
 						<input type="hidden" name="projeto.codProjeto"
@@ -159,8 +171,10 @@
 						</div>
 					</div>
 				</form>
-			</div>
+			</div> <!-- Content  -->
 		</div>
+	</div>
+</div>
 	</div>
 </div>
 <div id="custom_notifications" class="custom-notifications dsp_none">
@@ -173,7 +187,6 @@
 
 <script
 	src="${pageContext.request.contextPath}/production/js/bootstrap.min.js"></script>
-
 <!-- chart js -->
 <script
 	src="${pageContext.request.contextPath}/production/js/chartjs/chart.min.js"></script>
@@ -187,7 +200,6 @@
 	src="${pageContext.request.contextPath}/production/js/icheck/icheck.min.js"></script>
 
 <script src="${pageContext.request.contextPath}/production/js/custom.js"></script>
-
 <!-- PNotify -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/production/js/notify/pnotify.core.js"></script>

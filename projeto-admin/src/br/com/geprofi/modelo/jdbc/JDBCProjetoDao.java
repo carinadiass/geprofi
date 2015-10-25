@@ -50,6 +50,11 @@ public class JDBCProjetoDao implements ProjetoDao{
 		FuncoesProjeto.insereArquivo(arquivo, projeto, connection);
 		
 	}
+	@Override
+	public int pegaUltimoProjeto() throws SQLException {
+		// TODO Auto-generated method stub
+		return FuncoesProjeto.pegaUlitmoProjeto(connection);
+	}
 	
 	
 

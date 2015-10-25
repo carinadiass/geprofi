@@ -42,7 +42,6 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
-	
 	@Post
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
@@ -52,9 +51,7 @@ public class ProjetosController {
 			if (arquivo != null) {
 				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
 			}
-		 result.include("codUsuario",codUsuario);
-		 result.include("codProjeto",projeto.getCodProjeto());
-	     result.redirectTo(AlunosController.class).cadaluno();
+	     result.include("codProjeto",dao.pegaUltimoProjeto()).redirectTo(AlunosController.class).cadaluno();
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			result.include("errors", "Projeto não salvo com sucesso!");

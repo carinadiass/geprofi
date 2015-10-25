@@ -24,5 +24,7 @@ public interface ProjetoDao {
 	void adiciona(Projeto projeto, int codUsuario) throws SQLException;
 	
 	void adicionaArquivo(Arquivo arquivo, Projeto projeto) throws SQLException;
+	
+	int pegaUltimoProjeto() throws SQLException;
 
 }
