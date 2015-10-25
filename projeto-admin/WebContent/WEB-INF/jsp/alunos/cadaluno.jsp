@@ -150,7 +150,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 								<div class="control-label col-md-3 col-sm-3">
 									<input type="submit" class="btn btn-success" value="Salvar">
 									<a class="btn btn-primary"
-										href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
+										href="${linkTo[ProjetosController].visualiza}?codProjeto=${aluno.codProjeto}"
 										title="Iniciar Projeto"> <i class="fa fa-folder-open-o"></i>
 									 Devolver Projeto
 									</a>

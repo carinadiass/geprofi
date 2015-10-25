@@ -43,15 +43,28 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
+	public Projeto visualiza(int codProjeto, Result result) {
+		Projeto projetoEncontrado = null;
+		try {
+			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
+			result.include(projetoEncontrado);
+			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+			result.of(this).desenvProj();
+			return projetoEncontrado;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return projetoEncontrado;
+	}
 	@Post
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
 			validator.onErrorRedirectTo(this).fluxogeprofi();
 			dao.adiciona(projeto, codUsuario);
-			if (arquivo != null) {
+		/*if (arquivo != null) {
 				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
-			}
+			}*/
 	     result.include("codProjeto",dao.pegaUltimoProjeto()).redirectTo(AlunosController.class).cadaluno();
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,6 +72,19 @@ public class ProjetosController {
 			result.redirectTo(this).lista();
 			e.printStackTrace();
 		} 
+	}
+	@Post
+	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
+	public void uploadArquivo(Result result,int codProjeto, Validator validator, List<UploadedFile> files){
+		UploadedFile arquivo = null;
+		if(files.size()>0){
+			for(int i=0;i<files.size();i++){
+				arquivo=files.get(i);
+				if (arquivo != null) {
+					FuncoesProjeto.uploadArquivo(dao, codProjeto, arquivo);
+				}
+			}
+		}
 	}
 	public List<Projeto> lista() {
 		try {

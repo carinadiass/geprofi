@@ -39,25 +39,25 @@ public class FuncoesProjeto {
 			e.printStackTrace();
 		}
 	}
-	public static void uploadArquivo(ProjetoDao dao, Projeto projeto, UploadedFile arquivo){
+	public static void uploadArquivo(ProjetoDao dao, int codProjeto, UploadedFile arquivo){
 		
 		if (arquivo != null) {
 			try {
 				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
 						Calendar.getInstance());
-				File arquivoSalvo = new File(CAMINHO_UPLOAD+projeto.getCodProjeto());
+				File arquivoSalvo = new File(CAMINHO_UPLOAD+codProjeto);
 				if(!arquivoSalvo.exists()){
 					if (arquivoSalvo.mkdirs()) {
 						System.out.println("Multiple directories are created!");
-						arquivoSalvo =new File(CAMINHO_UPLOAD+projeto.getCodProjeto(),arquivo.getFileName());  
+						arquivoSalvo =new File(CAMINHO_UPLOAD+codProjeto,arquivo.getFileName());  
 					}
 				}else{
-					arquivoSalvo =new File(CAMINHO_UPLOAD+projeto.getCodProjeto(),arquivo.getFileName()); 
+					arquivoSalvo =new File(CAMINHO_UPLOAD+codProjeto,arquivo.getFileName()); 
 				}
 				arquivo.writeTo(arquivoSalvo);
 				System.out.println("Entrei aki no arquivo!@@@");
 				System.out.println(ByteStreams.toByteArray(arquivo.getFile()));
-				dao.adicionaArquivo(novoArquivo, projeto);
+				dao.adicionaArquivo(novoArquivo, codProjeto);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -70,13 +70,13 @@ public class FuncoesProjeto {
 		}
 			
 	}
-	public static void insereArquivo(Arquivo arquivo,Projeto projeto, Connection connection) throws SQLException{
+	public static void insereArquivo(Arquivo arquivo,int codProjeto, Connection connection) throws SQLException{
 		String sql = "insert into arquivo" +
 				"(codProjeto, nome, versao, dataCadastro, contentType )"
 				+ " VALUES (?,?,?,?,?)";
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setLong(1, projeto.getCodProjeto());
+			stmt.setLong(1, codProjeto);
 			stmt.setString(2, arquivo.getNome());
 			stmt.setLong(3, 1);
 			stmt.setDate(4, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
@@ -89,7 +89,7 @@ public class FuncoesProjeto {
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
-			connection.close();
+			//connection.close();
 		}
 		
 	}

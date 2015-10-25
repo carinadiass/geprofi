@@ -100,18 +100,43 @@
 						</c:forEach>
 				</c:if>
 			</ul>
-			
-			
-			<h3 class="green"><i class="fa fa-paint-brush"></i> Gentelella</h3>
-			 
-			
-			
-			</div> <!-- Content  -->
+						<h3 class="green">
+							<i class="fa fa-paint-brush"></i> ${projeto.titulo}
+						</h3>
+
+
+						<p>${projeto.descricao}</p>
+
+
+						<form action="${linkTo[ProjetosController].uploadArquivo}" method="post" enctype="multipart/form-data">
+							<h5>Faça o upload de arquivos de consulta do projeto</h5>
+							 <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
+									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+									<div class="fileUpload btn btn-success">
+										<span>Upload Consulta</span> 
+										<input id="uploadBtn" type="file" class="upload"  name="files[]" multiple/>
+									</div>
+									<br>
+									<h5>Faça o upload da monografia</h5>
+									<input id="uploadFile1" placeholder="Choose File" disabled="disabled" />
+									<div class="fileUpload btn btn-success">
+										<span>Upload Monografia</span> <input id="uploadBtn1"
+											type="file" class="upload" />
+									</div>
+									<br>
+									<input type="submit" class="btn btn-primary" value="Enviar">
+						</form>
+
+
+
+
+
+
+					</div> <!-- Content  -->
 		</div>
 	</div>
 </div>
 	</div>
-</div>
 <div id="custom_notifications" class="custom-notifications dsp_none">
 	<ul class="list-unstyled notifications clearfix"
 		data-tabbed_notifications="notif-group">
@@ -119,6 +144,17 @@
 	<div class="clearfix"></div>
 	<div id="notif-group" class="tabbed_notifications"></div>
 </div>
+
+    <script type="text/javascript">
+    document.getElementById("uploadBtn").onchange = function () {
+        document.getElementById("uploadFile").value = this.value;
+    };
+    </script>
+      <script type="text/javascript">
+    document.getElementById("uploadBtn1").onchange = function () {
+        document.getElementById("uploadFile1").value = this.value;
+    };
+    </script>
 
 <script
 	src="${pageContext.request.contextPath}/production/js/bootstrap.min.js"></script>
@@ -142,3 +178,6 @@
 	src="${pageContext.request.contextPath}/production/js/notify/pnotify.buttons.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/production/js/notify/pnotify.nonblock.js"></script>
+	
+	    <!-- dropzone -->
+    <script src="${pageContext.request.contextPath}/production/js/dropzone/dropzone.js"></script>

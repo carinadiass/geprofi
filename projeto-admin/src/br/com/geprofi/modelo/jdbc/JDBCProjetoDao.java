@@ -45,9 +45,9 @@ public class JDBCProjetoDao implements ProjetoDao{
 		return FuncoesProjeto.listaAlunos(codProjeto, connection);
 	}
 	@Override
-	public void adicionaArquivo(Arquivo arquivo, Projeto projeto)
+	public void adicionaArquivo(Arquivo arquivo,int codProjeto)
 			throws SQLException {
-		FuncoesProjeto.insereArquivo(arquivo, projeto, connection);
+		FuncoesProjeto.insereArquivo(arquivo, codProjeto, connection);
 		
 	}
 	@Override
