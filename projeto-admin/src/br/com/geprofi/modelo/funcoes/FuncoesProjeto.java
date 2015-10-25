@@ -85,7 +85,7 @@ public class FuncoesProjeto {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Arquivo Gravado!");
-		    connection.close();
+		  //  connection.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{

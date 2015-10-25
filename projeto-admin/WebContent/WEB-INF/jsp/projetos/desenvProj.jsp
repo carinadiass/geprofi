@@ -108,7 +108,7 @@
 						<p>${projeto.descricao}</p>
 
 
-						<form action="${linkTo[ProjetosController].uploadArquivo}" method="post" enctype="multipart/form-data">
+						<form action="${linkTo[ProjetosController].uploadArquivo}?codProjeto=${projeto.codProjeto}" method="post" enctype="multipart/form-data">
 							<h5>Faça o upload de arquivos de consulta do projeto</h5>
 							 <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
 									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
