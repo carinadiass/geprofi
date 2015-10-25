@@ -49,14 +49,16 @@ public class AlunosController {
 			validator.onErrorRedirectTo(this).cadaluno();
 			dao.adiciona(aluno);
 			result.include("mensagem", "Aluno salvo com sucesso!");
-			result.redirectTo(this).lista();
+			result.include("alunoList", dao.todos(aluno.getCodProjeto()));
+			result.include("codProjeto", aluno.getCodProjeto());
+			result.redirectTo(this).cadaluno();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 	}
 	public List<Aluno> lista() {
 		try {
-			return dao.todos();
+			return dao.todos(0);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

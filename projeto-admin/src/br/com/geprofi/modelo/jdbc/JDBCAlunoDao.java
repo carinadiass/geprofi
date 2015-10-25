@@ -29,8 +29,8 @@ public class JDBCAlunoDao implements AlunoDao {
 		}
 	}
 	@Override
-	public List<Aluno> todos() throws SQLException {
-	      return FuncoesAluno.lista(connection);
+	public List<Aluno> todos(int codProjeto) throws SQLException {
+	      return FuncoesAluno.lista(connection,codProjeto);
 	}
 	@Override
 	public Aluno buscaPorCodUsuario(int codUsuario) throws SQLException {

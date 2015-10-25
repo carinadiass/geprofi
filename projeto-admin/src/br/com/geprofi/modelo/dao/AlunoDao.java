@@ -9,7 +9,7 @@ public interface AlunoDao {
 
 	void adiciona(Aluno aluno) throws SQLException;
 
-	List<Aluno> todos() throws SQLException;
+	List<Aluno> todos(int codProjeto) throws SQLException;
 
 	Aluno buscaPorCodUsuario(int codUsuario) throws SQLException;
 	

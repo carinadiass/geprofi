@@ -39,9 +39,15 @@ public class FuncoesAluno {
 			e.printStackTrace();
 		}
 	}
-	public static List<Aluno> lista(Connection connection) throws SQLException{
+	public static List<Aluno> lista(Connection connection, int codProjeto) throws SQLException{
 		List<Aluno> alunos = new ArrayList<Aluno>();
-		String sql ="SELECT * FROM USUARIO WHERE TIPOUSUARIO='Aluno' AND STATUS=1";
+		String sql="";
+		if(codProjeto!=0){
+		   sql ="SELECT * FROM USUARIO WHERE TIPOUSUARIO='Aluno' AND STATUS=1 and codProjeto="+codProjeto;
+		}else{
+			sql ="SELECT * FROM USUARIO WHERE TIPOUSUARIO='Aluno' AND STATUS=1";
+		}
+		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -62,7 +68,7 @@ public class FuncoesAluno {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
+			//connection.close();
 		}
 	}
 	public static Aluno seleciona(Connection connection, int codUsuario) throws SQLException{
@@ -88,7 +94,7 @@ public class FuncoesAluno {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
+			//connection.close();
 		}
 	}
 	public static void insere(Aluno aluno, Connection connection) throws SQLException{
@@ -113,11 +119,11 @@ public class FuncoesAluno {
 			stmt.execute();
 			stmt.close();
 			System.out.println("Gravado!");
-			connection.close();
+			//connection.close();
 		}catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally{
-			connection.close();
+			//connection.close();
 		}
 	}
 	public static void deleta(int codUsuario, Connection connection) throws SQLException{

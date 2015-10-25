@@ -149,10 +149,10 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 							<div class="form-group">
 								<div class="control-label col-md-3 col-sm-3">
 									<input type="submit" class="btn btn-success" value="Salvar">
-									<a class="btn btn-success"
+									<a class="btn btn-primary"
 										href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
-										title="Editar Aluno"> <i class="glyphicon glyphicon-edit">
-									</i>
+										title="Iniciar Projeto"> <i class="fa fa-folder-open-o"></i>
+									 Devolver Projeto
 									</a>
 								</div>
 							</div>
@@ -160,24 +160,67 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 					</div> <!-- Content Fim  -->
 					
 				</div> <!-- Painel FIM -->
-				
+				<c:if test="${not empty alunoList}">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Alunos Cadastrados</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                        </li>
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                                                      <li><a class="close-link"><i class="fa fa-close"></i></a>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                </div>
+                                
+							<c:if test="${not empty mensagem}">
+								<div class="alert alert-success">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									${mensagem}
+								</div>
+							</c:if>
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Nome</th>
+										<th>Email</th>
+										<th>Dre</th>
+										<th>Curso</th>
+										<th>Data de Cadastro</th>
+										<th colspan=2>Ação</th>
+									</tr>
+								</thead>
+								<c:forEach var="aluno" items="${alunoList}" varStatus="id">
+									<tbody>
+										<tr>
+											<td>${aluno.codUsuario}</td>
+											<td>${aluno.nome}</td>
+											<td>${aluno.email}</td>
+											<td>${aluno.dre}</td>
+											<td>${aluno.curso}</td>
+											<td><fmt:formatDate value="${aluno.dataDeCadastro}"
+													pattern="dd/MM/yyyy" /></td>
+											<td><a class="btn  btn-info btn-sm"
+												href="${linkTo[AlunosController].edita}?codUsuario=${aluno.codUsuario}"
+												title="Editar Aluno"> <i
+													class="glyphicon glyphicon-edit"> </i>
+											</a></td>
+											<td><a class="btn btn-danger btn-sm"
+												href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}"
+												title="Excluir Aluno"> <i
+													class="glyphicon glyphicon-remove"> </i>
+											</a></td>
+										</tr>
+								</c:forEach>
+								</tbody>
+							</table>
+
+						</div>
                             </div>
+                 </c:if>
 				<!-- 			
 			Inserir Lista de Alunos Cadastrados no Projeto
 

@@ -29,6 +29,7 @@ public class ProjetosController {
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
 	public void fluxogeprofi() {}
+	public void desenvProj(){}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {
