@@ -117,13 +117,7 @@
 										<input id="uploadBtn" type="file" class="upload"  name="files[]" multiple/>
 									</div>
 									<br>
-									<h5>Faça o upload da monografia</h5>
-									<input id="uploadFile1" placeholder="Choose File" disabled="disabled" />
-									<div class="fileUpload btn btn-success">
-										<span>Upload Monografia</span> <input id="uploadBtn1"
-											type="file" class="upload" />
-									</div>
-									<br>
+									
 									<input type="submit" class="btn btn-primary" value="Enviar">
 						</form>
 
