@@ -126,44 +126,35 @@
 					<!-- Content  -->
 				</div>
 
-
-				<div class="x_panel">
-					<div class="x_title">
-						<h2>Arquivos para consulta</h2>
-						<ul class="nav navbar-right panel_toolbox">
-							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-							</li>
-						</ul>
-						<div class="clearfix"></div>
+				<c:if test="${not empty arquivoList}">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Arquivos para consulta</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<ul class="list-unstyled project_files">
+								<c:forEach var="arquivo" items="${arquivoList}" varStatus="id">
+									<li><a
+										href="${linkTo[ProjetosController].downloadArquivo}?codProjeto=${projeto.codProjeto}"><i
+											class="fa fa-download"></i>${arquivo.nome}</a></li>
+								</c:forEach>
+							</ul>
+						</div>
+						<!-- Content  -->
 					</div>
-					<div class="x_content">
 
-						<ul class="list-unstyled project_files">
-							<li><a href="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\20\\monografia - Cópia.jpg"><i class="fa fa-picture-o"></i>
-									monografia - Cópia.jpg</a></li>
-							<li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
-							</li>
-							<li><a href=""><i class="fa fa-mail-forward"></i>
-									Email-from-flatbal.mln</a></li>
-							<li><a href=""><i class="fa fa-picture-o"></i> Logo.png</a>
-							</li>
-							<li><a href=""><i class="fa fa-file-word-o"></i>
-									Contract-10_12_2014.docx</a></li>
-						</ul>
-
-
-
-
-					</div>
-					<!-- Content  -->
-				</div>
-
-
+				</c:if>
 
 
 
 			</div>
 		</div>
+	</div>
 	</div>
 	<div id="custom_notifications" class="custom-notifications dsp_none">
 		<ul class="list-unstyled notifications clearfix"

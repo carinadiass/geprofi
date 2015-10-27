@@ -55,6 +55,7 @@ public class ProjetosController {
 			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
 			result.include(projetoEncontrado);
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
 			result.of(this).desenvProj();
 			return projetoEncontrado;
 		} catch (SQLException e) {
@@ -73,10 +74,14 @@ public class ProjetosController {
 			}*/
 			if(projeto.getCodProjeto()==0){
 				result.include("alunoList", dao.buscaAlunosCodProjeto(dao.pegaUltimoProjeto()));
+			
 				result.include("codProjeto",dao.pegaUltimoProjeto()).redirectTo(AlunosController.class).cadaluno();
+				
 			}else{
 				result.include("alunoList", dao.buscaAlunosCodProjeto(projeto.getCodProjeto()));
+				result.include("arquivoList",dao.buscaArquivosCodProjeto(dao.pegaUltimoProjeto()));
 				result.include("codProjeto",projeto.getCodProjeto()).redirectTo(AlunosController.class).cadaluno();
+				
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -118,7 +123,8 @@ public class ProjetosController {
 		return null;
 	}
 	
-	public Download consulta(Arquivo arquivo, int codProjeto) {
+	
+	public Download downloadArquivo(Arquivo arquivo, int codProjeto) {
 		try {
 			File file = new File(CAMINHO_UPLOAD +codProjeto,arquivo.getNome());
 			String contentType = arquivo.getContentType();
