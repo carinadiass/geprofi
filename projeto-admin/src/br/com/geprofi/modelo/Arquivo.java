@@ -1,5 +1,6 @@
 package br.com.geprofi.modelo;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -17,10 +18,12 @@ public class Arquivo {
 	private String versao;
 	private byte[] conteudo;
 	private String contentType;
-	private Calendar dataCadastro;
-
+	private Date dataCadastro;
+	
+	public Arquivo(){};
+	
 	public Arquivo(String nome, byte[] conteudo,
-			String contentType, Calendar dataCadastro) {
+			String contentType, Date dataCadastro) {
 		this.nome = nome;
 		this.conteudo = conteudo;
 		this.contentType = contentType;
@@ -38,10 +41,10 @@ public class Arquivo {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
-	public Calendar getDataCadastro() {
+	public Date getDataCadastro() {
 		return dataCadastro;
 	}
-	public void setDataCadastro(Calendar dataCadastro) {
+	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 	public int getCodArquivo() {

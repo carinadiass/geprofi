@@ -149,11 +149,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 							<div class="form-group">
 								<div class="control-label col-md-3 col-sm-3">
 									<input type="submit" class="btn btn-success" value="Salvar">
-									<a class="btn btn-primary"
-										href="${linkTo[ProjetosController].visualiza}?codProjeto=${aluno.codProjeto}"
-										title="Iniciar Projeto"> <i class="fa fa-folder-open-o"></i>
-									 Devolver Projeto
-									</a>
+								
 								</div>
 							</div>
 						</form>
@@ -164,6 +160,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Alunos Cadastrados</h2>
+                                   
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -180,7 +177,12 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 									${mensagem}
 								</div>
 							</c:if>
-
+							 <br>
+                                    	<a class="btn btn-primary"
+										href="${linkTo[ProjetosController].visualiza}?codProjeto=${codProjeto}"
+										title="Iniciar Projeto"> <i class="fa fa-folder-open-o"></i>
+									 Devolver Projeto
+									</a>
 							<table class="table table-striped">
 								<thead>
 									<tr>

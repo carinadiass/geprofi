@@ -20,6 +20,7 @@ import br.com.geprofi.modelo.dao.ProjetoDao;
 
 public class FuncoesProjeto {
 	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
+	//public static String CAMINHO_UPLOAD2="/projeto-admin/WebContent/WEB-INF/arquivos/";
 	public static void atualiza(Projeto projeto,int id,Connection connection) {
 		try {
 			PreparedStatement preparedStatement = connection
@@ -44,7 +45,7 @@ public class FuncoesProjeto {
 		if (arquivo != null) {
 			try {
 				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
-						Calendar.getInstance());
+						new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 				File arquivoSalvo = new File(CAMINHO_UPLOAD+codProjeto);
 				if(!arquivoSalvo.exists()){
 					if (arquivoSalvo.mkdirs()) {
@@ -65,11 +66,34 @@ public class FuncoesProjeto {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
 		}
-			
 	}
+	public static List<Arquivo> listaArquivos(Connection connection, int codProjeto){
+		List<Arquivo> arquivos = new ArrayList<Arquivo>();
+		String sql ="SELECT * FROM ARQUIVO WHERE CODPROJETO="+codProjeto;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Arquivo arquivo= new Arquivo();
+				arquivo.setCodProjeto(rs.getInt("codProjeto"));
+				arquivo.setNome(rs.getString("nome"));
+				arquivo.setCodArquivo(rs.getInt("codArquivo"));
+				arquivo.setContentType(rs.getString("contentType"));
+				arquivo.setDataCadastro(rs.getDate("dataCadastro"));
+				arquivos.add(arquivo);
+			}
+			stmt.close();
+			//	connection.close();
+			return arquivos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			//connection.close();
+		}
+		
+	}
+	
 	public static void insereArquivo(Arquivo arquivo,int codProjeto, Connection connection) throws SQLException{
 		String sql = "insert into arquivo" +
 				"(codProjeto, nome, versao, dataCadastro, contentType )"
@@ -238,12 +262,12 @@ public class FuncoesProjeto {
 				alunos.add(aluno);
 			}
 			stmt.close();
-			connection.close();
+			//connection.close();
 			return alunos;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			connection.close();
+			//connection.close();
 		}
 	}
 
