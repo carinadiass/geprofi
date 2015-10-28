@@ -36,6 +36,7 @@ public class ProjetosController {
 	public void formwizardprojeto() {}
 	public void fluxogeprofi() {}
 	public void desenvProj(){}
+	public void validaMonografia(){}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {

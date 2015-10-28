@@ -117,15 +117,14 @@
 								<span>Upload Consulta</span> <input id="uploadBtn" type="file"
 									class="upload" name="files[]" multiple />
 							</div>
-							<br> <input type="submit" class="btn btn-primary"
-								value="Enviar">
+							<br> <input type="submit" class="btn btn-primary"  value="Enviar"> 
+							   <a href="${linkTo[ProjetosController].downloadArquivo}?codProjeto=${projeto.codProjeto}&codArquivo=${arquivo.codArquivo}"><i
+											class="fa fa-download"></i>${arquivo.nome}</a></li>
+							
 						</form>
-
-
 					</div>
 					<!-- Content  -->
 				</div>
-
 				<c:if test="${not empty arquivoList}">
 					<div class="x_panel">
 						<div class="x_title">
@@ -147,11 +146,7 @@
 						</div>
 						<!-- Content  -->
 					</div>
-
 				</c:if>
-
-
-
 			</div>
 		</div>
 	</div>
