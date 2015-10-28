@@ -117,6 +117,30 @@ public class FuncoesProjeto {
 		}
 		
 	}
+	public static Arquivo selecionaArquivo(Connection connection, int codArquivo ) throws SQLException{
+		Arquivo arquivo= new Arquivo();
+		String sql ="SELECT * FROM ARQUIVO WHERE codArquivo="+codArquivo;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				arquivo.setCodProjeto(rs.getInt("codProjeto"));
+				arquivo.setNome(rs.getString("nome"));
+				arquivo.setCodArquivo(rs.getInt("codArquivo"));
+				arquivo.setContentType(rs.getString("contentType"));
+				arquivo.setDataCadastro(rs.getDate("dataCadastro"));
+			}
+			stmt.close();
+			//	connection.close();
+			return arquivo;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			//connection.close();
+		}
+		
+		
+	}
 	public static List<Projeto> lista(Connection connection) throws SQLException{
 		List<Projeto> projetos = new ArrayList<Projeto>();
 		String sql ="SELECT * FROM PROJETO";

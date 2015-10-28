@@ -107,6 +107,9 @@ public class ProjetosController {
 			}
 			validator.onErrorRedirectTo(this).desenvProj();
 			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
+			//result.redirectTo(this).desenvProj();
+			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
 			result.redirectTo(this).desenvProj();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -124,8 +127,10 @@ public class ProjetosController {
 	}
 	
 	
-	public Download downloadArquivo(Arquivo arquivo, int codProjeto) {
+	public Download downloadArquivo(int codArquivo, int codProjeto) throws SQLException {
 		try {
+			Arquivo arquivo = dao.buscaArquivoCodArquivo(codArquivo);
+			System.out.println("Tentando Download Arquivo:" +arquivo.getNome());
 			File file = new File(CAMINHO_UPLOAD +codProjeto,arquivo.getNome());
 			String contentType = arquivo.getContentType();
 			String filename = arquivo.getNome();

@@ -140,7 +140,7 @@
 							<ul class="list-unstyled project_files">
 								<c:forEach var="arquivo" items="${arquivoList}" varStatus="id">
 									<li><a
-										href="${linkTo[ProjetosController].downloadArquivo}?codProjeto=${projeto.codProjeto}"><i
+										href="${linkTo[ProjetosController].downloadArquivo}?codProjeto=${projeto.codProjeto}&codArquivo=${arquivo.codArquivo}"><i
 											class="fa fa-download"></i>${arquivo.nome}</a></li>
 								</c:forEach>
 							</ul>

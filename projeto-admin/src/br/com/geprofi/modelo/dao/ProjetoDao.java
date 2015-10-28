@@ -22,6 +22,8 @@ public interface ProjetoDao {
 	List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException;
 	
 	List<Arquivo> buscaArquivosCodProjeto(int codProjeto) throws SQLException;
+	
+	Arquivo buscaArquivoCodArquivo(int codArquivo) throws SQLException;
 
 	void adiciona(Projeto projeto, int codUsuario) throws SQLException;
 	
