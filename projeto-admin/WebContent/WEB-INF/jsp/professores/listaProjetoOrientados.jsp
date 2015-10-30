@@ -4,6 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
 <!-- start user projects -->
+<a class="btn btn-success"
+				href="${linkTo[ProjetosController].fluxogeprofi}?codUsuario=${professor.codUsuario}" > <i
+				class="glyphicon glyphicon-plus"> </i>Novo Projeto</a>
+				<br>
 <table class="data table table-striped no-margin">
 	<thead>
 		<tr>
@@ -42,7 +46,6 @@
 	</c:forEach>
 	</tbody>
 </table>
-<a class="btn btn-success"
-				href="${linkTo[ProjetosController].fluxogeprofi}?codUsuario=${professor.codUsuario}" > <i
-				class="glyphicon glyphicon-plus"> </i>Novo Projeto</a>
+
+
 <!-- end user projects -->
