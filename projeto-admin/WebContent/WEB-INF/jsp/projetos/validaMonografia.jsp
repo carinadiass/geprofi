@@ -92,7 +92,7 @@
 			<div class="col-md-9 col-sm-9 col-xs-12">
 			  <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Desenvolvimento do Projeto</h2>
+                                    <h2>Validação de Monografia</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -114,37 +114,30 @@
 				</c:if>
 			</ul>
 						<h3 class="green">
-							<i class="fa fa-paint-brush"></i> ${projeto.titulo}
+							<i class="fa fa-paint-brush"></i> Faça o upload da sua monografia
 						</h3>
 
-
 						<p>${projeto.descricao}</p>
-
-
 						<form action="${linkTo[ProjetosController].uploadArquivo}?codProjeto=${projeto.codProjeto}" method="post" enctype="multipart/form-data">
-							<h5>Faça o upload de arquivos de consulta do projeto</h5>
-							 <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
+							
+							<!--   <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
 									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 									<div class="fileUpload btn btn-success">
 										<span>Upload Consulta</span> 
 										<input id="uploadBtn" type="file" class="upload"  name="files[]" multiple/>
-									</div>
+									</div>-->
 									<br>
-									<h5>Faça o upload da monografia</h5>
-									<input id="uploadFile1" placeholder="Choose File" disabled="disabled" />
+								<!-- 	<h5>Faça o upload da monografia</h5> -->
+								<input type="hidden" name="projeto.codProjeto"
+								value="${projeto.codProjeto}" /> 
+									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 									<div class="fileUpload btn btn-success">
-										<span>Upload Monografia</span> <input id="uploadBtn1"
+										<span>Upload Monografia</span> <input id="uploadBtn"
 											type="file" class="upload" />
 									</div>
 									<br>
 									<input type="submit" class="btn btn-primary" value="Enviar">
 						</form>
-
-
-
-
-
-
 					</div> <!-- Content  -->
 		</div>
 	</div>

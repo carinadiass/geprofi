@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.download.Download;
@@ -34,8 +35,13 @@ public class ProjetosController {
 	public void formulario() {}
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
+	
+	
+	@Get("/projeto/novo/{codUsuario}")
 	public void fluxogeprofi() {}
+	
 	public void desenvProj(){}
+	
 	public void validaMonografia(){}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
@@ -50,6 +56,7 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
+
 	public Projeto visualiza(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {
@@ -75,7 +82,6 @@ public class ProjetosController {
 			}*/
 			if(projeto.getCodProjeto()==0){
 				result.include("alunoList", dao.buscaAlunosCodProjeto(dao.pegaUltimoProjeto()));
-			
 				result.include("codProjeto",dao.pegaUltimoProjeto()).redirectTo(AlunosController.class).cadaluno();
 				
 			}else{
@@ -126,8 +132,6 @@ public class ProjetosController {
 		}
 		return null;
 	}
-	
-	
 	public Download downloadArquivo(int codArquivo, int codProjeto) throws SQLException {
 		try {
 			Arquivo arquivo = dao.buscaArquivoCodArquivo(codArquivo);
@@ -143,11 +147,12 @@ public class ProjetosController {
 
 		}
 	}
-	public void delete(int codProjeto, Result result){
+	public void delete(int codProjeto, int codUsuario, Result result){
 		try {
 			dao.deleta(codProjeto);
 			result.include("mensagem", "Projeto deletado com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
+			//result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

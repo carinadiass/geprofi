@@ -11,6 +11,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -31,7 +32,10 @@ public class AlunosController {
 	}
     protected AlunosController(){}
 	public void formulario() {}
+	
+	@Get("/projeto/aluno")
 	public void cadaluno() {}
+	
 	public Aluno edita(int codUsuario, Result result) {
 		Aluno alunoEncontrado = null;
 		try {
@@ -73,7 +77,6 @@ public class AlunosController {
 			e.printStackTrace();
 		}
 	}
-
 	@Path("/password/send")
 	public void sendNewPassword() {
 		try {

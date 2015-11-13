@@ -121,6 +121,10 @@
 							   <!-- <a href="${linkTo[ProjetosController].downloadArquivo}?codProjeto=${projeto.codProjeto}&codArquivo=${arquivo.codArquivo}"><i
 											class="fa fa-download"></i>${arquivo.nome}</a>  -->
 							
+							<div class="clearfix"></div>
+							<a class="btn btn-success"
+							href="${linkTo[ProjetosController].validaMonografia}?codProjeto=${projeto.codProjeto}" > <i
+							class="fa fa-upload"> </i>Validar Monografia</a>
 						</form>
 					</div>
 					<!-- Content  -->

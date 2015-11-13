@@ -39,7 +39,7 @@
 					href="${linkTo[ProjetosController].edita}?codProjeto=${projeto.codProjeto}"
 					class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar
 				</a> <a
-					href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}"
+					href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}&codUsuario=${professor.codUsuario}"
 					class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 						Excluir </a></td>
 			</tr>
