@@ -15,6 +15,7 @@ import com.google.common.io.ByteStreams;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Arquivo;
+import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 
@@ -31,7 +32,10 @@ public class FuncoesProjeto {
 			preparedStatement.setString(3, projeto.getTitulo());
 			preparedStatement.setString(4,projeto.getDescricao());
 			preparedStatement.setString(5, projeto.getQuantidadeDeAlunos());
-			preparedStatement.setString(6,projeto.getPalavraChave());
+			if(projeto.getPalavraChave()!=null){
+				
+			}
+		//	preparedStatement.setString(6,);
 			preparedStatement.setString(7, projeto.getNota());
 			preparedStatement.setLong(8,projeto.getCodProjeto());
 			preparedStatement.executeUpdate();
@@ -91,9 +95,7 @@ public class FuncoesProjeto {
 		}finally {
 			//connection.close();
 		}
-		
 	}
-	
 	public static void insereArquivo(Arquivo arquivo,int codProjeto, Connection connection) throws SQLException{
 		String sql = "insert into arquivo" +
 				"(codProjeto, nome, versao, dataCadastro, contentType )"
@@ -115,7 +117,6 @@ public class FuncoesProjeto {
 		}finally{
 			//connection.close();
 		}
-		
 	}
 	public static Arquivo selecionaArquivo(Connection connection, int codArquivo ) throws SQLException{
 		Arquivo arquivo= new Arquivo();
@@ -138,11 +139,10 @@ public class FuncoesProjeto {
 		}finally {
 			//connection.close();
 		}
-		
-		
 	}
 	public static List<Projeto> lista(Connection connection) throws SQLException{
 		List<Projeto> projetos = new ArrayList<Projeto>();
+		String[] palavraChave = null;
 		String sql ="SELECT * FROM PROJETO";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -156,7 +156,10 @@ public class FuncoesProjeto {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
-				projeto.setPalavraChave(rs.getString("palavraChave"));
+				if(rs.getString("palavraChave")!=null){
+					palavraChave[0]=rs.getString("palavraChave");
+					projeto.setPalavraChave(palavraChave);
+				}
 				projetos.add(projeto);
 			}
 			stmt.close();
@@ -170,6 +173,7 @@ public class FuncoesProjeto {
 	}
 	public static Projeto seleciona(Connection connection, int codProjeto) throws SQLException{
 		Projeto projeto= new Projeto();
+		String[] palavraChave = null;
 		String sql ="SELECT * FROM PROJETO WHERE codProjeto=?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -183,7 +187,13 @@ public class FuncoesProjeto {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
-				projeto.setPalavraChave(rs.getString("palavraChave"));
+				System.out.println("PlavraChave:" +rs.getString("palavraChave"));
+				if(rs.getString("palavraChave")!=null){
+ 
+					projeto.setPalavraChave(palavraChave);
+				}
+				
+				//projeto.setPalavraChave(rs.getString("palavraChave"));
 				projeto.setNota(rs.getString("nota"));
 			}
 			preparedStatement.close();
@@ -197,6 +207,9 @@ public class FuncoesProjeto {
 		}
 	}
 	public static void insere(Projeto projeto, int codUsuario,Connection connection) throws SQLException{
+		/*String[] palavraChave=null;
+		palavraChave=projeto.getPalavraChave();*/
+		String palavra=null;
 		String sql = "insert into projeto" +
 				"(nome, titulo, tema, quantidadeDeAlunos, "
 				+ "descricao, dataCadastro, palavraChave, nota )"
@@ -209,7 +222,7 @@ public class FuncoesProjeto {
 			stmt.setString(4, projeto.getQuantidadeDeAlunos());
 			stmt.setString(5, projeto.getDescricao());
 			stmt.setDate(6, new java.sql.Date(Calendar.getInstance().getTimeInMillis())); //Data de Cadastro
-			stmt.setString(7, projeto.getPalavraChave());
+			stmt.setString(7,projeto.getPalavraChave());
 			stmt.setString(8, projeto.getNota());
 			stmt.execute();
 			stmt.close();
@@ -294,6 +307,4 @@ public class FuncoesProjeto {
 			//connection.close();
 		}
 	}
-
-
 }

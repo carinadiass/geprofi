@@ -32,7 +32,7 @@
 										 </li>
 										<li role="presentation" class="">
 										<a href="#tab_content6" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">
-										     Convites de Projetos
+										     Alunos 
 										  </a>
 										</li>
 									</ul>

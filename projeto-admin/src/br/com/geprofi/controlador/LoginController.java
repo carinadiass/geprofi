@@ -16,6 +16,8 @@ public class LoginController {
 	private UsuarioDao dao;
 	private UsuarioLogado usuarioLogado;
 	private Result result;
+	public void login(){}
+	
 	@Inject
 	public LoginController(){
 		

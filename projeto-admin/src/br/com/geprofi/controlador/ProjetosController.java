@@ -21,11 +21,14 @@ import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.FuncoesProjeto;
+import br.com.geprofi.modelo.jdbc.JDBCProfessorDao;
 
 @Controller
 public class ProjetosController {
 	private ProjetoDao dao;  
 	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
+	public static String CAMINHO_UPLOAD_MONOGRAFIA="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\monografias\\";
+	
 
 	@Inject
 	public ProjetosController(ProjetoDao dao){
@@ -37,11 +40,16 @@ public class ProjetosController {
 	public void formwizardprojeto() {}
 	
 	
-	@Get("/projeto/novo/{codUsuario}")
-	public void fluxogeprofi() {}
-	
+	//@Get("/projeto/novo/{codUsuario}")
+	public void fluxogeprofi(int codUsuario,Result result) throws SQLException {
+		try {
+			JDBCProfessorDao daoProf= new JDBCProfessorDao();
+			result.include("ListpalavrasChave", daoProf.buscapalavraChave_professor(codUsuario));  
+		}catch (SQLException e) {
+
+		}
+	}
 	public void desenvProj(){}
-	
 	public void validaMonografia(){}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
@@ -75,7 +83,7 @@ public class ProjetosController {
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
-			validator.onErrorRedirectTo(this).fluxogeprofi();
+			validator.onErrorRedirectTo(this).fluxogeprofi(codUsuario,result);
 			dao.adiciona(projeto, codUsuario);
 		   /*if (arquivo != null) {
 				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
@@ -100,6 +108,33 @@ public class ProjetosController {
 	@Post
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void uploadArquivo(Result result,int codProjeto, Validator validator, List<UploadedFile> files){
+		try {
+			UploadedFile arquivo = null;
+			System.out.println("Quantidade de Arquivos: " +files.size());
+			if(files.size()>0){
+				for(int i=0;i<files.size();i++){
+					System.out.println("Arquivo: " +files.get(i));
+					arquivo=files.get(i);
+					if (arquivo != null) {
+						FuncoesProjeto.uploadArquivo(dao, codProjeto, arquivo);
+					}
+				}
+			}
+			validator.onErrorRedirectTo(this).desenvProj();
+			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
+			//result.redirectTo(this).desenvProj();
+			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
+			result.redirectTo(this).desenvProj();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		result.of(this).desenvProj();
+	}
+	@Post
+	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
+	public void uploadMonografia(Result result,int codProjeto, Validator validator, List<UploadedFile> files){
 		try {
 			UploadedFile arquivo = null;
 			System.out.println("Quantidade de Arquivos: " +files.size());

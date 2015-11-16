@@ -1,6 +1,7 @@
 package br.com.geprofi.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Projeto {
 	private int status;
 	private String quantidadeDeAlunos;
 	private Date dataCadastro;
-	private String palavraChave;
+	private String[] palavraChave;
     private int codtipoetapa;
 	@ManyToMany
 	@JoinColumn(name="codProfessor")
@@ -89,9 +90,15 @@ public class Projeto {
 		this.dataCadastro = dataCadastro;
 	}
 	public String getPalavraChave() {
-		return palavraChave;
+		String palavra="";
+		if(palavraChave!=null){
+			for(int i=0;i<palavraChave.length;i++){
+				palavra+=palavraChave[i]+"; ";
+			}
+		}
+		return palavra;
 	}
-	public void setPalavraChave(String palavraChave) {
+	public void setPalavraChave(String[] palavraChave) {
 		this.palavraChave = palavraChave;
 	}
 	public int getCodtipoetapa() {

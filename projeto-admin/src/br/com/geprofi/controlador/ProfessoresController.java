@@ -16,7 +16,6 @@ import br.com.geprofi.modelo.dao.ProfessorDao;
 @Controller
 public class ProfessoresController {
 	private ProfessorDao dao;  
-	
 	@Inject
 	public ProfessoresController(ProfessorDao dao){
 		this.dao=dao;

@@ -12,7 +12,7 @@
                     <div class="clearfix"></div>
 
 
-                    <!-- menu prile quick info -->
+                    <!-- menu prile quick info
                     <div class="profile">
                         <div class="profile_pic">
                             <img src="images/img.jpg" alt="..." class="img-circle profile_img">
@@ -21,7 +21,7 @@
                             <span>Welcome,</span>
                             <h2>Anthony Fernando</h2>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /menu prile quick info -->
 
                     <br />
@@ -30,19 +30,19 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                         <div class="menu_section">
-                            <h3>General</h3>
+                       <!--     <h3>General</h3> -->
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Dashboard</a>
+                                        <li><a href="index.html">Página Principal</a>
                                         </li>
-                                        <li><a href="index2.html">Dashboard2</a>
+                                        <li><a href="index2.html">Perfil</a>
                                         </li>
-                                        <li><a href="index3.html">Dashboard3</a>
+                                  <!--      <li><a href="index3.html">Dashboard3</a> -->
                                         </li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                                   </ul>
+                                    </li>
+                             <!--    <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="form.html">General Form</a>
                                         </li>
@@ -138,7 +138,7 @@
                                 </li>
                                 <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
 
                     </div>
@@ -168,7 +168,7 @@
             
             
               <!-- top navigation -->
-            <div class="top_nav">
+         <!--      <div class="top_nav">
 
                 <div class="nav_menu">
                     <nav class="" role="navigation">
@@ -176,7 +176,7 @@
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
 
-                        <ul class="nav navbar-nav navbar-right">
+                      <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <img src="images/img.jpg" alt="">John Doe
@@ -276,7 +276,7 @@
                     </nav>
                 </div>
 
-            </div>
+            </div> --> 
             <!-- /top navigation -->
             
             
