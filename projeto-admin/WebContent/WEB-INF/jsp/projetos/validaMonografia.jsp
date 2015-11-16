@@ -118,16 +118,16 @@
 						</h3>
 
 						<p>${projeto.descricao}</p>
-						<form action="${linkTo[ProjetosController].uploadArquivo}?codProjeto=${projeto.codProjeto}" method="post" enctype="multipart/form-data">
+						<form action="${linkTo[ProjetosController].uploadMonografia}?codProjeto=${projeto.codProjeto}" method="post" enctype="multipart/form-data">
 							
-							<!--   <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
+							   <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
 									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 									<div class="fileUpload btn btn-success">
 										<span>Upload Consulta</span> 
 										<input id="uploadBtn" type="file" class="upload"  name="files[]" multiple/>
-									</div>-->
+									</div>
 									<br>
-								<!-- 	<h5>Faça o upload da monografia</h5> -->
+								<!-- 	<h5>Faça o upload da monografia</h5> 
 								<input type="hidden" name="projeto.codProjeto"
 								value="${projeto.codProjeto}" /> 
 									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
@@ -135,7 +135,7 @@
 										<span>Upload Monografia</span> <input id="uploadBtn"
 											type="file" class="upload" />
 									</div>
-									<br>
+									<br>-->
 									<input type="submit" class="btn btn-primary" value="Enviar">
 						</form>
 					</div> <!-- Content  -->

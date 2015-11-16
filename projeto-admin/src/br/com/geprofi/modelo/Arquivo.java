@@ -15,19 +15,32 @@ public class Arquivo {
 	private int codArquivo;
 	private int codProjeto;
 	private String nome;
-	private String versao;
+	//private int versao;
 	private byte[] conteudo;
 	private String contentType;
 	private Date dataCadastro;
+	private int tipo; /*Tipo 1 - Documentos Consulta 
+	 					Tipo 2 - Monografia*/	
+	private int versao;
 	
 	public Arquivo(){};
 	
 	public Arquivo(String nome, byte[] conteudo,
-			String contentType, Date dataCadastro) {
+			String contentType, Date dataCadastro, int tipo) {
 		this.nome = nome;
 		this.conteudo = conteudo;
 		this.contentType = contentType;
 		this.dataCadastro = dataCadastro;
+		this.tipo = tipo;
+	}
+	public Arquivo(String nome, byte[] conteudo,
+			String contentType, Date dataCadastro, int tipo, int versao) {
+		this.nome = nome;
+		this.conteudo = conteudo;
+		this.contentType = contentType;
+		this.dataCadastro = dataCadastro;
+		this.tipo = tipo;
+		this.versao = versao;
 	}
 	public byte[] getConteudo() {
 		return conteudo;
@@ -65,11 +78,19 @@ public class Arquivo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getVersao() {
+	public int getVersao() {
 		return versao;
 	}
-	public void setVersao(String versao) {
+	public void setVersao(int versao) {
 		this.versao = versao;
 	}
 
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+	
 }

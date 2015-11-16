@@ -21,6 +21,7 @@ import br.com.geprofi.modelo.dao.ProjetoDao;
 
 public class FuncoesProjeto {
 	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
+	public static String CAMINHO_UPLOAD_MONOGRAFIA="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\monografias\\";
 	//public static String CAMINHO_UPLOAD2="/projeto-admin/WebContent/WEB-INF/arquivos/";
 	public static void atualiza(Projeto projeto,int id,Connection connection) {
 		try {
@@ -49,7 +50,7 @@ public class FuncoesProjeto {
 		if (arquivo != null) {
 			try {
 				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
-						new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
+						new java.sql.Date(Calendar.getInstance().getTimeInMillis()),1,1);
 				File arquivoSalvo = new File(CAMINHO_UPLOAD+codProjeto);
 				if(!arquivoSalvo.exists()){
 					if (arquivoSalvo.mkdirs()) {
@@ -72,6 +73,56 @@ public class FuncoesProjeto {
 			}
 		}
 	}
+	public static void uploadMonografia(ProjetoDao dao, int codProjeto, UploadedFile arquivo){
+		
+		if (arquivo != null) {
+			try {
+				
+				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
+						new java.sql.Date(Calendar.getInstance().getTimeInMillis()),2);
+				File arquivoSalvo = new File(CAMINHO_UPLOAD_MONOGRAFIA+codProjeto);
+				if(!arquivoSalvo.exists()){
+					if (arquivoSalvo.mkdirs()) {
+						System.out.println("Multiple directories are created!");
+						arquivoSalvo =new File(CAMINHO_UPLOAD_MONOGRAFIA+codProjeto,arquivo.getFileName());  
+					}
+				}else{
+					arquivoSalvo =new File(CAMINHO_UPLOAD_MONOGRAFIA+codProjeto,arquivo.getFileName()); 
+				}
+				arquivo.writeTo(arquivoSalvo);
+				System.out.println("Entrei aki no arquivo!@@@");
+				System.out.println(ByteStreams.toByteArray(arquivo.getFile()));
+				dao.adicionaArquivo(novoArquivo, codProjeto);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	public static int pegaVersaoMonografia(Connection connection, int codProjeto){
+		String sql ="SELECT TOP 1 versao FROM ARQUIVO WHERE tipo=2 and CODPROJETO="+codProjeto;
+		int versao=1;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				 versao=rs.getInt("versao")+1;
+				//arquivos.add(arquivo);
+			}
+			stmt.close();
+			//	connection.close();
+			return versao;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			//connection.close();
+		}
+	}
+		
+		
 	public static List<Arquivo> listaArquivos(Connection connection, int codProjeto){
 		List<Arquivo> arquivos = new ArrayList<Arquivo>();
 		String sql ="SELECT * FROM ARQUIVO WHERE CODPROJETO="+codProjeto;
@@ -104,7 +155,7 @@ public class FuncoesProjeto {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, codProjeto);
 			stmt.setString(2, arquivo.getNome());
-			stmt.setLong(3, 1);
+			stmt.setLong(3, arquivo.getVersao());
 			stmt.setDate(4, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.setString(5, arquivo.getContentType());
 		//	stmt.setByte(6, arquivo.getConteudo()); //Data de Cadastro

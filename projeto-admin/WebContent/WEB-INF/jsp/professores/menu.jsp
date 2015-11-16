@@ -34,7 +34,7 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="display: none">
-                                        <li><a href="index.html">Página Principal</a>
+                                        <li><a href="${pageContext.request.contextPath}/home/home">Página Principal</a>
                                         </li>
                                         <li><a href="index2.html">Perfil</a>
                                         </li>

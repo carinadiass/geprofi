@@ -143,7 +143,7 @@ public class ProjetosController {
 					System.out.println("Arquivo: " +files.get(i));
 					arquivo=files.get(i);
 					if (arquivo != null) {
-						FuncoesProjeto.uploadArquivo(dao, codProjeto, arquivo);
+						FuncoesProjeto.uploadMonografia(dao, codProjeto, arquivo);
 					}
 				}
 			}

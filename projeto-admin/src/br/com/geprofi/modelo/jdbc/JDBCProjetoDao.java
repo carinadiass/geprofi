@@ -67,6 +67,12 @@ public class JDBCProjetoDao implements ProjetoDao{
 		return FuncoesProjeto.selecionaArquivo(connection, codArquivo);
 	}
 	
+	@Override
+	public int buscaVersaoMonografia(int codProjeto) throws SQLException {
+		// TODO Auto-generated method stub
+		return FuncoesProjeto.pegaVersaoMonografia(connection, codProjeto);
+	}
+	
 	
 
 

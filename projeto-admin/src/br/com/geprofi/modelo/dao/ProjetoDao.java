@@ -31,4 +31,6 @@ public interface ProjetoDao {
 	
 	int pegaUltimoProjeto() throws SQLException;
 
+	int buscaVersaoMonografia(int codProjeto) throws SQLException;
+
 }
