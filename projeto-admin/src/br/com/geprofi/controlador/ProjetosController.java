@@ -71,7 +71,7 @@ public class ProjetosController {
 			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
 			result.include(projetoEncontrado);
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
-			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,1));
 			result.of(this).desenvProj();
 			return projetoEncontrado;
 		} catch (SQLException e) {
@@ -90,18 +90,18 @@ public class ProjetosController {
 			}*/
 			if(projeto.getCodProjeto()==0){
 				result.include("alunoList", dao.buscaAlunosCodProjeto(dao.pegaUltimoProjeto()));
-				result.include("codProjeto",dao.pegaUltimoProjeto()).redirectTo(AlunosController.class).cadaluno();
+				result.include("codProjeto",dao.pegaUltimoProjeto()).forwardTo(AlunosController.class).cadaluno();
 				
 			}else{
 				result.include("alunoList", dao.buscaAlunosCodProjeto(projeto.getCodProjeto()));
-				result.include("arquivoList",dao.buscaArquivosCodProjeto(dao.pegaUltimoProjeto()));
-				result.include("codProjeto",projeto.getCodProjeto()).redirectTo(AlunosController.class).cadaluno();
+				result.include("arquivoList",dao.buscaArquivosCodProjeto(dao.pegaUltimoProjeto(),1));
+				result.include("codProjeto",projeto.getCodProjeto()).forwardTo(AlunosController.class).cadaluno();
 				
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			result.include("errors", "Projeto não salvo com sucesso!");
-			result.redirectTo(this).lista();
+			result.forwardTo(this).lista();
 			e.printStackTrace();
 		} 
 	}
@@ -124,8 +124,9 @@ public class ProjetosController {
 			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
 			//result.redirectTo(this).desenvProj();
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
-			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
-			result.redirectTo(this).desenvProj();
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,1));
+			//result.forwardTo(this).validaMonografia();
+			result.forwardTo(this).desenvProj();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,12 +148,12 @@ public class ProjetosController {
 					}
 				}
 			}
-			validator.onErrorRedirectTo(this).desenvProj();
+			validator.onErrorRedirectTo(this).validaMonografia();
 			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
 			//result.redirectTo(this).desenvProj();
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
-			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto));
-			result.redirectTo(this).desenvProj();
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,2));
+			result.forwardTo(this).validaMonografia();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -182,11 +183,27 @@ public class ProjetosController {
 
 		}
 	}
+	public Download downloadMonografia(int codArquivo, int codProjeto) throws SQLException {
+		try {
+			Arquivo arquivo = dao.buscaArquivoCodArquivo(codArquivo);
+			System.out.println("Tentando Download Arquivo:" +arquivo.getNome());
+			File file = new File(CAMINHO_UPLOAD_MONOGRAFIA +codProjeto,arquivo.getNome());
+			String contentType = arquivo.getContentType();
+			String filename = arquivo.getNome();
+			
+			return new FileDownload(file, contentType, filename);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+
+		}
+	}
 	public void delete(int codProjeto, int codUsuario, Result result){
 		try {
 			dao.deleta(codProjeto);
 			result.include("mensagem", "Projeto deletado com sucesso!");
-			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
+			result.forwardTo(ProfessoresController.class).pfhome(codUsuario, result);
 			//result.redirectTo(this).lista();
 		} catch (SQLException e) {
 			e.printStackTrace();

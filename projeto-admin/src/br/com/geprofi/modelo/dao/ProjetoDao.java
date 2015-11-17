@@ -21,7 +21,7 @@ public interface ProjetoDao {
 	
 	List<Aluno> buscaAlunosCodProjeto(int codProjeto) throws SQLException;
 	
-	List<Arquivo> buscaArquivosCodProjeto(int codProjeto) throws SQLException;
+	//List<Arquivo> buscaArquivosCodProjeto(int codProjeto) throws SQLException;
 	
 	Arquivo buscaArquivoCodArquivo(int codArquivo) throws SQLException;
 
@@ -32,5 +32,9 @@ public interface ProjetoDao {
 	int pegaUltimoProjeto() throws SQLException;
 
 	int buscaVersaoMonografia(int codProjeto) throws SQLException;
+
+	List<Arquivo> buscaArquivosCodProjeto(int codProjeto, int tipo) throws SQLException;
+	 
+	
 
 }

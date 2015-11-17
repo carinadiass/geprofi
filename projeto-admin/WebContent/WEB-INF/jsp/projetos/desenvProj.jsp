@@ -128,8 +128,7 @@
 						</form>
 					</div>
 					<!-- Content  -->
-				</div>
-				<c:if test="${not empty arquivoList}">
+					<c:if test="${not empty arquivoList}">
 					<div class="x_panel">
 						<div class="x_title">
 							<h2>Arquivos para consulta</h2>
@@ -149,6 +148,8 @@
 						<!-- Content  -->
 					</div>
 				</c:if>
+				</div>
+				
 			</div>
 		</div>
 	</div>

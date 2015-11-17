@@ -16,6 +16,7 @@ public class ProfessorExterno {
 	private String email;
 	private String universidadeOrigem;
 	private String areaDeAtuacao;
+	private int codProfessor;
 	
 	public int getCodProfessorExterno() {
 		return codProfessorExterno;
@@ -53,6 +54,13 @@ public class ProfessorExterno {
 	public void setAreaDeAtuacao(String areaDeAtuacao) {
 		this.areaDeAtuacao = areaDeAtuacao;
 	}
+	public int getCodProfessor() {
+		return codProfessor;
+	}
+	public void setCodProfessor(int codProfessor) {
+		this.codProfessor = codProfessor;
+	}
+	
 	
 	
 

@@ -77,9 +77,8 @@ public class FuncoesProjeto {
 		
 		if (arquivo != null) {
 			try {
-				
 				Arquivo novoArquivo=new Arquivo(arquivo.getFileName(),ByteStreams.toByteArray(arquivo.getFile()),arquivo.getContentType(),
-						new java.sql.Date(Calendar.getInstance().getTimeInMillis()),2);
+						new java.sql.Date(Calendar.getInstance().getTimeInMillis()),2,dao.buscaVersaoMonografia(codProjeto));
 				File arquivoSalvo = new File(CAMINHO_UPLOAD_MONOGRAFIA+codProjeto);
 				if(!arquivoSalvo.exists()){
 					if (arquivoSalvo.mkdirs()) {
@@ -103,7 +102,7 @@ public class FuncoesProjeto {
 		}
 	}
 	public static int pegaVersaoMonografia(Connection connection, int codProjeto){
-		String sql ="SELECT TOP 1 versao FROM ARQUIVO WHERE tipo=2 and CODPROJETO="+codProjeto;
+		String sql ="SELECT count(*) as versao FROM ARQUIVO WHERE tipo=2 and CODPROJETO="+codProjeto;
 		int versao=1;
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -123,9 +122,9 @@ public class FuncoesProjeto {
 	}
 		
 		
-	public static List<Arquivo> listaArquivos(Connection connection, int codProjeto){
+	public static List<Arquivo> listaArquivos(Connection connection, int codProjeto, int tipo){
 		List<Arquivo> arquivos = new ArrayList<Arquivo>();
-		String sql ="SELECT * FROM ARQUIVO WHERE CODPROJETO="+codProjeto;
+		String sql ="SELECT * FROM ARQUIVO WHERE CODPROJETO="+codProjeto +" and tipo="+tipo;
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -136,7 +135,9 @@ public class FuncoesProjeto {
 				arquivo.setCodArquivo(rs.getInt("codArquivo"));
 				arquivo.setContentType(rs.getString("contentType"));
 				arquivo.setDataCadastro(rs.getDate("dataCadastro"));
+				arquivo.setVersao(rs.getInt("versao"));
 				arquivos.add(arquivo);
+				
 			}
 			stmt.close();
 			//	connection.close();
@@ -149,8 +150,8 @@ public class FuncoesProjeto {
 	}
 	public static void insereArquivo(Arquivo arquivo,int codProjeto, Connection connection) throws SQLException{
 		String sql = "insert into arquivo" +
-				"(codProjeto, nome, versao, dataCadastro, contentType )"
-				+ " VALUES (?,?,?,?,?)";
+				"(codProjeto, nome, versao, dataCadastro, contentType,tipo )"
+				+ " VALUES (?,?,?,?,?,?)";
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, codProjeto);
@@ -158,6 +159,7 @@ public class FuncoesProjeto {
 			stmt.setLong(3, arquivo.getVersao());
 			stmt.setDate(4, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
 			stmt.setString(5, arquivo.getContentType());
+			stmt.setInt(6, arquivo.getTipo());
 		//	stmt.setByte(6, arquivo.getConteudo()); //Data de Cadastro
 			stmt.execute();
 			stmt.close();

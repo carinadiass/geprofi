@@ -118,9 +118,9 @@
 						</h3>
 
 						<p>${projeto.descricao}</p>
-						<form action="${linkTo[ProjetosController].uploadMonografia}?codProjeto=${projeto.codProjeto}" method="post" enctype="multipart/form-data">
+						<form action="${linkTo[ProjetosController].uploadMonografia}?codProjeto=${param.codProjeto}" method="post" enctype="multipart/form-data">
 							
-							   <input type="hidden" name="projeto.codProjeto" 	value="${projeto.codProjeto}" />
+							   <input type="hidden" name="projeto.codProjeto" 	value="${param.codProjeto}" />
 									<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
 									<div class="fileUpload btn btn-success">
 										<span>Upload Consulta</span> 
@@ -138,6 +138,27 @@
 									<br>-->
 									<input type="submit" class="btn btn-primary" value="Enviar">
 						</form>
+							<c:if test="${not empty arquivoList}">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>Versões de Monografia</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i	class="fa fa-chevron-up"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<ul class="list-unstyled project_files">
+								<c:forEach var="arquivo" items="${arquivoList}" varStatus="id">
+									<li><a
+										href="${linkTo[ProjetosController].downloadMonografia}?codProjeto=${param.codProjeto}&codArquivo=${arquivo.codArquivo}"><i class="fa fa-download"></i>${arquivo.nome}</a>
+										 <p>Versão: ${arquivo.versao} <br> Data: <fmt:formatDate value="${arquivo.dataCadastro}" pattern="dd/MM/yyyy" /></p> </li>
+								</c:forEach>
+							</ul>
+						</div>
+						<!-- Content  -->
+					</div>
+				</c:if>
 					</div> <!-- Content  -->
 		</div>
 	</div>

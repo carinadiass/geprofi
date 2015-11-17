@@ -55,7 +55,7 @@ public class AlunosController {
 			result.include("mensagem", "Aluno salvo com sucesso!");
 			result.include("alunoList", dao.todos(aluno.getCodProjeto()));
 			result.include("codProjeto", aluno.getCodProjeto());
-			result.redirectTo(this).cadaluno();
+			result.forwardTo(this).cadaluno();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

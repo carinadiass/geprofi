@@ -56,10 +56,10 @@ public class JDBCProjetoDao implements ProjetoDao{
 		return FuncoesProjeto.pegaUlitmoProjeto(connection);
 	}
 	@Override
-	public List<Arquivo> buscaArquivosCodProjeto(int codProjeto)
+	public List<Arquivo> buscaArquivosCodProjeto(int codProjeto, int tipo)
 			throws SQLException {
 		// TODO Auto-generated method stub
-		return FuncoesProjeto.listaArquivos(connection, codProjeto);
+		return FuncoesProjeto.listaArquivos(connection, codProjeto, tipo);
 	}
 	@Override
 	public Arquivo buscaArquivoCodArquivo(int codArquivo) throws SQLException {
@@ -72,7 +72,6 @@ public class JDBCProjetoDao implements ProjetoDao{
 		// TODO Auto-generated method stub
 		return FuncoesProjeto.pegaVersaoMonografia(connection, codProjeto);
 	}
-	
 	
 
 
