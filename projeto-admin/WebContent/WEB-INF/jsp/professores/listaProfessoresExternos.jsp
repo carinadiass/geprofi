@@ -3,40 +3,49 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Palavra-Chave</th>
-					<th>Ação</th>
+					<th>Nome</th>
+					<th>Email</th>
+					<th>Universidade de Origem</th>
+					<th>Área De Atuação</th>
+					<th colspan=2>Ação</th>
 				</tr>
 			</thead>
-			<c:forEach var="palavraChave" items="${palavraChaveList}" varStatus="id">
+			<c:forEach var="professorExterno" items="${professorExternoList}" varStatus="id">
 				<tbody>
 					<tr>
-						<td>${palavraChave.palavra}</td>
+						<td>${professorExterno.nome}</td>
+						<td>${professorExterno.email}</td>
+						<td>${professorExterno.universidadeOrigem}</td>
+						<td>${professorExterno.areaDeAtuacao}</td>
 						
 						<td>
 						<c:if test="${not empty professor.codUsuario}">
 						<button type="button" class="btn btn-info btn-xs"
 							data-toggle="modal"
-							data-target=".bs-palavra${palavraChave.codPalavraChave}-modal">
+							data-target=".bs-professorExterno${professorExterno.codProfessorExterno}-modal">
 							<i class="fa fa-pencil"></i> Editar
 						</button>
 						<div
-							class="modal fade bs-palavra${palavraChave.codPalavraChave}-modal"
+							class="modal fade bs-professorExterno${professorExterno.codProfessorExterno}-modal"
 							tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-sm">
+							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">
 											<span aria-hidden="true">X</span>
 										</button>
 										<h4 class="modal-title" id="myModalLabel">
-											<i class="glyphicon glyphicon-file"></i> Cadastro de Professor Externo
+											<i class="glyphicon glyphicon-file"></i> Cadastro Professor Externo
 										</h4>
 									</div>
 									<div class="modal-body">
-										<jsp:include page="formularioPalavraChave.jsp">
+										<jsp:include page="formularioProfessorExterno.jsp">
 											<jsp:param name="professor" value="${professor}" />
-											<jsp:param name="codigo" value="${palavraChave.codPalavraChave}" />
-											<jsp:param name="palavra" value="${palavraChave.palavra}" />
+											<jsp:param name="codProfessorExterno" value="${professorExterno.codProfessorExterno}" />
+											<jsp:param name="nome" value="${professorExterno.nome}" />
+											<jsp:param name="email" value="${professorExterno.email}" />
+											<jsp:param name="universidadeOrigem" value="${professorExterno.universidadeOrigem}" />
+											<jsp:param name="areaDeAtuacao" value="${professorExterno.areaDeAtuacao}" />
 										</jsp:include>
 									</div>
 								</div>
@@ -45,7 +54,7 @@
 						<!--DIV class="modal fade bs-example-modal-lg"  -->
 					</c:if>
 						<td><a class="btn btn-danger btn-xs"
-							href="${linkTo[PalavraChaveController].delete}?codPalavraChave=${palavraChave.codPalavraChave}&codUsuario=${professor.codUsuario}"
+							href="${linkTo[ProfessorExternoController].delete}?codProfessorExterno=${professorExterno.codProfessorExterno}&codUsuario=${professor.codUsuario}"
 							onclick="return confirmExclusao()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 							Excluir </a></td>
 					</tr>
@@ -57,23 +66,23 @@
 <div class="clearfix">
 	<c:if test="${not empty professor.codUsuario}">
 		<button type="button" class="btn btn-success" data-toggle="modal"
-			data-target=".bs-palavra-modal">
-			<i class="glyphicon glyphicon-plus"> </i>Palavra-Chave
+			data-target=".bs-professorExterno-modal">
+			<i class="glyphicon glyphicon-plus"> </i>Professor Externo
 		</button>
-		<div class="modal fade bs-palavra-modal" tabindex="-1" role="dialog"
+		<div class="modal fade bs-professorExterno-modal" tabindex="-1" role="dialog"
 			aria-hidden="true">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">X</span>
 						</button>
 						<h4 class="modal-title" id="myModalLabel">
-							<i class="glyphicon glyphicon-file"></i> Cadastro de Palavra-Chave
+							<i class="glyphicon glyphicon-file"></i> Cadastro de Professor Externo
 						</h4>
 					</div>
 					<div class="modal-body">
-						<jsp:include page="formularioPalavraChave.jsp">
+						<jsp:include page="formularioProfessorExterno.jsp">
 							<jsp:param name="professor" value="${professor}" />
 						</jsp:include>
 					</div>

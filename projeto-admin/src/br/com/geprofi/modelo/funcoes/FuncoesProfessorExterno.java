@@ -74,10 +74,10 @@ public class FuncoesProfessorExterno {
 			connection.close();
 		}
 	}
-	public static void insere(ProfessorExterno professorExterno, Connection connection) throws SQLException{
+	public static void insere(ProfessorExterno professorExterno,int codProfessor, Connection connection) throws SQLException{
 		String sql = "insert into PROFESSOREXTERNO" +
-				"(codBanca, nome, email, universidadeOrigem, areaDeAtuacao )"
-				+ " VALUES (?,?,?,?,?)";
+				"(codBanca, nome, email, universidadeOrigem, areaDeAtuacao, codprofessor )"
+				+ " VALUES (?,?,?,?,?,?)";
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setInt(1, professorExterno.getCodBanca());
@@ -85,6 +85,7 @@ public class FuncoesProfessorExterno {
 			stmt.setString(3, professorExterno.getEmail());
 			stmt.setString(4, professorExterno.getUniversidadeOrigem());
 			stmt.setString(5, professorExterno.getAreaDeAtuacao());
+			stmt.setInt(6,codProfessor);
 			
 			stmt.execute();
 			stmt.close();

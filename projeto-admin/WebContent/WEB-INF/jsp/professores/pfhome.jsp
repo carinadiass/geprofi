@@ -31,7 +31,7 @@
 				<div class="x_panel">
 					<div class="x_title">
 						<h2>
-							${professor.nome}<small>-- Criado em:<fmt:formatDate value="${professor.dataDeCadastro}" pattern="dd/MM/yyyy" /></small>
+							${professor.nome}<small>-- Criado em: <fmt:formatDate value="${professor.dataDeCadastro}" pattern="dd/MM/yyyy" /></small>
 						</h2>
 						<div class="clearfix"></div>
 					</div>

@@ -3,6 +3,9 @@ package br.com.geprofi.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
 
 
 @Entity
@@ -12,7 +15,9 @@ public class ProfessorExterno {
 	private int codProfessorExterno;
 	
 	private int codBanca;
+	@NotNull(message = "O Campo Nome é Obrigatório")
 	private String nome;
+	@NotNull(message = "O Campo Email é Obrigatório") @Email
 	private String email;
 	private String universidadeOrigem;
 	private String areaDeAtuacao;

@@ -26,9 +26,9 @@ public class JDBCProfessorExternoDao implements ProfessorExternoDao {
 		return FuncoesProfessorExterno.seleciona(connection, codProfessorExterno);
 	}
 	@Override
-	public void adiciona(ProfessorExterno professorExterno) throws SQLException {
+	public void adiciona(ProfessorExterno professorExterno, int codProfessor) throws SQLException {
 		if(professorExterno.getCodProfessorExterno()<1){
-			FuncoesProfessorExterno.insere(professorExterno,connection);
+			FuncoesProfessorExterno.insere(professorExterno, codProfessor ,connection);
 		}else{
 			FuncoesProfessorExterno.atualiza(professorExterno, professorExterno.getCodProfessorExterno(), connection);
 		}

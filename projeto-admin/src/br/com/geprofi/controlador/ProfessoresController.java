@@ -28,6 +28,7 @@ public class ProfessoresController {
 			pegaProjetos(codProfessor, result);
 			pegaAreasDeInteresse(codProfessor, result);
 			pegaPalavrasChave(codProfessor, result);
+			pegaProfessoresExterno(codProfessor,result);
 		    professorEncontrado = dao.buscaPorCodUsuario(codProfessor);
 			result.include(professorEncontrado);
 		}catch (SQLException e){
@@ -81,11 +82,17 @@ public class ProfessoresController {
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		
 	}
 	public void pegaAreasDeInteresse(int codProfessor, Result result){
 		try{
 			result.include("areaDeInteresseList", dao.buscaAreaDeInteresse_professor(codProfessor));
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
+	public void pegaProfessoresExterno(int codProfessor, Result result){
+		try{
+			result.include("professorExternoList", dao.buscaProfessoresExterno_professor(codProfessor));
 		}catch (SQLException e){
 			e.printStackTrace();
 		}

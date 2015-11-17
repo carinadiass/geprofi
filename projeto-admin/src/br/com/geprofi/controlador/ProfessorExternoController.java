@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.ProfessorExterno;
 import br.com.geprofi.modelo.dao.ProfessorExternoDao;
+import br.com.caelum.vraptor.validator.Validator;
 @Controller
 public class ProfessorExternoController {
 private ProfessorExternoDao dao;  
@@ -34,12 +35,12 @@ private ProfessorExternoDao dao;
 		}
 		return professorExternoEncontrado;
 	}
-	public void salva(@Valid ProfessorExterno professorExterno,Result result, Validator validator) {
+	public void salva(@Valid ProfessorExterno professorExterno,int codUsuario,Result result, Validator validator) {
 		try {
-			validator.onErrorRedirectTo(this).formulario();
-			dao.adiciona(professorExterno);
+			validator.onErrorRedirectTo(ProfessoresController.class).pfhome(codUsuario,result);
+			dao.adiciona(professorExterno,codUsuario);
 			result.include("mensagem", "Professor Externo salvo com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -52,11 +53,11 @@ private ProfessorExternoDao dao;
 		}
 		return null;
 	}
-	public void delete(int codProfessorExterno, Result result){
+	public void delete(int codProfessorExterno,int codUsuario, Result result){
 		try {
 			dao.deleta(codProfessorExterno);
 			result.include("mensagem", "Professor Externo deletado com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

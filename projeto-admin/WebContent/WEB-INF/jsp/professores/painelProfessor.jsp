@@ -72,8 +72,12 @@
 										 Em contrução    Participação de Bancas
 										
 										</div>
+										
 										<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab3">
-										 Em construção  	   Professores Externos
+										<jsp:include page="listaProfessoresExternos.jsp">
+											<jsp:param name="professorExternoList" value="${professorExternoList}" />
+											<jsp:param name="professor" value="${professor}" />
+										</jsp:include>
 										
 										</div>
 										<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="profile-tab4">

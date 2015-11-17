@@ -12,6 +12,7 @@ import java.util.Random;
 import br.com.geprofi.modelo.AreaDeInteresse;
 import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Professor;
+import br.com.geprofi.modelo.ProfessorExterno;
 import br.com.geprofi.modelo.Projeto;
 
 public class FuncoesProfessor {
@@ -196,7 +197,31 @@ public class FuncoesProfessor {
 		}
 		// TODO Auto-generated method stub
 	}
-
+	public static List<ProfessorExterno> listaProfessoresExterno(Connection connection, int codUsuario) throws SQLException{
+		List<ProfessorExterno> professoresExterno = new ArrayList<ProfessorExterno>();
+		String sql ="SELECT * FROM PROFESSOREXTERNO WHERE CODPROFESSOR="+codUsuario;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ProfessorExterno professorExterno= new ProfessorExterno();
+				professorExterno.setCodProfessorExterno(rs.getInt("codProfessorExterno"));
+				professorExterno.setCodBanca(rs.getInt("codBanca"));
+				professorExterno.setNome(rs.getString("nome"));
+				professorExterno.setEmail(rs.getString("email"));
+				professorExterno.setUniversidadeOrigem(rs.getString("universidadeOrigem"));
+				professorExterno.setAreaDeAtuacao(rs.getString("areaDeAtuacao"));
+				professorExterno.setCodProfessor(rs.getInt("codProfessor"));
+    			professoresExterno.add(professorExterno);
+			}
+			stmt.close();
+			return professoresExterno;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			//connection.close();
+		}
+	}
 	public static List<Palavrachave> listaPalavrasChave(Connection connection, int codUsuario) throws SQLException{
 		List<Palavrachave> palavraschave = new ArrayList<Palavrachave>();
 		String sql = "select * from palavrachave where codProfessor=?";

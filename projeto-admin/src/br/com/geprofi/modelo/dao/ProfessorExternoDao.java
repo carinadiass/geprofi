@@ -9,7 +9,7 @@ public interface ProfessorExternoDao {
 
 	ProfessorExterno buscaPorCodProfessorExterno(int codProfessorExterno) throws SQLException;
 	
-	void adiciona(ProfessorExterno professorExterno) throws SQLException;
+	void adiciona(ProfessorExterno professorExterno,int codProfessor) throws SQLException;
 
 	List<ProfessorExterno> todos() throws SQLException;
 
