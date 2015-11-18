@@ -3,7 +3,7 @@
 </jsp:include>
 <%
 	String codProjeto = request.getParameter("codProjeto");
-String codProfessor = request.getParameter("codProfessor");
+
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -139,7 +139,7 @@ String codProfessor = request.getParameter("codProfessor");
 									<br>-->
 									<input type="submit" class="btn btn-primary" value="Enviar">
 									<a class="btn btn-success"
-							href="${linkTo[ProjetosController].convidarBanca}?codProjeto=${param.codProjeto}&codUsuario=${param.codProfessor}" > <i
+							href="${linkTo[ProjetosController].convidarBanca}?codProjeto=${param.codProjeto}&codUsuario=${Professor.codProfessor}" > <i
 							class="fa fa-users"> </i> Convidar Banca</a>
 						</form>
 							<c:if test="${not empty arquivoList}">

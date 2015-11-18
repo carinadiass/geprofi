@@ -64,7 +64,8 @@ public class ProjetosController {
 	public void validaMonografia(int codProjeto,Result result){
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
-			result.include("codProfessor", daoProf.buscaPorCodProjeto(codProjeto));  
+			System.out.println(daoProf.buscaPorCodProjeto(codProjeto));
+			result.include("Professor", daoProf.buscaPorCodProjeto(codProjeto));  
 		}catch (SQLException e) {
 
 		}
