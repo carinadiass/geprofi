@@ -65,6 +65,7 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 	}
 	public static Banca seleciona(Connection connection, int codBanca) throws SQLException{
 		Banca banca = new Banca();
+		String[] convite = null;
 		String sql ="SELECT * FROM Banca WHERE codBanca=?";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -74,6 +75,12 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 				banca.setCodBanca(rs.getInt("codBanca"));
 				banca.setQuantidadeDeParticipantes(rs.getInt("quantidadeDeParticipantes"));
 				banca.setCodProjeto(rs.getInt("codProjeto"));
+				System.out.println("Convite:" +rs.getString("convite"));
+				if(rs.getString("convite")!=null){
+ 
+					banca.setConvite(convite);
+				}
+				
 			}
 			stmt.close();
 			return banca;
@@ -84,14 +91,20 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 		}
 	}
 	public static void insere(Banca banca,Connection connection) throws SQLException{
+		
 		if(!existeBanca(connection,banca.getCodProjeto())){
-			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto) "
-					+ " VALUES (?,?,?)";
+			String[] convite = null;
+			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto, convite) "
+					+ " VALUES (?,?,?,?)";
 			try{
 				PreparedStatement stmt = connection.prepareStatement(sql);
 				stmt.setInt(1, banca.getCodBanca());
-				stmt.setInt(2, banca.getQuantidadeDeParticipantes());
+				convite=banca.getConvite().split(";");
+				if(convite.length>0){
+					stmt.setInt(2, convite.length);
+				}
 				stmt.setInt(3, banca.getCodProjeto());
+				stmt.setString(4, banca.getConvite());
 				stmt.execute();
 				stmt.close();
 				System.out.println("Banca Gavada!");
@@ -109,6 +122,5 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 			PreparedStatement stmt =connection.prepareStatement(sql);
 			stmt.setInt(1, codBanca);
 			stmt.executeUpdate();
-	
 	}
 }

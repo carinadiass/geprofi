@@ -139,7 +139,7 @@
 									<br>-->
 									<input type="submit" class="btn btn-primary" value="Enviar">
 									<a class="btn btn-success"
-							href="${linkTo[ProjetosController].convidarBanca}?codProjeto=${param.codProjeto}&codUsuario=${Professor.codProfessor}" > <i
+							href="${linkTo[ProjetosController].convidarBanca}?codProjeto=${param.codProjeto}&codUsuario=${Professor.codUsuario}" > <i
 							class="fa fa-users"> </i> Convidar Banca</a>
 						</form>
 							<c:if test="${not empty arquivoList}">

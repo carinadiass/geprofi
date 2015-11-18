@@ -11,6 +11,7 @@ public class Banca {
 	private int codBanca;
 	private int quantidadeDeParticipantes;
 	private int codProjeto;
+	private String[] convite;
 	
 	public int getCodBanca() {
 		return codBanca;
@@ -29,6 +30,18 @@ public class Banca {
 	}
 	public void setCodProjeto(int codProjeto) {
 		this.codProjeto = codProjeto;
+	}
+	public String getConvite() {
+		String convites="";
+		if(convite!=null){
+			for(int i=0;i<convite.length;i++){
+				convites+=convite[i]+"; ";
+			}
+		}
+		return convites;
+	}
+	public void setConvite(String[] convite) {
+		this.convite = convite;
 	}
 	
 	

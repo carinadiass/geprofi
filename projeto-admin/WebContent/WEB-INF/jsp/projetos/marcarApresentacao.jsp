@@ -100,15 +100,31 @@
 									</div>
 								</div>
 							</li>
+							<li>
+								<div class="block">
+									<div class="block_content">
+										<h2 class="title">
+											<span><i class="fa fa-desktop"></i></span><a>
+												Marcar Apresentação</a>
+										</h2>
+										<div class="byline">
+											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
+										</div>
+										<p class="excerpt"></p>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
+			
+			
 			<!-- Lado direito do Projeto -->
 			<div class="col-md-9 col-sm-9 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Convidar Banca</h2>
+						<h2>Marcar Apresentação</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -133,65 +149,7 @@
 						<form class="form-horizontal form-label-left"
 							action="${linkTo[BancaController].salva}?codProjeto=${param.codProjeto}"
 							method="post">
-							
-						
-							
-							<input type="hidden" name="projeto.codProjeto"
-								value="${projeto.codProjeto}" />
-								<input type="hidden" name="banca.codBanca"
-									value="${banca.codBanca}" /> <input type="hidden"
-									name="banca.codProjeto" value="${param.codProjeto}" />
-						
-									
-						<!--	<div class="form-group">
-								  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="banca.quantidadeDeParticipantes"> Quantidade de Participante</label>
-								<div class="col-md-9 col-sm-9 col-xs-12">
-									<select id="banca.quantidadeDeParticipantes" name="banca.quantidadeDeParticipantes" value="${banca.quantidadeDeParticipantes}" 	class="form-control input-sm">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-								</div>
-							</div>   -->
-							<div class="form-group">
-						
-								<label class="control-label col-md-3 col-sm-3 col-xs-12">Professores  </label>
-								
-								<div class="col-md-9 col-sm-9 col-xs-12">
-								  <select class="select2_multiple form-control" value="${banca.convite} id="projeto.palavraChave" name="banca.convite" multiple="multiple">
-										<c:forEach var="professorExterno" items="${ListProfessoresExterno}">
-											<option value="${professorExterno.email}">${professorExterno.nome} - ${professorExterno.universidadeOrigem}</option>
-										</c:forEach>
-										<c:forEach var="professor" items="${ListProfessores}">
-											<option value="${professor.email}">${professor.nome}</option>
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">De</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
-                                                <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Até</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
-                                                <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
-                                            </div>
-                                        </div>
-							
-							 <div class="ln_solid"></div>
-					<div class="form-group">
-						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-						    <button type="submit" class="btn btn-primary">Cancel</button>
-							<button type="submit" class="btn btn-success">Enviar Convite</button>
-							<button type="submit" class="btn btn-warning">Marcar Apresentação</button>
-							
-						</div>
-					</div>
+		
 						</form>
 					</div>
 					<!-- Content  -->
@@ -250,6 +208,10 @@
     <!-- image cropping -->
     <script src="${pageContext.request.contextPath}/production/js/cropping/cropper.min.js"></script>
     <script src="${pageContext.request.contextPath}/production/js/cropping/main2.js"></script>  
+    
+    
+    
+    
     
     
 <!-- select2 -->

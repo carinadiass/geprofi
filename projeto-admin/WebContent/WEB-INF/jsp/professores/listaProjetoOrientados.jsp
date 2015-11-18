@@ -34,8 +34,12 @@
 				<td>
 					<button type="button" class="btn btn-success btn-xs">Success</button>
 				</td>
+				
 				<td><a href="#" class="btn btn-primary btn-xs"><i
-						class="fa fa-folder"></i> View </a> <a
+						class="fa fa-folder"></i> View </a> 
+						
+						
+						<a
 					href="${linkTo[ProjetosController].edita}?codProjeto=${projeto.codProjeto}"
 					class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar</a> 
 					<a

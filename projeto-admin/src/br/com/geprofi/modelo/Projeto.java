@@ -29,6 +29,9 @@ public class Projeto {
 	private int status;
 	private String quantidadeDeAlunos;
 	private Date dataCadastro;
+	private Date dataApresentacao;
+	private String sala;
+	private String situacao;
 	private String[] palavraChave;
     private int codtipoetapa;
 	@ManyToMany
@@ -113,7 +116,22 @@ public class Projeto {
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
-	
-	
-	
+	public Date getDataApresentacao() {
+		return dataApresentacao;
+	}
+	public void setDataApresentacao(Date dataApresentacao) {
+		this.dataApresentacao = dataApresentacao;
+	}
+	public String getSala() {
+		return sala;
+	}
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+	public String getSituacao() {
+		return situacao;
+	}
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
+	}
 }
