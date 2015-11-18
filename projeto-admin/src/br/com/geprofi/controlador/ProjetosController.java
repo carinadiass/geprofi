@@ -38,6 +38,16 @@ public class ProjetosController {
 	public void formulario() {}
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
+	public void convidarBanca(int codUsuario,Result result) {
+		try {
+			JDBCProfessorDao daoProf= new JDBCProfessorDao();
+			result.include("ListProfessoresExterno", daoProf.buscaProfessoresExterno_professor(codUsuario));  
+			result.include("ListProfessores", daoProf.todos());  
+		}catch (SQLException e) {
+
+		}
+		
+	}
 	
 	
 	//@Get("/projeto/novo/{codUsuario}")
@@ -45,17 +55,27 @@ public class ProjetosController {
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
 			result.include("ListpalavrasChave", daoProf.buscapalavraChave_professor(codUsuario));  
+			result.include("codProfessor", codUsuario);  
 		}catch (SQLException e) {
 
 		}
 	}
 	public void desenvProj(){}
-	public void validaMonografia(){}
+	public void validaMonografia(int codProjeto,Result result){
+		try {
+			JDBCProfessorDao daoProf= new JDBCProfessorDao();
+			result.include("codProfessor", daoProf.buscaPorCodProjeto(codProjeto));  
+		}catch (SQLException e) {
+
+		}
+		
+	}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {
 			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
 			result.include(projetoEncontrado);
+			
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.of(this).formulario();
 			return projetoEncontrado;
@@ -148,12 +168,12 @@ public class ProjetosController {
 					}
 				}
 			}
-			validator.onErrorRedirectTo(this).validaMonografia();
+			validator.onErrorRedirectTo(this).validaMonografia(codProjeto,result);
 			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
 			//result.redirectTo(this).desenvProj();
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,2));
-			result.forwardTo(this).validaMonografia();
+			result.forwardTo(this).validaMonografia(codProjeto,result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -21,7 +21,8 @@ public class JDBCBancaDao implements BancaDao {
 		}
 	}
 	@Override
-	public void adiciona(Banca banca) throws SQLException {
+	public void adiciona(Banca banca, int codProjeto) throws SQLException {
+		
 		if(banca.getCodBanca()<1){
 			FuncoesBanca.insere(banca, connection);
 		}else{

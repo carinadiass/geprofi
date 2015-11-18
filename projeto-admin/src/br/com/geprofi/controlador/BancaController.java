@@ -35,11 +35,11 @@ public class BancaController {
 		}
 		return banca;
 	}
-	public void salva(Banca banca, Result result){
+	public void salva(Banca banca,int codProjeto, Result result){
 		try {
-			dao.adiciona(banca);
+			dao.adiciona(banca, codProjeto);
 			result.include("mensagem", "Banca criada com sucesso!");
-			result.redirectTo(this).lista();
+			//result.redirectTo(ProjetosController.class).convidarBanca();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

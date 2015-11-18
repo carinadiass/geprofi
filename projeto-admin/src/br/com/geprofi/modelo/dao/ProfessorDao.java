@@ -27,5 +27,7 @@ public interface ProfessorDao {
 
 	List<ProfessorExterno> buscaProfessoresExterno_professor(int codProfessor) throws SQLException;
 
+	Professor buscaPorCodProjeto(int codProjeto) throws SQLException;
+
 
 }

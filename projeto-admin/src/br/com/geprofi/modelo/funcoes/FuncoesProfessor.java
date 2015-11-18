@@ -106,6 +106,35 @@ public class FuncoesProfessor {
 		}finally {
 		}
 	}
+	public static Professor selecionaProfessor(Connection connection, int codProjeto) throws SQLException{
+		Professor professor= new Professor();
+		String sql ="SELECT * FROM USUARIO WHERE tipoUsuario='Professor' AND STATUS=1 and codUsuario in (select codUsuario from projeto_has_professor where codProjeto=?)";
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setLong(1, codProjeto);
+			ResultSet rs = preparedStatement.executeQuery();
+			if(rs.next()) {
+				professor.setCodUsuario(rs.getInt("codUsuario"));
+				professor.setNome(rs.getString("nome"));
+				professor.setEmail(rs.getString("email"));
+				professor.setDataDeCadastro(rs.getDate("dataDeCadastro"));
+				professor.setTipoUsuario(rs.getString("tipoUsuario"));
+				professor.setSexo(rs.getString("sexo"));
+				professor.setTitulo(rs.getString("titulo"));
+				professor.setCargo(rs.getString("cargo"));
+				professor.setDetalheTitulo(rs.getString("detalheTitulo"));
+				professor.setSala(rs.getString("sala"));
+				professor.setPaginaPessoal(rs.getString("paginaPessoal"));
+				professor.setCurriculo(rs.getString("curriculo"));
+			}
+			preparedStatement.close();
+			return professor;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+		}
+	}
 	public static void insere(Professor professor, Connection connection) throws SQLException{
 		String sql = "insert into usuario" +
 				"(nome, email, senha, tipoUsuario, "

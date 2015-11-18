@@ -24,6 +24,23 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 			connection.close();
 		}
 	}
+	public static boolean existeBanca(Connection connection, int codProjeto){
+		String sql ="SELECT * FROM Banca WHERE codProjeto=?";
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, codProjeto);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+			stmt.close();
+			return false;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			//connection.close();
+		}
+	}
 	public static List<Banca> lista(Connection connection) throws SQLException{
 		List<Banca> bancas = new ArrayList<Banca>();
 		String sql ="SELECT * FROM BANCA" ;
@@ -67,21 +84,23 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 		}
 	}
 	public static void insere(Banca banca,Connection connection) throws SQLException{
-		String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto) "
-				+ " VALUES (?,?,?)";
-		try{
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, banca.getCodBanca());
-			stmt.setInt(2, banca.getQuantidadeDeParticipantes());
-			stmt.setInt(3, banca.getCodProjeto());
-			stmt.execute();
-			stmt.close();
-			System.out.println("Banca Gavada!");
-			connection.close();
-		}catch (SQLException e) {
-			throw new RuntimeException(e);
-		}finally{
-			connection.close();
+		if(!existeBanca(connection,banca.getCodProjeto())){
+			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto) "
+					+ " VALUES (?,?,?)";
+			try{
+				PreparedStatement stmt = connection.prepareStatement(sql);
+				stmt.setInt(1, banca.getCodBanca());
+				stmt.setInt(2, banca.getQuantidadeDeParticipantes());
+				stmt.setInt(3, banca.getCodProjeto());
+				stmt.execute();
+				stmt.close();
+				System.out.println("Banca Gavada!");
+				connection.close();
+			}catch (SQLException e) {
+				throw new RuntimeException(e);
+			}finally{
+				//connection.close();
+			}
 		}
 	}
 	public static void deleta(int codBanca,Connection connection) throws SQLException{

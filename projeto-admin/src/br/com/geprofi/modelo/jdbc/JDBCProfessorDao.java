@@ -40,6 +40,10 @@ public class JDBCProfessorDao implements ProfessorDao {
 		return FuncoesProfessor.seleciona(connection, codUsuario);
 	}
 	@Override
+	public Professor buscaPorCodProjeto(int codProjeto) throws SQLException {
+		return FuncoesProfessor.selecionaProfessor(connection, codProjeto);
+	}
+	@Override
 	public void deleta(int codUsuario) throws SQLException {
 		FuncoesProfessor.deleta(codUsuario, connection);
 

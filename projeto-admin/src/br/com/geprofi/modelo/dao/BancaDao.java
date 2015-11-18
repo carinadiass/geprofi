@@ -7,7 +7,7 @@ import br.com.geprofi.modelo.Banca;
 
 public interface BancaDao {
 	
-	void adiciona(Banca banca) throws SQLException;
+	void adiciona(Banca banca, int codProjeto) throws SQLException;
 
 	List<Banca> todos() throws SQLException;
 
