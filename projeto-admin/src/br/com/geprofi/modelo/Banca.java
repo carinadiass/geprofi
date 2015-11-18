@@ -1,5 +1,7 @@
 package br.com.geprofi.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,6 +14,8 @@ public class Banca {
 	private int quantidadeDeParticipantes;
 	private int codProjeto;
 	private String[] convite;
+	private Date dataInicio;
+	private Date datafim;
 	
 	public int getCodBanca() {
 		return codBanca;
@@ -43,6 +47,19 @@ public class Banca {
 	public void setConvite(String[] convite) {
 		this.convite = convite;
 	}
+	public Date getDataInicio() {
+		return dataInicio;
+	}
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+	public Date getDatafim() {
+		return datafim;
+	}
+	public void setDatafim(Date datafim) {
+		this.datafim = datafim;
+	}
+	
 	
 	
 }

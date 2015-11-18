@@ -117,7 +117,6 @@
 						<h3 class="green">
 							<i class="fa fa-paint-brush"></i> Faça o upload da sua monografia
 						</h3>
-
 						<p>${projeto.descricao}</p>
 						<form action="${linkTo[ProjetosController].uploadMonografia}?codProjeto=${param.codProjeto}" method="post" enctype="multipart/form-data">
 							

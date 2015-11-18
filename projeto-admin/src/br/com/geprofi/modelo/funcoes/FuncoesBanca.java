@@ -1,6 +1,7 @@
 package br.com.geprofi.modelo.funcoes;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -94,8 +95,8 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 		
 		if(!existeBanca(connection,banca.getCodProjeto())){
 			String[] convite = null;
-			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto, convite) "
-					+ " VALUES (?,?,?,?)";
+			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto, convite, datainicio, datafim) "
+					+ " VALUES (?,?,?,?,?,?)";
 			try{
 				PreparedStatement stmt = connection.prepareStatement(sql);
 				stmt.setInt(1, banca.getCodBanca());
@@ -105,6 +106,8 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 				}
 				stmt.setInt(3, banca.getCodProjeto());
 				stmt.setString(4, banca.getConvite());
+				stmt.setDate(5, (Date) banca.getDatafim());
+				stmt.setDate(6, (Date) banca.getDataInicio());
 				stmt.execute();
 				stmt.close();
 				System.out.println("Banca Gavada!");
