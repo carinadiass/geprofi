@@ -8,6 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
+import br.com.geprofi.modelo.Banca;
 
 
 @RequestScoped
@@ -36,5 +37,7 @@ public interface ProjetoDao {
 	List<Arquivo> buscaArquivosCodProjeto(int codProjeto, int tipo) throws SQLException;
 
 	void atualizaEtapaProjeto(int codProjeto, int codtipoetapa)	throws SQLException;
+
+	List<Banca> pegaBancas_codProjeto(int codProjeto) throws SQLException;
 
 }

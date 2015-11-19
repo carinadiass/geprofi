@@ -77,7 +77,7 @@
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-file-o"></i></span><a>Validação de Monografia</a>
+											<span><i class="fa fa-file-o"></i></span><a>  Validação de Monografia</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -105,7 +105,7 @@
 									<div class="block_content">
 										<h2 class="title">
 											<span><i class="fa fa-desktop"></i></span><a>
-												Marcar Apresentação</a>
+												 Apresentação</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -118,13 +118,11 @@
 					</div>
 				</div>
 			</div>
-			
-			
 			<!-- Lado direito do Projeto -->
 			<div class="col-md-9 col-sm-9 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Marcar Apresentação</h2>
+						<h2>Apresentação</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -147,8 +145,31 @@
 						</ul>
 					
 						<form class="form-horizontal form-label-left"
-							action="${linkTo[BancaController].salva}?codProjeto=${param.codProjeto}"
+							action="${linkTo[ProjetosController].salva}?codProjeto=${param.codProjeto}"
 							method="post">
+							<div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">Data da Apresentação</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                <input type="text"	class="form-control" value="${projeto.dataApresentacao}" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
+                                                <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Sala</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.sala" name="projeto.sala"
+										value="${projeto.sala}" class="form-control input-sm" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Nota</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.nota" name="projeto.nota"
+										value="${projeto.nota}" class="form-control input-sm" type="text">
+								</div>
+							</div>
 		
 						</form>
 					</div>
@@ -208,10 +229,6 @@
     <!-- image cropping -->
     <script src="${pageContext.request.contextPath}/production/js/cropping/cropper.min.js"></script>
     <script src="${pageContext.request.contextPath}/production/js/cropping/main2.js"></script>  
-    
-    
-    
-    
     
     
 <!-- select2 -->

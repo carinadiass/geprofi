@@ -15,6 +15,7 @@ import com.google.common.io.ByteStreams;
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Arquivo;
+import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.Palavrachave;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
@@ -204,6 +205,35 @@ public class FuncoesProjeto {
 			throw new RuntimeException(e);
 		}finally {
 			//connection.close();
+		}
+	}
+	public static List<Banca> listaBancas(Connection connection, int codProjeto) throws SQLException{
+		List<Banca> bancas = new ArrayList<Banca>();
+		String[] convite = null;
+		String sql ="SELECT * FROM BANCA WHERE CODPROJETO="+codProjeto ;
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				Banca banca= new Banca();
+				banca.setQuantidadeDeParticipantes(rs.getInt("quantidadeDeParticipantes"));
+				banca.setCodBanca(rs.getInt("codBanca"));
+				banca.setCodProjeto(rs.getInt("codProjeto"));
+				if(rs.getString("Convite")!=null){
+					convite=rs.getString("Convite").split(";");
+					banca.setConvite(convite);
+				}
+				banca.setDatafim(rs.getString("datafim"));
+				banca.setDataInicio(rs.getString("dataInicio"));
+				bancas.add(banca);
+			}
+			stmt.close();
+			return bancas;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			System.out.println("Fechei conexão!!!");
+			connection.close();
 		}
 	}
 	public static List<Projeto> lista(Connection connection) throws SQLException{

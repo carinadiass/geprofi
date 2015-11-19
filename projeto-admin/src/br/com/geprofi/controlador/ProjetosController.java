@@ -38,6 +38,7 @@ public class ProjetosController {
 	public void formulario() {}
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
+	public void apresentacao(){}
 	public void convidarBanca(int codUsuario,int codProjeto,Result result) {
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
@@ -45,6 +46,7 @@ public class ProjetosController {
 			result.include("ListProfessores", daoProf.todos());  
 			result.include("codProjeto", codProjeto);  
 			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+			result.include("bancaList", dao.pegaBancas_codProjeto(codProjeto));
 			daoProj.atualizaEtapaProjeto(codProjeto, 5);
 		}catch (SQLException e) {
 

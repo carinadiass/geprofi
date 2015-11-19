@@ -54,11 +54,11 @@ public class BancaController {
 		}
 		return null;
 	}
-	public void delete(int codBanca, Result result){
+	public void delete(int codBanca,int codUsuario,int codProjeto,Result result ){
 		try {
 			dao.deleta(codBanca);
 			result.include("mensagem", "Banca deletada com sucesso!");
-			result.redirectTo(this).lista();
+			result.redirectTo(ProjetosController.class).convidarBanca( codUsuario, codProjeto, result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

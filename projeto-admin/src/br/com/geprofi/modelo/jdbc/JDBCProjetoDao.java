@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.Arquivo;
+import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.ConnectionFactory;
@@ -27,6 +28,10 @@ public class JDBCProjetoDao implements ProjetoDao{
 		}else{
 			FuncoesProjeto.atualiza(projeto, projeto.getCodProjeto(), connection);
 		}
+	}
+	@Override
+	public List<Banca> pegaBancas_codProjeto(int codProjeto) throws SQLException {
+		return FuncoesProjeto.listaBancas(connection,codProjeto);
 	}
 	@Override
 	public List<Projeto> todos() throws SQLException {

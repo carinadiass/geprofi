@@ -156,7 +156,7 @@
 								<label class="control-label col-md-3 col-sm-3 col-xs-12">Professores  </label>
 								
 								<div class="col-md-9 col-sm-9 col-xs-12">
-								  <select class="select2_multiple form-control" value="${banca.convite} id="projeto.palavraChave" name="banca.convite" multiple="multiple">
+								  <select class="select2_multiple form-control" value="${banca.convite}" id="banca.convite" name="banca.convite" multiple="multiple">
 										<c:forEach var="professorExterno" items="${ListProfessoresExterno}">
 											<option value="${professorExterno.email}">${professorExterno.nome} - ${professorExterno.universidadeOrigem}</option>
 										</c:forEach>
@@ -167,7 +167,7 @@
 								</div>
 							</div>
 							
-							<p>Período pra apresentação</p>
+							<p>Período para apresentação</p>
 							<hr>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">De</label>
@@ -187,16 +187,68 @@
 							 <div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-						    <button type="submit" class="btn btn-primary">Cancel</button>
-							<button type="submit" class="btn btn-success">Enviar Convite</button>
-							<button type="submit" class="btn btn-warning">Marcar Apresentação</button>
+							<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-envelope-o"> </i> Enviar Convite</button>
+							<a class="btn btn-warning btn-sm"
+							href="${linkTo[ProjetosController].apresentacao}?codBanca=${banca.codBanca}&codUsuario=${param.codUsuario}&codProjeto=${param.codProjeto}"
+							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-desktop"> 
+							  </i>   Apresentação</a>
 						</div>
 					</div>
 						</form>
+						
+							<c:if test="${not empty bancaList}">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Convites Enviados</h2>
+                                   
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                                                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                
+							<c:if test="${not empty mensagem}">
+								<div class="alert alert-success">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									${mensagem}
+								</div>
+							</c:if>
+							<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Professores</th>
+					<th>Quantidade de Participantes</th>
+					<th>De</th>
+					<th>Até</th>
+					<th colspan=2>Ação</th>
+				</tr>
+			</thead>
+			<c:forEach var="banca" items="${bancaList}" varStatus="id">
+				<tbody>
+					<tr>
+						<td>${banca.convite}</td>
+						<td>${banca.quantidadeDeParticipantes}</td>
+						<td>${banca.dataInicio}</td>
+						<td>${banca.datafim}</td>
+						<td><a class="btn btn-danger btn-sm"
+							href="${linkTo[BancaController].delete}?codBanca=${banca.codBanca}&codUsuario=${param.codUsuario}&codProjeto=${param.codProjeto}"
+							onclick="return confirmExclusao()" title="Excluir Área"> <i class="glyphicon glyphicon-remove">
+							  </i>
+						</a></td>
+					</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		</div>
+			</div>
+							   </c:if>
 					</div>
 					<!-- Content  -->
 				</div>
-				
 			</div>
 		</div>
 	</div>
