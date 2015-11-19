@@ -189,6 +189,7 @@ public class FuncoesProfessor {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
+				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
 	//			projeto.setPalavraChave(rs.getString("palavraChave"));
 				projetos.add(projeto);
 			}

@@ -22,13 +22,13 @@ import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.FuncoesProjeto;
 import br.com.geprofi.modelo.jdbc.JDBCProfessorDao;
+import br.com.geprofi.modelo.jdbc.JDBCProjetoDao;
 
 @Controller
 public class ProjetosController {
 	private ProjetoDao dao;  
 	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
 	public static String CAMINHO_UPLOAD_MONOGRAFIA="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\monografias\\";
-	
 
 	@Inject
 	public ProjetosController(ProjetoDao dao){
@@ -38,38 +38,73 @@ public class ProjetosController {
 	public void formulario() {}
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
-	public void convidarBanca(int codUsuario,Result result) {
+	public void convidarBanca(int codUsuario,int codProjeto,Result result) {
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
 			result.include("ListProfessoresExterno", daoProf.buscaProfessoresExterno_professor(codUsuario));  
 			result.include("ListProfessores", daoProf.todos());  
+			result.include("codProjeto", codProjeto);  
+			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+			daoProj.atualizaEtapaProjeto(codProjeto, 5);
 		}catch (SQLException e) {
 
 		}
-		
 	}
-	
-	
 	//@Get("/projeto/novo/{codUsuario}")
-	public void fluxogeprofi(int codUsuario,Result result) throws SQLException {
+	public void fluxogeprofi(int codUsuario,int codProjeto,Result result) throws SQLException {
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
 			result.include("ListpalavrasChave", daoProf.buscapalavraChave_professor(codUsuario));  
 			result.include("codProfessor", codUsuario);  
+			if(codProjeto!=0){
+				Projeto projetoEncontrado = null;
+				projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
+				int codtipoetapa = projetoEncontrado.getCodtipoetapa();
+				result.include(projetoEncontrado);
+				result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+				result.include("codUsuario", codUsuario);  
+				if(codtipoetapa==2){
+					result.include("alunoList", dao.buscaAlunosCodProjeto(projetoEncontrado.getCodProjeto()));
+					result.include("arquivoList",dao.buscaArquivosCodProjeto(projetoEncontrado.getCodProjeto(),1));
+					result.include("codProjeto",projetoEncontrado.getCodProjeto()).redirectTo(AlunosController.class).cadaluno();
+				}if(codtipoetapa==3){
+					result.include("alunoList", dao.buscaAlunosCodProjeto(projetoEncontrado.getCodProjeto()));
+					result.include("arquivoList",dao.buscaArquivosCodProjeto(projetoEncontrado.getCodProjeto(),1));
+					result.include("codProjeto",projetoEncontrado.getCodProjeto()).redirectTo(this).desenvProj(codProjeto);
+				}if(codtipoetapa==4){
+					result.include("Professor", daoProf.buscaPorCodProjeto(codProjeto));  
+					result.include("arquivoList",dao.buscaArquivosCodProjeto(projetoEncontrado.getCodProjeto(),2));
+					result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
+					//result.redirectTo(this).desenvProj();
+					result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
+					result.forwardTo(this).validaMonografia(codProjeto,result);
+				}if(codtipoetapa==5){
+					result.include("ListProfessoresExterno", daoProf.buscaProfessoresExterno_professor(codUsuario));  
+					result.include("ListProfessores", daoProf.todos());  
+					result.include("codProjeto", codProjeto);  
+					result.forwardTo(this).convidarBanca(codUsuario,codProjeto,result);
+				}
+			}
 		}catch (SQLException e) {
 
 		}
 	}
-	public void desenvProj(){}
+	public void desenvProj(int codProjeto) throws SQLException{
+		
+		JDBCProjetoDao daoProj= new JDBCProjetoDao();
+		daoProj.atualizaEtapaProjeto(codProjeto, 3);
+		
+	}
 	public void validaMonografia(int codProjeto,Result result){
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
 			System.out.println(daoProf.buscaPorCodProjeto(codProjeto));
+			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+			daoProj.atualizaEtapaProjeto(codProjeto, 4);
 			result.include("Professor", daoProf.buscaPorCodProjeto(codProjeto));  
 		}catch (SQLException e) {
 
 		}
-		
 	}
 	public Projeto edita(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
@@ -85,7 +120,6 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
-
 	public Projeto visualiza(int codProjeto, Result result) {
 		Projeto projetoEncontrado = null;
 		try {
@@ -93,7 +127,7 @@ public class ProjetosController {
 			result.include(projetoEncontrado);
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,1));
-			result.of(this).desenvProj();
+			result.forwardTo(this).desenvProj( codProjeto);
 			return projetoEncontrado;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,20 +138,15 @@ public class ProjetosController {
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
-			validator.onErrorRedirectTo(this).fluxogeprofi(codUsuario,result);
+			validator.onErrorRedirectTo(this).fluxogeprofi(codUsuario,0,result);
 			dao.adiciona(projeto, codUsuario);
-		   /*if (arquivo != null) {
-				FuncoesProjeto.uploadArquivo(dao, projeto, arquivo);
-			}*/
 			if(projeto.getCodProjeto()==0){
 				result.include("alunoList", dao.buscaAlunosCodProjeto(dao.pegaUltimoProjeto()));
 				result.include("codProjeto",dao.pegaUltimoProjeto()).forwardTo(AlunosController.class).cadaluno();
-				
 			}else{
 				result.include("alunoList", dao.buscaAlunosCodProjeto(projeto.getCodProjeto()));
 				result.include("arquivoList",dao.buscaArquivosCodProjeto(dao.pegaUltimoProjeto(),1));
 				result.include("codProjeto",projeto.getCodProjeto()).forwardTo(AlunosController.class).cadaluno();
-				
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -128,11 +157,12 @@ public class ProjetosController {
 	}
 	@Post
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
-	public void uploadArquivo(Result result,int codProjeto, Validator validator, List<UploadedFile> files){
+	public void uploadArquivo(Result result,int codProjeto, Validator validator, List<UploadedFile> files) throws SQLException{
 		try {
 			UploadedFile arquivo = null;
 			System.out.println("Quantidade de Arquivos: " +files.size());
 			if(files.size()>0){
+				
 				for(int i=0;i<files.size();i++){
 					System.out.println("Arquivo: " +files.get(i));
 					arquivo=files.get(i);
@@ -141,26 +171,28 @@ public class ProjetosController {
 					}
 				}
 			}
-			validator.onErrorRedirectTo(this).desenvProj();
+			validator.onErrorRedirectTo(this).desenvProj(codProjeto);
 			result.include("projeto",dao.buscaPorCodProjeto(codProjeto));
 			//result.redirectTo(this).desenvProj();
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
 			result.include("arquivoList",dao.buscaArquivosCodProjeto(codProjeto,1));
 			//result.forwardTo(this).validaMonografia();
-			result.forwardTo(this).desenvProj();
+			result.forwardTo(this).desenvProj(codProjeto);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		result.of(this).desenvProj();
+		result.of(this).desenvProj(codProjeto);
 	}
 	@Post
 	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
-	public void uploadMonografia(Result result,int codProjeto, Validator validator, List<UploadedFile> files){
+	public void uploadMonografia(Result result,int codProjeto, Validator validator, List<UploadedFile> files) throws SQLException{
 		try {
 			UploadedFile arquivo = null;
 			System.out.println("Quantidade de Arquivos: " +files.size());
 			if(files.size()>0){
+				JDBCProjetoDao daoProj= new JDBCProjetoDao();
+				daoProj.atualizaEtapaProjeto(codProjeto, 4);
 				for(int i=0;i<files.size();i++){
 					System.out.println("Arquivo: " +files.get(i));
 					arquivo=files.get(i);
@@ -179,7 +211,7 @@ public class ProjetosController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		result.of(this).desenvProj();
+		result.of(this).desenvProj(codProjeto);
 	}
 	public List<Projeto> lista() {
 		try {
@@ -211,13 +243,11 @@ public class ProjetosController {
 			File file = new File(CAMINHO_UPLOAD_MONOGRAFIA +codProjeto,arquivo.getNome());
 			String contentType = arquivo.getContentType();
 			String filename = arquivo.getNome();
-			
 			return new FileDownload(file, contentType, filename);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-
 		}
 	}
 	public void delete(int codProjeto, int codUsuario, Result result){
@@ -233,7 +263,6 @@ public class ProjetosController {
 	public void pegaAluno(int codProjeto,Result result){
 		try {
 			result.include("alunoList", dao.buscaAlunosCodProjeto(codProjeto));
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

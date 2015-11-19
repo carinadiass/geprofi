@@ -4,10 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Result;
-import br.com.geprofi.modelo.AreaDeInteresse;
+import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.Banca;
 import br.com.geprofi.modelo.dao.BancaDao;
 
@@ -35,11 +36,12 @@ public class BancaController {
 		}
 		return banca;
 	}
-	public void salva(Banca banca,int codProjeto, Result result){
+	public void salva(@Valid Banca banca,int codProjeto,int codUsuario, Result result,Validator validator){
 		try {
+			validator.onErrorRedirectTo(ProjetosController.class).convidarBanca(codUsuario, codProjeto, result);
 			dao.adiciona(banca, codProjeto);
 			result.include("mensagem", "Banca criada com sucesso!");
-			//result.redirectTo(ProjetosController.class).convidarBanca();
+			result.forwardTo(ProjetosController.class).convidarBanca(codUsuario,codProjeto,result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

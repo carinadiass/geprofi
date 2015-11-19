@@ -73,6 +73,12 @@ public class JDBCProjetoDao implements ProjetoDao{
 		return FuncoesProjeto.pegaVersaoMonografia(connection, codProjeto);
 	}
 	
+	@Override
+	public void atualizaEtapaProjeto(int codProjeto, int codtipoetapa) throws SQLException {
+		// TODO Auto-generated method stub
+		 FuncoesProjeto.atualizaEtapaProjeto(codProjeto, codtipoetapa, connection);
+	}
+	
 
 
 }

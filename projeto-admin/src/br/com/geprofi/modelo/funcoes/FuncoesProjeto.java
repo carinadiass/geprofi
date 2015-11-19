@@ -34,11 +34,24 @@ public class FuncoesProjeto {
 			preparedStatement.setString(4,projeto.getDescricao());
 			preparedStatement.setString(5, projeto.getQuantidadeDeAlunos());
 			if(projeto.getPalavraChave()!=null){
-				
+				preparedStatement.setString(6, projeto.getPalavraChave());
 			}
 		//	preparedStatement.setString(6,);
 			preparedStatement.setString(7, projeto.getNota());
 			preparedStatement.setLong(8,projeto.getCodProjeto());
+			preparedStatement.executeUpdate();
+			//	connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void atualizaEtapaProjeto(int codprojeto,int codtipoetapa,Connection connection) {
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("UPDATE PROJETO set codtipoetapa=? " +
+							" where CODPROJETO=?");
+			preparedStatement.setInt(1,codtipoetapa);
+			preparedStatement.setLong(2,codprojeto);
 			preparedStatement.executeUpdate();
 			//	connection.close();
 		} catch (SQLException e) {
@@ -209,6 +222,7 @@ public class FuncoesProjeto {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
+				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
 				if(rs.getString("palavraChave")!=null){
 					palavraChave[0]=rs.getString("palavraChave");
 					projeto.setPalavraChave(palavraChave);
@@ -240,6 +254,7 @@ public class FuncoesProjeto {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
+				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
 				System.out.println("PlavraChave:" +rs.getString("palavraChave"));
 				if(rs.getString("palavraChave")!=null){
  
@@ -265,8 +280,8 @@ public class FuncoesProjeto {
 		String palavra=null;
 		String sql = "insert into projeto" +
 				"(nome, titulo, tema, quantidadeDeAlunos, "
-				+ "descricao, dataCadastro, palavraChave, nota )"
-				+ " VALUES (?,?,?,?,?,?,?,?)";
+				+ "descricao, dataCadastro, palavraChave, nota, codtipoetapa )"
+				+ " VALUES (?,?,?,?,?,?,?,?,?)";
 		try{
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, projeto.getNome());
@@ -277,6 +292,7 @@ public class FuncoesProjeto {
 			stmt.setDate(6, new java.sql.Date(Calendar.getInstance().getTimeInMillis())); //Data de Cadastro
 			stmt.setString(7,projeto.getPalavraChave());
 			stmt.setString(8, projeto.getNota());
+			stmt.setInt(9, 1);
 			stmt.execute();
 			stmt.close();
 			System.out.println("Projeto Gravado!");

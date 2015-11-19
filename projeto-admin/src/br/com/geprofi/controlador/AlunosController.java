@@ -19,6 +19,8 @@ import br.com.caelum.vraptor.simplemail.Mailer;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.dao.AlunoDao;
+import br.com.geprofi.modelo.jdbc.JDBCProfessorDao;
+import br.com.geprofi.modelo.jdbc.JDBCProjetoDao;
 
 @Controller
 public class AlunosController {
@@ -52,6 +54,8 @@ public class AlunosController {
 		try {
 			validator.onErrorRedirectTo(this).cadaluno();
 			dao.adiciona(aluno);
+			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+			daoProj.atualizaEtapaProjeto(aluno.getCodProjeto(), 2);
 			result.include("mensagem", "Aluno salvo com sucesso!");
 			result.include("alunoList", dao.todos(aluno.getCodProjeto()));
 			result.include("codProjeto", aluno.getCodProjeto());

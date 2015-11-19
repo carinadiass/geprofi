@@ -76,12 +76,13 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 				banca.setCodBanca(rs.getInt("codBanca"));
 				banca.setQuantidadeDeParticipantes(rs.getInt("quantidadeDeParticipantes"));
 				banca.setCodProjeto(rs.getInt("codProjeto"));
+				banca.setCodProjeto(rs.getInt("codProjeto"));
+				banca.setDataInicio(rs.getString("datainicio"));
+				banca.setDatafim(rs.getString("datafim"));
 				System.out.println("Convite:" +rs.getString("convite"));
 				if(rs.getString("convite")!=null){
- 
 					banca.setConvite(convite);
 				}
-				
 			}
 			stmt.close();
 			return banca;
@@ -93,7 +94,7 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 	}
 	public static void insere(Banca banca,Connection connection) throws SQLException{
 		
-		if(!existeBanca(connection,banca.getCodProjeto())){
+		//if(!existeBanca(connection,banca.getCodProjeto())){
 			String[] convite = null;
 			String sql= "INSERT INTO Banca (codBanca, quantidadeDeParticipantes,codProjeto, convite, datainicio, datafim) "
 					+ " VALUES (?,?,?,?,?,?)";
@@ -102,12 +103,12 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 				stmt.setInt(1, banca.getCodBanca());
 				convite=banca.getConvite().split(";");
 				if(convite.length>0){
-					stmt.setInt(2, convite.length);
+					stmt.setInt(2, convite.length-1) ;
 				}
 				stmt.setInt(3, banca.getCodProjeto());
 				stmt.setString(4, banca.getConvite());
-				stmt.setDate(5, (Date) banca.getDatafim());
-				stmt.setDate(6, (Date) banca.getDataInicio());
+				stmt.setString(5,  banca.getDataInicio());
+				stmt.setString(6, banca.getDatafim());
 				stmt.execute();
 				stmt.close();
 				System.out.println("Banca Gavada!");
@@ -118,7 +119,7 @@ public static void atualiza(Banca banca, Connection connection) throws SQLExcept
 				//connection.close();
 			}
 		}
-	}
+//	}
 	public static void deleta(int codBanca,Connection connection) throws SQLException{
 		System.out.println("Código da Banca= "+codBanca);
 		String sql="DELETE FROM Banca WHERE codBanca=?";

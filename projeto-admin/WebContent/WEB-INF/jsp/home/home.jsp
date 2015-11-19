@@ -110,9 +110,12 @@
                         <br>
                          <br>
                         <h3 class="post-subtitle">
-                            Gerenciador de Projetos Finais, onde os alunos......
+                            Gerenciador de Projetos Finais 
                         </h3>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                    <p class="post-meta">     
+                   Seja bem-vindo ao sistema que facilitará o trabalho de conclusão de todos os alunos e professores do Departamento da Ciência da Computação.
+                             Aumentará a qualidade de gerenciamento de informações e produtividade durante o desenvolvimento do projeto.
+                            </p>
                 </div>
                 <hr>
                 
@@ -131,7 +134,8 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="copyright text-muted">Copyright &copy; <span
+					class="lead"> <i class="fa fa-graduation-cap"></i> GeProFi - UFRJ!</p>
                 </div>
             </div>
         </div>

@@ -20,11 +20,11 @@
 										   		Palavras Chave
 										    </a>
 										 </li>
-										<li role="presentation" class="">
+								<!--  		<li role="presentation" class="">
 										  <a href="#tab_content4" id="profile-tab2" data-toggle="tab" aria-expanded="false">
 										     Participação de Bancas
 										   </a>
-										 </li>
+										 </li>-->
 										<li role="presentation" class="">
 										  <a href="#tab_content5" role="tab" id="profile-tab3" data-toggle="tab" aria-expanded="false">
 										   Professores Externos
@@ -68,10 +68,10 @@
 										
 										
 										
-										<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab2">
+										<!-- 	<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab2">
 										 Em contrução    Participação de Bancas
 										
-										</div>
+										</div> -->
 										
 										<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="profile-tab3">
 										<jsp:include page="listaProfessoresExternos.jsp">

@@ -1,21 +1,26 @@
 package br.com.geprofi.modelo;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Banca {
 	
 	@Id @GeneratedValue
 	private int codBanca;
+
 	private int quantidadeDeParticipantes;
 	private int codProjeto;
+	@NotNull(message = "O Campo Professores é Obrigatório")
 	private String[] convite;
-	private Date dataInicio;
-	private Date datafim;
+	@NotNull(message = "O Campo De é Obrigatório")
+	private String datainicio;
+	@NotNull(message = "O Campo Até é Obrigatório")
+	private String datafim;
 	
 	public int getCodBanca() {
 		return codBanca;
@@ -47,16 +52,16 @@ public class Banca {
 	public void setConvite(String[] convite) {
 		this.convite = convite;
 	}
-	public Date getDataInicio() {
-		return dataInicio;
+	public String getDataInicio() {
+		return datainicio;
 	}
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void setDataInicio(String dataInicio) {
+		this.datainicio = dataInicio;
 	}
-	public Date getDatafim() {
+	public String getDatafim() {
 		return datafim;
 	}
-	public void setDatafim(Date datafim) {
+	public void setDatafim(String datafim) {
 		this.datafim = datafim;
 	}
 	

@@ -34,7 +34,7 @@ public interface ProjetoDao {
 	int buscaVersaoMonografia(int codProjeto) throws SQLException;
 
 	List<Arquivo> buscaArquivosCodProjeto(int codProjeto, int tipo) throws SQLException;
-	 
-	
+
+	void atualizaEtapaProjeto(int codProjeto, int codtipoetapa)	throws SQLException;
 
 }

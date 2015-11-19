@@ -3,7 +3,7 @@
 </jsp:include>
 <%
 	String codProjeto = request.getParameter("codProjeto");
-
+  String codUsuario = request.getParameter("codProjeto");
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -77,7 +77,7 @@
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-file-o"></i></span><a>Validação de Monografia</a>
+											<span><i class="fa fa-file-o"></i></span>  <a> Validação de Monografia</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -90,8 +90,7 @@
 								<div class="block">
 									<div class="block_content">
 										<h2 class="title">
-											<span><i class="fa fa-users"></i></span><a>
-												Convidar Banca</a>
+											<span><i class="fa fa-users"></i></span> <a>	Convidar Banca</a>
 										</h2>
 										<div class="byline">
 											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
@@ -131,9 +130,8 @@
 						</ul>
 					
 						<form class="form-horizontal form-label-left"
-							action="${linkTo[BancaController].salva}?codProjeto=${param.codProjeto}"
+							action="${linkTo[BancaController].salva}?codProjeto=${param.codProjeto}&codUsuario=${param.codUsuario}"
 							method="post">
-							
 						
 							
 							<input type="hidden" name="projeto.codProjeto"
@@ -168,17 +166,20 @@
 									</select>
 								</div>
 							</div>
+							
+							<p>Período pra apresentação</p>
+							<hr>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">De</label>
                                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+                                                <input type="text" class="form-control" value="${banca.dataInicio}" name="banca.dataInicio" data-inputmask="'mask': '99/99/9999'">
                                                 <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Até</label>
                                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'">
+                                                <input type="text"	class="form-control" value="${banca.datafim}" name="banca.datafim" data-inputmask="'mask': '99/99/9999'">
                                                 <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
@@ -189,7 +190,6 @@
 						    <button type="submit" class="btn btn-primary">Cancel</button>
 							<button type="submit" class="btn btn-success">Enviar Convite</button>
 							<button type="submit" class="btn btn-warning">Marcar Apresentação</button>
-							
 						</div>
 					</div>
 						</form>
