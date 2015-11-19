@@ -81,7 +81,6 @@
 				action="${linkTo[ProjetosController].salva}?codUsuario=0"
 			 </c:if>
 							role="form" method="POST" data-fv-framework="bootstrap"
-							enctype="multipart/form-data"
 							data-fv-icon-valid="glyphicon glyphicon-ok"
 							data-fv-icon-invalid="glyphicon glyphicon-remove"
 							data-fv-icon-validating="glyphicon glyphicon-refresh">

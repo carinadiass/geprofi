@@ -30,11 +30,11 @@
 										   Professores Externos
 										   </a>
 										 </li>
-										<li role="presentation" class="">
+									<!--	<li role="presentation" class="">
 										<a href="#tab_content6" role="tab" id="profile-tab4" data-toggle="tab" aria-expanded="false">
 										     Alunos 
 										  </a>
-										</li>
+										</li>-->
 									</ul>
 									
 									<div id="myTabContent" class="tab-content">  

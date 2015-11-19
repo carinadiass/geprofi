@@ -29,7 +29,6 @@ public class ProjetosController {
 	private ProjetoDao dao;  
 	public static String CAMINHO_UPLOAD="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\arquivos\\";
 	public static String CAMINHO_UPLOAD_MONOGRAFIA="C:\\Users\\Carina\\Documents\\ProjetoFinal\\projeto\\monografias\\";
-
 	@Inject
 	public ProjetosController(ProjetoDao dao){
 		this.dao=dao;
@@ -38,7 +37,15 @@ public class ProjetosController {
 	public void formulario() {}
 	public void fluxoprojeto() {}
 	public void formwizardprojeto() {}
-	public void apresentacao(){}
+	public void apresentacao(int codProjeto,Result result) throws SQLException{
+		Projeto projetoEncontrado = null;
+		projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);
+		System.out.println(projetoEncontrado.getNome());
+		result.include("projeto", projetoEncontrado); 
+		dao.atualizaEtapaProjeto(codProjeto, 6);
+	//	result.of(this).apresentacao(projetoEncontrado.getCodProjeto(), result);
+		
+	}
 	public void convidarBanca(int codUsuario,int codProjeto,Result result) {
 		try {
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
@@ -85,6 +92,19 @@ public class ProjetosController {
 					result.include("ListProfessores", daoProf.todos());  
 					result.include("codProjeto", codProjeto);  
 					result.forwardTo(this).convidarBanca(codUsuario,codProjeto,result);
+				}if(codtipoetapa==6){
+					Projeto projeto = null;
+					projeto = dao.buscaPorCodProjeto(codProjeto);
+					System.out.println(projeto.getNome());
+					result.include("projeto", projeto); 
+					result.forwardTo(this).apresentacao(projeto.getCodProjeto(),result);
+				
+				}if(codtipoetapa==7){
+					Projeto projeto = null;
+					projeto = dao.buscaPorCodProjeto(codProjeto);
+					System.out.println(projeto.getNome());
+					result.include("projeto", projeto); 
+					result.forwardTo(this).finalizado(projeto.getCodProjeto(),result);
 				}
 			}
 		}catch (SQLException e) {
@@ -136,8 +156,36 @@ public class ProjetosController {
 		}
 		return projetoEncontrado;
 	}
-	@Post
-	@UploadSizeLimit(sizeLimit=40 * 1024 * 1024, fileSizeLimit=10 * 1024 * 1024)
+	public void atualiza(Projeto projeto,int codProjeto,Result result,Validator validator) {
+		try {
+			validator.onErrorRedirectTo(this).apresentacao(codProjeto,result);
+			/*Projeto projetoEncontrado = null;
+			projetoEncontrado = dao.buscaPorCodProjeto(codProjeto);*/
+			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+			daoProj.atualizaApresentacao(projeto);
+			result.include("projeto", projeto); 
+			result.include("alunoList", dao.buscaAlunosCodProjeto(projeto.getCodProjeto()));
+			result.include("arquivoList",dao.buscaArquivosCodProjeto(projeto.getCodProjeto(),2));
+			result.redirectTo(this).finalizado(projeto.getCodProjeto(),result);
+			
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			result.include("errors", "Projeto não salvo com sucesso!");
+			result.forwardTo(this).lista();
+			e.printStackTrace();
+		} 
+	}
+	
+	public void finalizado(int codProjeto,Result result) throws SQLException {
+		JDBCProjetoDao daoProj= new JDBCProjetoDao();
+		Projeto projetoEncontrado = null;
+		projetoEncontrado = daoProj.buscaPorCodProjeto(codProjeto);
+		daoProj.atualizaEtapaProjeto(codProjeto, 6);
+		System.out.println(projetoEncontrado.getNome());
+		result.include("projeto", projetoEncontrado); 
+		
+	}
 	public void salva(@Valid Projeto projeto,int codUsuario,Result result,Validator validator,  UploadedFile arquivo) {
 		try {
 			validator.onErrorRedirectTo(this).fluxogeprofi(codUsuario,0,result);

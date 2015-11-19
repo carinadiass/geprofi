@@ -83,6 +83,11 @@ public class JDBCProjetoDao implements ProjetoDao{
 		// TODO Auto-generated method stub
 		 FuncoesProjeto.atualizaEtapaProjeto(codProjeto, codtipoetapa, connection);
 	}
+	@Override
+	public void atualizaApresentacao(Projeto projeto) {
+		FuncoesProjeto.atualizaApresentacao(projeto, connection);
+		
+	}
 	
 
 

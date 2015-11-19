@@ -1,9 +1,7 @@
 <jsp:include page="../professores/heard.jsp">
 	<jsp:param value="teste" name="1" />
 </jsp:include>
-<%
-	String codProjeto = request.getParameter("codProjeto");
-
+<%	String codProjeto = request.getParameter("codProjeto");
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -114,6 +112,20 @@
 									</div>
 								</div>
 							</li>
+							<li>
+								<div class="block">
+									<div class="block_content">
+										<h2 class="title">
+											<span><i class="fa fa-desktop"></i></span><a>
+												 Fim</a>
+										</h2>
+										<div class="byline">
+											<!--	<span>13 hours ago</span> by <a>Jane Smith</a>-->
+										</div>
+										<p class="excerpt"></p>
+									</div>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -122,7 +134,7 @@
 			<div class="col-md-9 col-sm-9 col-xs-12">
 				<div class="x_panel">
 					<div class="x_title">
-						<h2>Apresentação</h2>
+						<h2>Fim</h2>
 						<ul class="nav navbar-right panel_toolbox">
 							<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 							</li>
@@ -145,31 +157,12 @@
 						</ul>
 					
 						<form class="form-horizontal form-label-left"
-							action="${linkTo[ProjetosController].atualiza}?codProjeto=${param.codProjeto}"
-							method="post"> 
-							
-						<div class="form-group">
-								<input type="hidden" name="projeto.codProjeto"
-									value="${param.codProjeto}" /> <input type="hidden"
-									name="param.codUsuario" value="${param.codUsuario}" /> 
-								<div class="col-md-6 col-sm-6">
-									<input type="hidden" type="hidden" id="projeto.nome" name="projeto.nome" placeholder=""
-										value="${projeto.nome}" class="form-control input-sm"
-										type="text">
-								</div>
-							</div>
-							<!-- Text input-->
-							<div class="form-group">
-								<div class="col-md-6 col-sm-6">
-									<input type="hidden" id="projeto.tema" name="projeto.tema"
-										value="${projeto.tema}" class="form-control input-sm"
-										type="text">
-								</div>
-							</div>
+							action="${linkTo[ProjetosController].salva}?codProjeto=${param.codProjeto}"
+							method="post">
 							<div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Data da Apresentação</label>
                                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text"	class="form-control" id="projeto.dataApresentacao" value="${projeto.dataApresentacao}" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
+                                                <input type="text"	class="form-control" value="${projeto.dataApresentacao}" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
                                                 <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
@@ -185,16 +178,16 @@
 								<label class="control-label col-md-3 col-sm-3"
 									for="projeto.titulo">Nota</label>
 								<div class="col-md-6 col-sm-6">
-									<input id="projeto.nota"  name="projeto.nota"
+									<input id="projeto.nota" name="projeto.nota"
 										value="${projeto.nota}" class="form-control input-sm" type="text">
 								</div>
 							</div>
 					<div class="ln_solid"></div>
-					<div class="form-group">
+				<!--	<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
 							<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-graduation-cap"> </i> Aprovado Direto</button>
 							<a class="btn btn-warning btn-sm"
-							href="${linkTo[ProjetosController].atualiza}?codProjeto=${param.codProjeto}"
+							href="${linkTo[ProjetosController].apresentacao}?codProjeto=${param.codProjeto}"
 							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-undo"> 
 							  </i>   Aprovado com correção</a>
 							  <a class="btn btn-danger btn-sm"
@@ -202,7 +195,7 @@
 							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-ban"> 
 							  </i>   Reprovado</a>
 						</div>
-					</div>
+					</div> -->
 						</form>
 					</div>
 					<!-- Content  -->

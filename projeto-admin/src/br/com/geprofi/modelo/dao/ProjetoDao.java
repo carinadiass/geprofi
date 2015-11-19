@@ -40,4 +40,6 @@ public interface ProjetoDao {
 
 	List<Banca> pegaBancas_codProjeto(int codProjeto) throws SQLException;
 
+	void atualizaApresentacao(Projeto projetoEncontrado);
+
 }

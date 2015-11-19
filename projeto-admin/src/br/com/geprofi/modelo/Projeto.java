@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 /***
  * 
@@ -29,6 +31,7 @@ public class Projeto {
 	private int status;
 	private String quantidadeDeAlunos;
 	private Date dataCadastro;
+	 @Temporal(TemporalType.TIMESTAMP)
 	private Date dataApresentacao;
 	private String sala;
 	private String situacao;

@@ -3,9 +3,11 @@ package br.com.geprofi.modelo.funcoes;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -40,6 +42,28 @@ public class FuncoesProjeto {
 		//	preparedStatement.setString(6,);
 			preparedStatement.setString(7, projeto.getNota());
 			preparedStatement.setLong(8,projeto.getCodProjeto());
+			preparedStatement.executeUpdate();
+			//	connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void atualizaApresentacao(Projeto projeto,Connection connection) {
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("UPDATE PROJETO set NOTA=?, SALA=?, DATAAPRESENTACAO=? " +
+							" where CODPROJETO=?");
+			preparedStatement.setString(1, projeto.getNota());
+			System.out.println("Nota"+projeto.getNota() +" Sala"+ projeto.getSala()+ "Data Aprensentacao"+ projeto.getDataApresentacao());
+			preparedStatement.setString(2, projeto.getSala());
+			if(projeto.getDataApresentacao()!=null){
+				java.util.Date dt = new java.util.Date();
+				java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String currentTime = sdf.format(projeto.getDataApresentacao());
+				preparedStatement.setString(3,  currentTime);
+			}
+		
+			preparedStatement.setLong(4,  projeto.getCodProjeto());
 			preparedStatement.executeUpdate();
 			//	connection.close();
 		} catch (SQLException e) {
@@ -252,7 +276,11 @@ public class FuncoesProjeto {
 				projeto.setDataCadastro(rs.getDate("dataCadastro"));
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
+				projeto.setNota(rs.getString("nota"));
+				projeto.setSala(rs.getString("sala"));
+				projeto.setDataApresentacao(rs.getDate("dataApresentacao"));
 				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
+				
 				if(rs.getString("palavraChave")!=null){
 					palavraChave[0]=rs.getString("palavraChave");
 					projeto.setPalavraChave(palavraChave);
@@ -285,6 +313,9 @@ public class FuncoesProjeto {
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
 				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
+				projeto.setNota(rs.getString("nota"));
+				projeto.setSala(rs.getString("sala"));
+				projeto.setDataApresentacao(rs.getDate("dataApresentacao"));
 				System.out.println("PlavraChave:" +rs.getString("palavraChave"));
 				if(rs.getString("palavraChave")!=null){
  
