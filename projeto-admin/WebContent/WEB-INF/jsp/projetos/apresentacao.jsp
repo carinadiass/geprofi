@@ -175,7 +175,7 @@
                                         </div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3"
-									for="projeto.titulo">Sala</label>
+									for="projeto.titulo">Local</label>
 								<div class="col-md-6 col-sm-6">
 									<input id="projeto.sala" name="projeto.sala"
 										value="${projeto.sala}" class="form-control input-sm" type="text">
@@ -183,7 +183,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3"
-									for="projeto.titulo">Nota</label>
+									for="projeto.titulo">Grau Obtido</label>
 								<div class="col-md-6 col-sm-6">
 									<input id="projeto.nota"  name="projeto.nota"
 										value="${projeto.nota}" class="form-control input-sm" type="text">

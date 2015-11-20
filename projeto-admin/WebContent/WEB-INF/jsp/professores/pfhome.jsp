@@ -40,37 +40,7 @@
 					<!-- Lado esquerdo do Perfil -->
 					<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 					
-					 <!-- DADOS DO AVATAR PROFESSOR -->
-						 <div class="profile_img">
-						 		<div id="crop-avatar">
-									<!-- Current avatar -->
-									<div class="avatar-view" title="Alterar Foto">
-										<img
-											src="${pageContext.request.contextPath}/production/images/picture.jpg"
-											alt="Avatar">
-									</div>
-
-									<!-- MODAL PARA ALTERAR PERFIL DE PROFESSOR -->
-									<div class="modal fade" id="avatar-modal" aria-hidden="true"
-										aria-labelledby="avatar-modal-label" role="dialog"
-										tabindex="-1">
-
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-												<jsp:include page="alterarAvatar.jsp">
-													<jsp:param value="teste" name="1" />
-												</jsp:include>
-											</div>
-										</div>
-
-									</div><!-- class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1" -->
-								 <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
-								</div><!--DIV id="crop-avatar" -->
-						 </div><!--DIV class="profile_img"t -->
-						 
-						 <br>
-						 
-						 <!-- DADOS DO PERFIL PROFESSOR -->
+					
 						
 						<c:if test="${not empty errors}"> <!-- Inicio Validação Campo Modal de Edição -->
 								<div class="alert alert-danger">

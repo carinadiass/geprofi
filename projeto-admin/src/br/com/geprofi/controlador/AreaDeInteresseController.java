@@ -43,7 +43,7 @@ public class AreaDeInteresseController {
 	}
 	public void salva(@Valid AreaDeInteresse areaDeInteresse, int codUsuario,Result result,Validator validator){
 		try {
-			validator.onErrorRedirectTo(this).formulario();
+			validator.onErrorRedirectTo(ProfessoresController.class).pfhome(codUsuario, result);
 			dao.adiciona(areaDeInteresse,codUsuario);
 			result.include("mensagem", "Area de interesse salva com sucesso!");
 			result.redirectTo(ProfessoresController.class).pfhome(codUsuario, result);
