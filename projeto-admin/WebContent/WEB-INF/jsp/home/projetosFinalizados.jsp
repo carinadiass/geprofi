@@ -171,7 +171,7 @@
                                                 
                                                 <td class=" ">${projeto.palavraChave}</td>  
                                                 <td class=" last"><a
-										href="${linkTo[HomeController].downloadMonografia}?codProjeto=${projeto.codProjeto}"><i class="fa fa-download"></i>Projeto</a>
+										href="${linkTo[HomeController].downloadMonografia}?codProjeto=${projeto.codProjeto}"><i class="fa fa-download"></i> Monografia</a>
                                                 </td>
                                             </tr>
                                          	</c:forEach>
@@ -251,7 +251,7 @@
                             'aTargets': [0]
                         } //disables sorting for column one
             ],
-                    'iDisplayLength': 10,
+                    'iDisplayLength': 3,
                     "sPaginationType": "full_numbers",
                   
                     "tableTools": {
