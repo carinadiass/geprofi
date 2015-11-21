@@ -251,9 +251,9 @@
                             'aTargets': [0]
                         } //disables sorting for column one
             ],
-                    'iDisplayLength': 12,
+                    'iDisplayLength': 10,
                     "sPaginationType": "full_numbers",
-                    "dom": 'T<"clear">lfrtip',
+                  
                     "tableTools": {
                         "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
                     }
