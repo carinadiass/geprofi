@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../professores/menu.jsp">
-	<jsp:param value="teste" name="1" />
+	<jsp:param value="codUsuario" name="1" />
 </jsp:include>
 
 <div class="right_col" role="main">
@@ -162,15 +162,31 @@
 							<div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Data da Apresentação</label>
                                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text"	class="form-control" value="${projeto.dataApresentacao}" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
+                                                <input type="text"	class="form-control" disabled="disabled" placeholder="<fmt:formatDate value="${projeto.dataApresentacao}" pattern="dd/MM/yyyy" />" value="<fmt:formatDate value="${projeto.dataApresentacao}" pattern="dd/MM/yyyy" />" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
                                                 <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
+                                                      <div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Início</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.inicio"  disabled="disabled" placeholder="${projeto.inicio}"  name="projeto.inicio" data-inputmask="'mask': '99:99'"
+										value="${projeto.inicio}" class="form-control input-sm" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Término</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.termino"  name="projeto.termino" disabled="disabled" placeholder="${projeto.termino}"  data-inputmask="'mask': '99:99'"
+										value="${projeto.termino}" class="form-control input-sm" type="text">
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3"
 									for="projeto.titulo">Sala</label>
 								<div class="col-md-6 col-sm-6">
-									<input id="projeto.sala" name="projeto.sala"
+									<input id="projeto.sala" name="projeto.sala" disabled="disabled" placeholder="${projeto.sala}" 
 										value="${projeto.sala}" class="form-control input-sm" type="text">
 								</div>
 							</div>
@@ -178,10 +194,20 @@
 								<label class="control-label col-md-3 col-sm-3"
 									for="projeto.titulo">Nota</label>
 								<div class="col-md-6 col-sm-6">
-									<input id="projeto.nota" name="projeto.nota"
+									<input id="projeto.nota" name="projeto.nota" disabled="disabled" placeholder="${projeto.nota}" 
 										value="${projeto.nota}" class="form-control input-sm" type="text">
 								</div>
 							</div>
+							  <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Situação</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <select class="select2_single form-control" disabled="disabled" placeholder="${projeto.situacao}"  name="projeto.situacao" value="${projeto.situacao}" tabindex="-1">
+                                                    <option value="Aprovado">Aprovado</option>
+                                                    <option value="Aprovado com restrição">Aprovado com restrição</option>
+                                                    <option value="Reprovado">Reprovado</option>
+                                                 </select>
+                                            </div>
+                                        </div>
 					<div class="ln_solid"></div>
 				<!--	<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">

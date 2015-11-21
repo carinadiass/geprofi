@@ -51,7 +51,7 @@ public class FuncoesProjeto {
 	public static void atualizaApresentacao(Projeto projeto,Connection connection) {
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("UPDATE PROJETO set NOTA=?, SALA=?, DATAAPRESENTACAO=? " +
+					.prepareStatement("UPDATE PROJETO set NOTA=?, SALA=?, DATAAPRESENTACAO=?, INICIO=?, TERMINO=?, SITUACAO=? " +
 							" where CODPROJETO=?");
 			preparedStatement.setString(1, projeto.getNota());
 			System.out.println("Nota"+projeto.getNota() +" Sala"+ projeto.getSala()+ "Data Aprensentacao"+ projeto.getDataApresentacao());
@@ -62,8 +62,10 @@ public class FuncoesProjeto {
 				String currentTime = sdf.format(projeto.getDataApresentacao());
 				preparedStatement.setString(3,  currentTime);
 			}
-		
-			preparedStatement.setLong(4,  projeto.getCodProjeto());
+			preparedStatement.setString(4,  projeto.getInicio());
+			preparedStatement.setString(5,  projeto.getTermino());
+			preparedStatement.setString(6,  projeto.getSituacao());
+			preparedStatement.setLong(7,  projeto.getCodProjeto());
 			preparedStatement.executeUpdate();
 			//	connection.close();
 		} catch (SQLException e) {
@@ -280,6 +282,9 @@ public class FuncoesProjeto {
 				projeto.setSala(rs.getString("sala"));
 				projeto.setDataApresentacao(rs.getDate("dataApresentacao"));
 				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
+				projeto.setSituacao(rs.getString("situacao"));
+				projeto.setInicio(rs.getString("inicio"));
+				projeto.setTermino(rs.getString("termino"));
 				
 				if(rs.getString("palavraChave")!=null){
 					palavraChave[0]=rs.getString("palavraChave");
@@ -313,7 +318,6 @@ public class FuncoesProjeto {
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
 				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
-				projeto.setNota(rs.getString("nota"));
 				projeto.setSala(rs.getString("sala"));
 				projeto.setDataApresentacao(rs.getDate("dataApresentacao"));
 				System.out.println("PlavraChave:" +rs.getString("palavraChave"));
@@ -324,6 +328,10 @@ public class FuncoesProjeto {
 				
 				//projeto.setPalavraChave(rs.getString("palavraChave"));
 				projeto.setNota(rs.getString("nota"));
+				projeto.setSituacao(rs.getString("situacao"));
+				projeto.setInicio(rs.getString("inicio"));
+				projeto.setTermino(rs.getString("termino"));
+				
 			}
 			preparedStatement.close();
 			//	connection.close();
@@ -426,6 +434,7 @@ public class FuncoesProjeto {
 				aluno.setSexo(rs.getString("sexo"));
 				aluno.setDre(rs.getString("dre"));
 				aluno.setCurso(rs.getString("curso"));
+				aluno.setCodProjeto(rs.getInt("codProjeto"));
 				alunos.add(aluno);
 			}
 			stmt.close();

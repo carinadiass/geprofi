@@ -181,7 +181,7 @@ public class ProjetosController {
 		JDBCProjetoDao daoProj= new JDBCProjetoDao();
 		Projeto projetoEncontrado = null;
 		projetoEncontrado = daoProj.buscaPorCodProjeto(codProjeto);
-		daoProj.atualizaEtapaProjeto(codProjeto, 6);
+		daoProj.atualizaEtapaProjeto(codProjeto, 7);
 		System.out.println(projetoEncontrado.getNome());
 		result.include("projeto", projetoEncontrado); 
 		

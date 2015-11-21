@@ -186,7 +186,6 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 							<table class="table table-striped">
 								<thead>
 									<tr>
-										<th>ID</th>
 										<th>Nome</th>
 										<th>Email</th>
 										<th>Dre</th>
@@ -198,7 +197,6 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 								<c:forEach var="aluno" items="${alunoList}" varStatus="id">
 									<tbody>
 										<tr>
-											<td>${aluno.codUsuario}</td>
 											<td>${aluno.nome}</td>
 											<td>${aluno.email}</td>
 											<td>${aluno.dre}</td>
@@ -211,7 +209,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 													class="glyphicon glyphicon-edit"> </i>
 											</a></td>
 											<td><a class="btn btn-danger btn-sm"
-												href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}"
+												onclick="return confirmExclusao()" href="${linkTo[AlunosController].delete}?codUsuario=${aluno.codUsuario}"
 												title="Excluir Aluno"> <i
 													class="glyphicon glyphicon-remove"> </i>
 											</a></td>
@@ -264,3 +262,12 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 	src="${pageContext.request.contextPath}/production/js/notify/pnotify.buttons.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/production/js/notify/pnotify.nonblock.js"></script>
+	<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

@@ -102,7 +102,7 @@
 						class="fa fa-folder"></i> Visualizar </a> 
 					<a
 					href="${linkTo[ProjetosController].delete}?codProjeto=${projeto.codProjeto}&codUsuario=${professor.codUsuario}"
-					class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+					 onclick="return confirmExclusao()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 						Excluir </a></td>
 			</tr>
 	</c:forEach>
@@ -111,3 +111,12 @@
 
 
 <!-- end user projects -->
+<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

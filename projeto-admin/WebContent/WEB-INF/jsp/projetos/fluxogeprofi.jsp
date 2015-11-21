@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <jsp:include page="../professores/menu.jsp">
-	<jsp:param value="teste" name="1" />
+	<jsp:param value="${param.codUsuario}" name="codUsuario" />
 </jsp:include>
 
 <div class="right_col" role="main">

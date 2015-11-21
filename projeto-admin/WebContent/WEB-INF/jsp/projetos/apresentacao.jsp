@@ -169,10 +169,26 @@
 							<div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-3">Data da Apresentação</label>
                                             <div class="col-md-9 col-sm-9 col-xs-9">
-                                                <input type="text"	class="form-control" id="projeto.dataApresentacao" value="${projeto.dataApresentacao}" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
+                                                <input type="text"	class="form-control" id="projeto.dataApresentacao" value="<fmt:formatDate value="${projeto.dataApresentacao}" pattern="dd/MM/yyyy" />" name="projeto.dataApresentacao" data-inputmask="'mask': '99/99/9999'">
                                                 <span class="fa fa-desktop form-control-feedback right" aria-hidden="true"></span>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Início</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.inicio"  name="projeto.inicio" data-inputmask="'mask': '99:99'"
+										value="${projeto.inicio}" class="form-control input-sm" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3 col-sm-3"
+									for="projeto.titulo">Término</label>
+								<div class="col-md-6 col-sm-6">
+									<input id="projeto.termino"  name="projeto.termino" data-inputmask="'mask': '99:99'"
+										value="${projeto.termino}" class="form-control input-sm" type="text">
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-md-3 col-sm-3"
 									for="projeto.titulo">Local</label>
@@ -189,18 +205,20 @@
 										value="${projeto.nota}" class="form-control input-sm" type="text">
 								</div>
 							</div>
+							  <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Situação</label>
+                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                <select class="select2_single form-control"  name="projeto.situacao" value="${projeto.situacao}" tabindex="-1">
+                                                    <option value="Aprovado">Aprovado</option>
+                                                    <option value="Aprovado com restrição">Aprovado com restrição</option>
+                                                    <option value="Reprovado">Reprovado</option>
+                                                 </select>
+                                            </div>
+                                        </div>
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-							<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-graduation-cap"> </i> Aprovado Direto</button>
-							<a class="btn btn-warning btn-sm"
-							href="${linkTo[ProjetosController].atualiza}?codProjeto=${param.codProjeto}"
-							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-undo"> 
-							  </i>   Aprovado com correção</a>
-							  <a class="btn btn-danger btn-sm"
-							href="${linkTo[ProjetosController].apresentacao}?codBanca=${banca.codBanca}&codUsuario=${param.codUsuario}&codProjeto=${param.codProjeto}"
-							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-ban"> 
-							  </i>   Reprovado</a>
+							<button type="submit" class="btn btn-success btn-sm">Enviar dados</button>
 						</div>
 					</div>
 						</form>
@@ -271,7 +289,7 @@
         <script>
             $(document).ready(function () {
                 $(".select2_single").select2({
-                    placeholder: "Select a state",
+                    placeholder: "Em sessão pública, após exposição do trabalho, o(s) candidado(s) foi(ram) ",
                     allowClear: true
                 });
                 $(".select2_group").select2({});

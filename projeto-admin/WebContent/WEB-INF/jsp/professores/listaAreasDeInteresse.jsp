@@ -55,7 +55,7 @@
 					class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar
 				</a> -->	<a
 					href="${linkTo[AreaDeInteresseController].delete}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}&codUsuario=${professor.codUsuario}"
-					class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+					onclick="return confirmExclusao()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 						Excluir </a></td>
 			</tr>
 	</c:forEach>
@@ -93,3 +93,13 @@
 		<!--DIV class="modal fade bs-example-modal-lg"  -->
 	</c:if>
 </div>
+
+<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

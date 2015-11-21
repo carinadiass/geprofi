@@ -1,3 +1,10 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%
+	String codUsuario = request.getParameter("codUsuario");
+
+%>
 <body class="nav-md">
 
     <div class="container body">
@@ -36,7 +43,7 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a href="${pageContext.request.contextPath}/home/home">Página Principal</a>
                                         </li>
-                                        <li><a href="index2.html">Perfil</a>
+                                        <li><a href="${pageContext.request.contextPath}/professores/pfhome?codProfessor=${param.codUsuario}">Perfil</a>
                                         </li>
                                   <!--      <li><a href="index3.html">Dashboard3</a> -->
                                         </li>

@@ -1,4 +1,4 @@
-package br.com.geprofi.controlador;
+ package br.com.geprofi.controlador;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -41,9 +41,13 @@ public class AlunosController {
 	public Aluno edita(int codUsuario, Result result) {
 		Aluno alunoEncontrado = null;
 		try {
+			JDBCProjetoDao daoProj= new JDBCProjetoDao();
 			alunoEncontrado = dao.buscaPorCodUsuario(codUsuario);
 			result.include(alunoEncontrado);
-			result.of(this).formulario();
+			System.out.println(alunoEncontrado.getNome());
+			result.include("alunoList", daoProj.buscaAlunosCodProjeto(alunoEncontrado.getCodProjeto()));
+			result.include("codProjeto", alunoEncontrado.getCodProjeto());
+			result.of(this).cadaluno();
 			return alunoEncontrado;
 		} catch (SQLException e) {
 			e.printStackTrace();

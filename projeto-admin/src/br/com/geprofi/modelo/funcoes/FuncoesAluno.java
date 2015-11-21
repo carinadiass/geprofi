@@ -87,6 +87,7 @@ public class FuncoesAluno {
 				aluno.setSexo(rs.getString("sexo"));
 				aluno.setDre(rs.getString("dre"));
 				aluno.setCurso(rs.getString("curso"));
+				aluno.setCodProjeto(rs.getInt("codProjeto"));
 			}
 			preparedStatement.close();
 			return aluno;

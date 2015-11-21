@@ -79,7 +79,7 @@ public class FuncoesProfessor {
 	}
 	public static Professor seleciona(Connection connection, int codUsuario) throws SQLException{
 		Professor professor= new Professor();
-		String sql ="SELECT * FROM USUARIO WHERE tipoUsuario='Professor' AND codUsuario=? AND STATUS=1";
+		String sql ="SELECT * FROM USUARIO WHERE tipoUsuario='Professor' AND codUsuario=? AND STATUS=1 ORDER BY NOME ASC";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setLong(1, codUsuario);
@@ -190,6 +190,9 @@ public class FuncoesProfessor {
 				projeto.setDescricao(rs.getString("descricao"));
 				projeto.setQuantidadeDeAlunos(rs.getString("quantidadeDeAlunos"));
 				projeto.setCodtipoetapa(rs.getInt("codtipoetapa"));
+				projeto.setSituacao(rs.getString("situacao"));
+				projeto.setInicio(rs.getString("inicio"));
+				projeto.setTermino(rs.getString("termino"));
 	//			projeto.setPalavraChave(rs.getString("palavraChave"));
 				projetos.add(projeto);
 			}
@@ -229,7 +232,7 @@ public class FuncoesProfessor {
 	}
 	public static List<ProfessorExterno> listaProfessoresExterno(Connection connection, int codUsuario) throws SQLException{
 		List<ProfessorExterno> professoresExterno = new ArrayList<ProfessorExterno>();
-		String sql ="SELECT * FROM PROFESSOREXTERNO WHERE CODPROFESSOR="+codUsuario;
+		String sql ="SELECT * FROM PROFESSOREXTERNO WHERE CODPROFESSOR="+codUsuario +" ORDER BY NOME ASC";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();

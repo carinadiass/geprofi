@@ -157,12 +157,18 @@
 								
 								<div class="col-md-9 col-sm-9 col-xs-12">
 								  <select class="select2_multiple form-control" value="${banca.convite}" id="banca.convite" name="banca.convite" multiple="multiple">
+												 <optgroup label="Professores Externos">
 										<c:forEach var="professorExterno" items="${ListProfessoresExterno}">
+								
 											<option value="${professorExterno.email}">${professorExterno.nome} - ${professorExterno.universidadeOrigem}</option>
+										
 										</c:forEach>
+											 </optgroup>
+											 	 <optgroup label="Professores Internos">
 										<c:forEach var="professor" items="${ListProfessores}">
 											<option value="${professor.email}">${professor.nome}</option>
 										</c:forEach>
+											 </optgroup>
 									</select>
 								</div>
 							</div>
@@ -190,7 +196,7 @@
 							<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-envelope-o"> </i> Enviar Convite</button>
 							<a class="btn btn-warning btn-sm"
 							href="${linkTo[ProjetosController].apresentacao}?codProjeto=${param.codProjeto}"
-							onclick="return confirmExclusao()" title="Excluir Área"> <i class="fa fa-desktop"> 
+							 title="Cadastrar Apresentação"> <i class="fa fa-desktop"> 
 							  </i>   Apresentação</a>
 						</div>
 					</div>
@@ -234,7 +240,7 @@
 						<td>${banca.quantidadeDeParticipantes}</td>
 						<td>${banca.dataInicio}</td>
 						<td>${banca.datafim}</td>
-						<td><a class="btn btn-danger btn-sm"
+						<td><a class="btn btn-danger btn-sm" onclick="return confirmExclusao()"
 							href="${linkTo[BancaController].delete}?codBanca=${banca.codBanca}&codUsuario=${param.codUsuario}&codProjeto=${param.codProjeto}"
 							onclick="return confirmExclusao()" title="Excluir Área"> <i class="glyphicon glyphicon-remove">
 							  </i>
@@ -332,4 +338,12 @@
         });
     </script>
     <!-- /input mask -->       
-     
+     	<script>
+	function confirmExclusao() {
+		if (confirm("Tem certeza que deseja excluir?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>

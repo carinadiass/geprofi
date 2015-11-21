@@ -37,6 +37,8 @@ public class Projeto {
 	private String situacao;
 	private String[] palavraChave;
     private int codtipoetapa;
+    private String inicio;
+    private String termino;
 	@ManyToMany
 	@JoinColumn(name="codProfessor")
 	private Professor professor;
@@ -137,4 +139,17 @@ public class Projeto {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+	public String getInicio() {
+		return inicio;
+	}
+	public void setInicio(String inicio) {
+		this.inicio = inicio;
+	}
+	public String getTermino() {
+		return termino;
+	}
+	public void setTermino(String termino) {
+		this.termino = termino;
+	}
+	
 }

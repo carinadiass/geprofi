@@ -9,7 +9,7 @@
 
 
 <jsp:include page="menu.jsp">
-	<jsp:param value="teste" name="1"/>
+	<jsp:param value="${param.codProfessor}" name="codUsuario"/>
 </jsp:include>
 
 <!-- INÍCIO CONTEÚDO DO PERFIL DO PROFESSOR -->
