@@ -1,35 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:include page="../home/heardHome.jsp">
+	<jsp:param value="teste" name="1"/>
+</jsp:include>
 
-
-
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
- 
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title> GeProfi | </title>
-
-    <!-- Bootstrap core CSS -->
-
-    <link href="${pageContext.request.contextPath}/production/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="${pageContext.request.contextPath}/production/fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/production/css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom styling plus plugins -->
-    <link href="${pageContext.request.contextPath}/production/css/custom.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/production/css/icheck/flat/green.css" rel="stylesheet">
-
-
-    <script src="${pageContext.request.contextPath}/production/js/jquery.min.js"></script>
-   
-
-</head>
 
 <body style="background:#ffffff;"> 
   <div class="container">
@@ -64,11 +36,11 @@
 	                          	<a href="${pageContext.request.contextPath}/professores/pfhome?codProfessor=41" class="btn btn-success btn-large" role="button" style="font-size:18px; width:350px;">Entrar</a>                      
 	                          </div>
 	                          <div class="clearfix"></div>
-	                        	<div class="separator">                       
+	                        	<div class="separator">    </div>                   
 	                          <div class="clearfix"></div>
 	                          <div>
-	                           <a class="reset_pass" href="formulario" style="font-size:18px; ">Esqueci minha senha</a>	
-	                          <a href="${pageContext.request.contextPath}/home/index" class="reset_pass"  style="font-size:18px;">Voltar</a> 
+	                           <a class="reset_pass" href="${pageContext.request.contextPath}/login/esqueceuSenha" style="font-size:18px; ">Esqueceu sua senha?</a>	
+	                          <a href="${pageContext.request.contextPath}/home/home" class="reset_pass"  style="font-size:18px;">Voltar</a> 
 	                         </div>                        
 	                         <br />											                        
 	                       </form>
@@ -86,7 +58,31 @@
              </div>
                   </div>
                        </div>
-                  
-     
+     <!-- INICIO DECLA  -->
+    <script src="${pageContext.request.contextPath}/production/js/bootstrap.min.js"></script>
+
+    <!-- chart js -->
+    <script src="${pageContext.request.contextPath}/production/js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="${pageContext.request.contextPath}/production/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="${pageContext.request.contextPath}/production/js/icheck/icheck.min.js"></script>
+
+    <script src="${pageContext.request.contextPath}/production/js/custom.js"></script>
+
+    <!-- image cropping -->
+    <script src="${pageContext.request.contextPath}/production/js/cropping/cropper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/cropping/main.js"></script>
+
+    
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/production/js/moment.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/production/js/datepicker/daterangepicker.js"></script>
+    <!-- moris js -->
+    <script src="${pageContext.request.contextPath}/production/js/moris/raphael-min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/moris/morris.js"></script>
 </body>
 </html>
+
+

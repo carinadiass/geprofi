@@ -67,7 +67,7 @@ public class BancaController {
 	public void delete(int codBanca,int codUsuario,int codProjeto,Result result ){
 		try {
 			dao.deleta(codBanca);
-			result.include("mensagem", "Banca deletada com sucesso!");
+			result.include("mensagem", "Convite deletado com sucesso!");
 			result.redirectTo(ProjetosController.class).convidarBanca( codUsuario, codProjeto, result);
 		} catch (SQLException e) {
 			e.printStackTrace();

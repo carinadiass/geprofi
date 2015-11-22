@@ -27,6 +27,10 @@ public class LoginController {
 		//this.usuarioLogado=usuarioLogado;
 		this.result=result;
 	}
+	public void esqueceuSenha() {
+		
+		
+	}
 	public void formulario() {}
 	public void angularTest(){}
 	@Post

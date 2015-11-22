@@ -135,7 +135,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     
                     <p class="copyright text-muted">Copyright &copy; <span
-					class="lead"> <i class="fa fa-graduation-cap"></i> GeProFi - UFRJ!</p>
+					class="lead"> <i class="fa fa-graduation-cap"></i> GeProFi - DCC - UFRJ</span></p>
                 </div>
             </div>
         </div>

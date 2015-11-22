@@ -18,10 +18,7 @@
 			<div class="nav toggle">
 				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
 			</div>
-
-
 			<ul>
-
 				<li role="presentation" class="dropdown"><a href="javascript:;"
 					class="dropdown-toggle info-number" data-toggle="dropdown"
 					aria-expanded="false"></a>
@@ -147,26 +144,7 @@
 	<br /> <br /> <br />
 
 </div>
-</div>
-<!-- footer content -->
-<!-- footer content -->
-<footer>
-	<div class="">
-		<p class="pull-right">
-			Desenvolvido por Carina Dias e Domingas Andrade. <span class="lead">
-				GeProFi!</span>
-		</p>
-	</div>
 
-</footer>
-<!-- /footer content -->
-<!-- /footer content -->
-
-</div>
-<!-- /page content -->
-</div>
-
-</div>
 
 <footer>
 	<jsp:include page="../professores/rodape.jsp">

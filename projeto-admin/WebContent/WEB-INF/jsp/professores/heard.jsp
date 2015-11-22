@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 
-    <title>Gentellela Alela! | </title>
-
+    <title>GeProFi-Gerênciador de Projetos Finais</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/production/images/logoGeProFi.png" >
     <!-- Bootstrap core CSS -->
 
     <link href="${pageContext.request.contextPath}/production/css/bootstrap.min.css" rel="stylesheet">
