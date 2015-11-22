@@ -7,6 +7,7 @@ String area = request.getParameter("area");
 String nome = request.getParameter("nome");
 String descricao = request.getParameter("descricao");
 %>
+
 			<ul class="errors">
 				<c:if test="${not empty errors}">
 					<div class="alert alert-danger" role="alert">

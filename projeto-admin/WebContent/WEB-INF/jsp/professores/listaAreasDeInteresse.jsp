@@ -91,9 +91,7 @@
 			</div>
 		</div>
 	</c:if>
-			<a href="${linkTo[AreaDeInteresseController].edita}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}"
-					class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar
-				</a> 	<a
+			<a
 					href="${linkTo[AreaDeInteresseController].delete}?codAreaDeInteresse=${areaDeInteresse.codAreaDeInteresse}&codUsuario=${professor.codUsuario}"
 					onclick="return confirmExclusao()" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
 						Excluir </a></td>

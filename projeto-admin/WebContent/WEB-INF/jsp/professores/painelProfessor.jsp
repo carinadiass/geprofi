@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 	
 			<div class="" role="tabpanel" data-example-id="togglable-tabs">
 									<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">

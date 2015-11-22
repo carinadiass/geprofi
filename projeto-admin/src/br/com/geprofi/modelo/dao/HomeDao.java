@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 
 import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
+import br.com.geprofi.modelo.Areadeinteresse_has_professor;
 
 @RequestScoped
 public interface HomeDao {
@@ -14,5 +15,8 @@ public interface HomeDao {
 	List<Projeto> projetoFinalizados() throws SQLException;
 	
 	Arquivo buscaArquivosCodProjeto(int codProjeto) throws SQLException;
+
+	List<Areadeinteresse_has_professor> areasInteresseUsuario()
+			throws SQLException;
 
 }

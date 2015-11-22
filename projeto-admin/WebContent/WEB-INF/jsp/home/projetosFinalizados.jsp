@@ -4,94 +4,16 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>GeProFi-Gerenciador de Projetos Finais</title>
-
-    <!-- Bootstrap core CSS -->
-
-    <link href="${pageContext.request.contextPath}/production/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="${pageContext.request.contextPath}/production/fonts/css/font-awesome.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/production/css/animate.min.css" rel="stylesheet">
-
-    <!-- Custom styling plus plugins -->
-    <link href="${pageContext.request.contextPath}/production/css/custom.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/production/css/icheck/flat/green.css" rel="stylesheet">
+<jsp:include page="heardHome.jsp">
+	<jsp:param value="teste" name="1"/>
+</jsp:include>
 
 
-    <script src="${pageContext.request.contextPath}/production/js/jquery.min.js"></script>
-
-    <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-</head>
-
-
-<body class="nav-md">
-
-    <div class="container body">
-
-
-        <div class="main_container">
-
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="${pageContext.request.contextPath}/home/home" class="site_title"><span>GeProFi</span></a>
-                    </div>
-                    <div class="clearfix"></div>
-
-
-                    <!-- menu prile quick info -->
-                    <div class="profile">
-                        <!-- div class="profile_pic">
-                            <img src="${pageContext.request.contextPath}/production/images/logoGeProFi.png" alt="..." class="img-circle profile_img">
-                        </div-->
-                       
-                    </div>
-                
-                    <br />
-
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-                        <div class="menu_section">
-                            
-                            <ul class="nav side-menu">
-                            <br>
-                                <li><a><i class="fa fa-home"></i> Areas de interesses <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="${pageContext.request.contextPath}/home/areaPorProfessor">Professores</a>
-                                        </li>
-                                        <li><a href="${pageContext.request.contextPath}/home/areaPorArea"> Areas </a>
-                                        </li>
-                                     </ul>
-                                </li>
-                                </ul>
-                        </div>
-                       </div>
-
-                    </div>
-                 </div>
-            </div>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
+<jsp:include page="menuHome.jsp">
+	<jsp:param value="teste" name="1"/>
+</jsp:include>
             <!-- top navigation -->
             <div class="top_nav">
 
@@ -192,40 +114,44 @@
                     <!-- footer content -->
                 <!-- footer content -->
                 <footer>
-                    <div class="">
-                        <p class="pull-right"> Desenvolvido por Carina Dias e Domingas Andrade. 
-                            <span class="lead">  GeProFi!</span>
-                        </p>
-                    </div>
+                   <jsp:include page="../professores/rodape.jsp">
+		<jsp:param value="teste" name="1" />
+	</jsp:include>
                    
                 </footer>
                 <!-- /footer content -->
                 <!-- /footer content -->
                     
-                </div>
                 <!-- /page content -->
-            </div>
 
-        </div>
 
-        <div id="custom_notifications" class="custom-notifications dsp_none">
-            <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-            </ul>
-            <div class="clearfix"></div>
-            <div id="notif-group" class="tabbed_notifications"></div>
-        </div>
 
-        <script src="${pageContext.request.contextPath}/production/js/bootstrap.min.js"></script>
+    </div><!--DIV class="right_col" role="main" -->
 
-        <!-- chart js -->
-        <script src="${pageContext.request.contextPath}/production/js/chartjs/chart.min.js"></script>
-        <!-- bootstrap progress js -->
-        <script src="${pageContext.request.contextPath}/production/js/progressbar/bootstrap-progressbar.min.js"></script>
-        <script src="${pageContext.request.contextPath}/production/js/nicescroll/jquery.nicescroll.min.js"></script>
-        <!-- icheck -->
-        <script src="${pageContext.request.contextPath}/production/js/icheck/icheck.min.js"></script>
+<!-- INICIO DECLA  -->
+    <script src="${pageContext.request.contextPath}/production/js/bootstrap.min.js"></script>
 
-        <script src="js/custom.js"></script>
+    <!-- chart js -->
+    <script src="${pageContext.request.contextPath}/production/js/chartjs/chart.min.js"></script>
+    <!-- bootstrap progress js -->
+    <script src="${pageContext.request.contextPath}/production/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="${pageContext.request.contextPath}/production/js/icheck/icheck.min.js"></script>
+
+    <script src="${pageContext.request.contextPath}/production/js/custom.js"></script>
+
+    <!-- image cropping -->
+    <script src="${pageContext.request.contextPath}/production/js/cropping/cropper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/cropping/main.js"></script>
+
+    
+    <!-- daterangepicker -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/production/js/moment.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/production/js/datepicker/daterangepicker.js"></script>
+    <!-- moris js -->
+    <script src="${pageContext.request.contextPath}/production/js/moris/raphael-min.js"></script>
+    <script src="${pageContext.request.contextPath}/production/js/moris/morris.js"></script>
 
 
         <!-- Datatables -->

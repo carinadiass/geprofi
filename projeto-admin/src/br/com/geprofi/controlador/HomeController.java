@@ -31,10 +31,20 @@ public class HomeController {
 	public void home() {
 
 	}
-	public void areaPorArea() {
+	public void areaPorArea(Result result) {
+		try {
+			result.include("ListAreasProfessores", dao.areasInteresseUsuario());
+		}catch (SQLException e) {
 
+		}	
+		
 	}
-	public void areaPorProfessor() {
+	public void areaPorProfessor(Result result) {
+		try {
+			result.include("ListAreasProfessores", dao.areasInteresseUsuario());
+		}catch (SQLException e) {
+
+		}	
 
 	}
 	public void projetosFinalizados(Result result) throws SQLException {
@@ -49,8 +59,12 @@ public class HomeController {
 	public void projetosFinalizados1() {
 
 	}
-	public void areadeInteresse() {
+	public void areadeInteresse(Result result) {
+		try {
+			result.include("ListAreasProfessores", dao.areasInteresseUsuario());
+		}catch (SQLException e) {
 
+		}	
 	}
 	public Download downloadMonografia(int codProjeto) throws SQLException {
 		try {
