@@ -40,15 +40,16 @@ public class BancaController {
 		return banca;
 	}
 	public void salva(@Valid Banca banca,int codProjeto,int codUsuario, Result result,Validator validator){
-		try {
 		
+		String Assunto="Convite para participação de banca de Projeto Final";
+		try {
 			JDBCHomeDao daohome= new JDBCHomeDao();
 			Arquivo arquivo = daohome.buscaArquivosCodProjeto(codProjeto);
 			File file = new File(CAMINHO_UPLOAD_MONOGRAFIA +codProjeto,arquivo.getNome());
-			SendMailTLS.enviarEmailComAnexo(banca.getConvite().replaceAll(";", ","), "Teste", "Testando Email", file.getAbsolutePath());
+			SendMailTLS.enviarEmailComAnexo(banca.getConvite().replaceAll(";", ","), Assunto, "Testando Email", file.getAbsolutePath());
 			validator.onErrorRedirectTo(ProjetosController.class).convidarBanca(codUsuario, codProjeto, result);
 			dao.adiciona(banca, codProjeto);
-			result.include("mensagem", "Banca criada com sucesso!");
+			result.include("mensagem", "Convite enviado com sucesso!");
 			
 			result.forwardTo(ProjetosController.class).convidarBanca(codUsuario,codProjeto,result);
 		} catch (SQLException e) {
