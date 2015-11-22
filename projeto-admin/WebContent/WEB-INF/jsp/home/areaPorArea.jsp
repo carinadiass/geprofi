@@ -94,8 +94,8 @@
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                                </button>
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span>
+                                                </button><br>
                                                 <h4 class="modal-title" id="myModalLabel">Detalhes</h4>
                                             </div>
                                             <div class="modal-body">
