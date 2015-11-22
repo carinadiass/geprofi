@@ -91,7 +91,7 @@ public class FuncoesHome {
 	}
 	public static Arquivo buscaMonografi(Connection connection, int codProjeto){
 		Arquivo arquivo= new Arquivo();
-		String sql ="select * from arquivo  where codProjeto="+codProjeto+" and tipo=2 order by versao desc limit 1";
+		String sql ="select * from arquivo where codProjeto="+codProjeto+" and tipo=2 order by versao desc limit 1";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();

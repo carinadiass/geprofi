@@ -54,7 +54,9 @@ public class AlunosController {
 		}
 		return alunoEncontrado;
 	}
-	public void salva(@Valid Aluno aluno,Result result,Validator validator) {
+	public void salva(@Valid Aluno aluno,Result result,Validator validator) throws EmailException {
+		String corpo = "Prezado(a),"
+				+ "Seus dados de acesso ao sistema são: ";
 		try {
 			validator.onErrorRedirectTo(this).cadaluno();
 			dao.adiciona(aluno);
@@ -63,6 +65,7 @@ public class AlunosController {
 			result.include("mensagem", "Aluno salvo com sucesso!");
 			result.include("alunoList", dao.todos(aluno.getCodProjeto()));
 			result.include("codProjeto", aluno.getCodProjeto());
+			sendNewPassword(aluno.getEmail(),"Conta de Acesso ao GeProFi", corpo+ " <br> Login:" + aluno.getEmail()+ "<br> Senha:" + aluno.getSenha());
 			result.forwardTo(this).cadaluno();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,17 +89,7 @@ public class AlunosController {
 		}
 	}
 	@Path("/password/send")
-	public void sendNewPassword() {
-		try {
-			Email email = new SimpleEmail();
-			email.setSubject("Your new password");
-			email.addTo("carinadiass@gmail.com");
-			email.setMsg("Testndo");
-			mailer.send(email); // Hostname, port and security settings are made by the Mailer
-		} catch (EmailException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+	public void sendNewPassword(String to, String subject, String corpo) throws EmailException {
+		SendMailTLS.enviarEmail(to,subject,corpo);
 	}
 }	

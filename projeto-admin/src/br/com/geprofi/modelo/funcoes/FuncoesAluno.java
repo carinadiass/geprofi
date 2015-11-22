@@ -61,6 +61,7 @@ public class FuncoesAluno {
 				aluno.setSexo(rs.getString("sexo"));
 				aluno.setDre(rs.getString("dre"));
 				aluno.setCurso(rs.getString("curso"));
+				aluno.setSenha(rs.getString("senha"));
 				alunos.add(aluno);
 			}
 			stmt.close();

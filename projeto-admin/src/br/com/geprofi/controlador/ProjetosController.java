@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 
 import br.com.caelum.vraptor.Controller;
-import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.download.Download;
@@ -21,6 +20,7 @@ import br.com.geprofi.modelo.Arquivo;
 import br.com.geprofi.modelo.Projeto;
 import br.com.geprofi.modelo.dao.ProjetoDao;
 import br.com.geprofi.modelo.funcoes.FuncoesProjeto;
+import br.com.geprofi.modelo.jdbc.JDBCHomeDao;
 import br.com.geprofi.modelo.jdbc.JDBCProfessorDao;
 import br.com.geprofi.modelo.jdbc.JDBCProjetoDao;
 
@@ -48,11 +48,14 @@ public class ProjetosController {
 	}
 	public void convidarBanca(int codUsuario,int codProjeto,Result result) {
 		try {
+			
+		
 			JDBCProfessorDao daoProf= new JDBCProfessorDao();
 			result.include("ListProfessoresExterno", daoProf.buscaProfessoresExterno_professor(codUsuario));  
 			result.include("ListProfessores", daoProf.todos());  
 			result.include("codProjeto", codProjeto);  
 			JDBCProjetoDao daoProj= new JDBCProjetoDao();
+		
 			result.include("bancaList", dao.pegaBancas_codProjeto(codProjeto));
 			daoProj.atualizaEtapaProjeto(codProjeto, 5);
 		}catch (SQLException e) {
