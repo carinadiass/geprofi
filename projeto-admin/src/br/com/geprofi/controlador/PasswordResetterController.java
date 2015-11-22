@@ -8,20 +8,25 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.simplemail.AsyncMailer;
 import br.com.caelum.vraptor.simplemail.Mailer;
 
 @Controller
 public class PasswordResetterController {
 
     private final String user;
-    private final Mailer mailer;
+    private final Mailer  mailer;
     
-    public PasswordResetterController(String user, Mailer mailer) {
+    public PasswordResetterController(String user, Mailer  mailer) {
         this.user = user;
         this.mailer = mailer;
     }
     public void formulario() {}
     
+    @Path("/password/send")
+    @Post
     public void sendNewPassword() {
         Email email = new SimpleEmail();
         email.setSubject("Your new password");

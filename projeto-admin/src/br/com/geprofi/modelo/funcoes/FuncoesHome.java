@@ -17,7 +17,7 @@ import br.com.geprofi.modelo.Projeto;
 public class FuncoesHome {
 	public static List<Areadeinteresse_has_professor> listaAreasInteresse(Connection connection) throws SQLException{
 		List<Areadeinteresse_has_professor> areadeinteresse_has_professor = new ArrayList<Areadeinteresse_has_professor>();
-		String sql ="select a.nome as nome_area, a.descricao as descricao_area, a.area as area, u.nome as usuario_nome, "
+		String sql ="select  a.codAreaDeInteresse as codArea, a.nome as nome_area, a.descricao as descricao_area, a.area as area, u.nome as usuario_nome, "
 				+ " u.email as usuario_email, u.sala as usuario_sala, u.codUsuario as codigo  from areadeinteresse_has_professor ap"
 				+ " join areadeinteresse a on ap.codareadeinteresse=a.codareadeinteresse join usuario u on u.codUsuario=ap.codusuario" ;
 		try {
@@ -35,6 +35,7 @@ public class FuncoesHome {
 				area.setDescricao(rs.getString("descricao_area"));
 				area.setArea(rs.getString("area"));
 				area.setNome(rs.getString("nome_area"));
+				area.setCodAreaDeInteresse(rs.getInt("codArea"));
 				areaDeInteresse.setProfessor(prof);
 				areaDeInteresse.setAreaDeInteresse(area);
 				areadeinteresse_has_professor.add(areaDeInteresse);
