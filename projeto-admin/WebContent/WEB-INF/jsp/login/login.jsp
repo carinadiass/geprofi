@@ -37,7 +37,6 @@
 	                          </div>
 	                          <div class="clearfix"></div>
 	                        	<div class="separator">    </div>                   
-	                          <div class="clearfix"></div>
 	                          <div>
 	                           <a class="reset_pass" href="${pageContext.request.contextPath}/login/esqueceuSenha" style="font-size:18px; ">Esqueceu sua senha?</a>	
 	                          <a href="${pageContext.request.contextPath}/home/home" class="reset_pass"  style="font-size:18px;">Voltar</a> 
