@@ -119,7 +119,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 							</div>
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="control-label col-md-3 col-sm-3" for="aluno.dre">Dre:</label>
+								<label class="control-label col-md-3 col-sm-3" for="aluno.dre">Matrícula:</label>
 								<div class="col-md-6 col-sm-6">
 									<input id="aluno.dre" name="aluno.dre" value="${aluno.dre}"
 										class="form-control input-sm" type="text">
@@ -188,7 +188,7 @@ System.out.println("Parametro Cod_Projeto:" +codProjeto); */
 									<tr>
 										<th>Nome</th>
 										<th>Email</th>
-										<th>Dre</th>
+										<th>Matrícula</th>
 										<th>Curso</th>
 										<th>Data de Cadastro</th>
 										<th colspan=2>Ação</th>

@@ -6,31 +6,25 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
-import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.simplemail.Mailer;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.geprofi.modelo.Aluno;
 import br.com.geprofi.modelo.dao.AlunoDao;
-import br.com.geprofi.modelo.jdbc.JDBCProfessorDao;
+import br.com.geprofi.modelo.funcoes.FuncoesAluno;
 import br.com.geprofi.modelo.jdbc.JDBCProjetoDao;
 
 @Controller
 public class AlunosController {
 
 	private AlunoDao dao;
-	private Mailer mailer;  
 	@Inject
-	public AlunosController(AlunoDao dao, Mailer mailer){
+	public AlunosController(AlunoDao dao){
 		this.dao=dao;
-		this.mailer = mailer;
 	}
     protected AlunosController(){}
 	public void formulario() {}
@@ -59,13 +53,15 @@ public class AlunosController {
 				+ "Seus dados de acesso ao sistema são: ";
 		try {
 			validator.onErrorRedirectTo(this).cadaluno();
+			aluno.setSenha(FuncoesAluno.getRandomPass(7));
+			sendNewPassword(aluno.getEmail(),"Conta de Acesso ao GeProFi", corpo+ "\nLogin: " + aluno.getEmail()+ "\nSenha: " +aluno.getSenha());
 			dao.adiciona(aluno);
 			JDBCProjetoDao daoProj= new JDBCProjetoDao();
 			daoProj.atualizaEtapaProjeto(aluno.getCodProjeto(), 2);
 			result.include("mensagem", "Aluno salvo com sucesso!");
 			result.include("alunoList", dao.todos(aluno.getCodProjeto()));
 			result.include("codProjeto", aluno.getCodProjeto());
-			sendNewPassword(aluno.getEmail(),"Conta de Acesso ao GeProFi", corpo+ " <br> Login:" + aluno.getEmail()+ "<br> Senha:" + aluno.getSenha());
+			
 			result.forwardTo(this).cadaluno();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,7 +79,7 @@ public class AlunosController {
 		try {
 			dao.deleta(codUsuario);
 			result.include("mensagem", "Aluno deletado com sucesso!");
-			result.redirectTo(this).lista();
+			result.forwardTo(this).cadaluno();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

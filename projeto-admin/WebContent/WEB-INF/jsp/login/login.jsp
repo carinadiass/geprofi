@@ -33,7 +33,7 @@
 	                           </div>
 	                         <div>
 	                         	    
-	                          	<a href="${pageContext.request.contextPath}/professores/pfhome?codProfessor=41" class="btn btn-success btn-large" role="button" style="font-size:18px; width:350px;">Entrar</a>                      
+	                          	<a href="${pageContext.request.contextPath}/professores/pfhome?codProfessor=1" class="btn btn-success btn-large" role="button" style="font-size:18px; width:350px;">Entrar</a>                      
 	                          </div>
 	                          <div class="clearfix"></div>
 	                        	<div class="separator">    </div>                   

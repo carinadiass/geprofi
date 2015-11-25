@@ -83,7 +83,7 @@
 												<h4 class="modal-title" id="myModalLabel">Editar Perfil</h4>
 											</div>
 											<div class="modal-body">
-												<jsp:include page="formulario.jsp">
+												<jsp:include page="formulario_alterado.jsp">
 													<jsp:param name="professor" value="${professor}" />
 												</jsp:include>
 											</div>

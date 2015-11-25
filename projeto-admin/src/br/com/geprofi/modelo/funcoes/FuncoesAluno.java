@@ -109,7 +109,7 @@ public class FuncoesAluno {
 			// preenche os valores
 			stmt.setString(1, aluno.getNome());
 			stmt.setString(2, aluno.getEmail());
-			stmt.setString(3, getRandomPass(6));
+			stmt.setString(3, aluno.getSenha());
 			stmt.setString(4, "Aluno");
 			stmt.setString(5, aluno.getDre());
 			stmt.setString(6, aluno.getSexo());
